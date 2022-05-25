@@ -32,7 +32,8 @@
 \renewcommand{\sectionmark}[1]{\markboth{Chapter~\thesection.~#1}{#1}}
 \renewcommand{\subsectionmark}[1]{\markright{\thesubsection\ #1}}
 \rhead[\fancyplain{}{\leftmark}]%
-{\fancyplain{\thepage}{\thepage}} \cfoot{} \plainheadrulewidth 0.4pt
+{\fancyplain{\thepage}{\thepage}} \cfoot{} \plainheadrulewidth
+0.4pt
 %% Otherwise: Overfull \vbox-Warning against fancyheadings-pacakage
 %%  idea of: nic@minster.york.ac.uk (Nick Cropper)
 \makeatletter
@@ -82,8 +83,8 @@
    \large{Department of Mechatronic Engineering}\\
 
     ------------------------------------------------------------------------------------------------\\[1.0cm]
-    \LARGE{\textbf{Development of a 6 DOF Stewart platform Force Balance for a Low Speed Wind Tunnel}}\\[0.6cm]
-    \LARGE{\textbf{Final Year Project Proposal (FYP 18-14)
+    \LARGE{\textbf{Development of a Hydrogen Fuel Cell Control System}}\\[0.6cm]
+    \LARGE{\textbf{Final year project (FYP 13-11)
             }}\\[1.5cm]
     %\large{by}\\[0.6cm
 
@@ -105,12 +106,9 @@
 
 \input{Files/Declaration}
 \clearpage
-\addcontentsline{toc}{section}{Abstract}
-\input{Files/Abstract}
-\clearpage
-\addcontentsline{toc}{section}{Table of Contents}
 \tableofcontents
 \clearpage
+\addcontentsline{toc}{section}{Table of Contents}
 \addcontentsline{toc}{section}{List of Figures}
 {%
 \let\oldnumberline\numberline%
@@ -123,8 +121,13 @@
 \clearpage
 \addcontentsline{toc}{section}{List of Abbreviations}
 \clearpage
+\newpage
+
+\newpage
+\input{Files/Abstract}
+\clearpage
 \pagenumbering{arabic}
-  \input{Files/Chapter1}
+  \input{Files/Introduction}
   \clearpage
   \input{Files/Chapter2}
   \clearpage
