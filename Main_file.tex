@@ -55,7 +55,7 @@
 
 %-----Useful abbreviations----------------------
 \newcommand{\mr}{\mathrm}
-\newcommand{\bs}[1]{\mbox{$\boldsymbol{#1}$}}
+%%\newcommand{\bs}[1]{\mbox{$\boldsymbol{#1}$}}
 \newcommand{\degree}[1]{\mbox{$#1^\circ$}}
 
 %\renewcommand{\figurename}{Bild}
@@ -73,7 +73,7 @@
       \vspace*{-4.0cm}
     \begin{figure}[!h]
 \centering
-\includegraphics[width=0.3\ linewidth]{Figures/JKUAT_logo}
+\includegraphics[width=0.3\linewidth]{Figures/JKUAT_logo}
 %\caption{}
 \label{fig:jomologo}
 \end{figure}
@@ -83,10 +83,8 @@
    \large{Department of Mechatronic Engineering}\\
 
     ------------------------------------------------------------------------------------------------\\[1.0cm]
-    \LARGE{\textbf{Development of a 6 DOF Stewart platform
-    Force Balance for a Low Speed Wind Tunnel
-    }}\\[0.6cm]
-    \LARGE{\textbf{Final year project proposal (FYP 18-10)
+    \LARGE{\textbf{Development of a Hydrogen Fuel Cell Control System}}\\[0.6cm]
+    \LARGE{\textbf{Final year project (FYP 13-11)
             }}\\[1.5cm]
     %\large{by}\\[0.6cm
 
@@ -108,11 +106,9 @@
 
 \input{Files/Declaration}
 \clearpage
-\input{Files/Abstract}
-\clearpage
+\addcontentsline{toc}{section}{Table of Contents}
 \tableofcontents
 \clearpage
-\addcontentsline{toc}{section}{Table of Contents}
 \addcontentsline{toc}{section}{List of Figures}
 {%
 \let\oldnumberline\numberline%
@@ -126,8 +122,12 @@
 \addcontentsline{toc}{section}{List of Abbreviations}
 \clearpage
 \newpage
+
+\newpage
+\input{Files/Abstract}
+\clearpage
 \pagenumbering{arabic}
-  \input{Files/Chapter1}
+  \input{Files/Introduction}
   \clearpage
   \input{Files/Chapter2}
   \clearpage
