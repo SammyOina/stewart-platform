@@ -1,4 +1,47 @@
 \section{Literature Review}
+\subsection{Stewart Platform}
+\paragraph{}Parallel link manipulators have become an important area of research due to their: precision, rigidy and high-load-to-weight ratio. These manipulators find practical applications in flight simulators, precise machining and applications that require distutbance isolation. \cite{iqbal_dynamic_2008}. The Stewart platform is an example of a parallel manipulator.
+\paragraph{}A Stewart platform \cite{stewart1965platform} is a parallel
+manipulator that provides six-degree-of-freedom (6DOF) i.e. roll, pitch, yaw, surge, sway and heave, and can be controlled in all these freedoms simultaneously. The platform consists six variable-length electro-mechanical actuators connecting a top plate to a base plate with spherical joints.
+\paragraph{}The platform is able to move in three angular directions and in three linear directions, singly or in any combination \cite{stewart1965platform}. Angular and translational motion of the top plate with
+respect to the base plate is acheived by reducing or extending the actuator lengths. For the top plate to follow the desired trajectory with high frequency, there has to be proper coordination of the actuator lengths \cite{iqbal_dynamic_2008}.
+\paragraph{}Each leg of the mechanism is connected to the ground by a two-axis joint where: One of these axes is
+normal to the leg and is provided with a means for control whereas, the other axis is normal to the first and is not provided with a means for control.
+Each leg also has controllable means for extending its length. These control means include:
+\begin{enumerate}
+\item Use of hydraulic jacks.
+\item Screw jacks - This gives give the advantage of
+a longer stroke for a given size.
+\item Rotary actuator - a hydraulic rotary actuator or an electric motor. Whereas this would reduce the number of foundation fixings, the remaining jack would still be subjected to a greater bending moment.
+\item Levers - this increases the extending leg amplitude by using an articulated leg.
+\item Linear co-ordinate control - this arrangement provides rigidity due to the true triangulation of
+the whole system. There will be no bending moments in any of the members apart from the possibility of those due to strut eccentric loading. 
+\end{enumerate}
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics{Figures/Fig11}
+	\caption{Linear co-ordinate control}
+	\end{figure}
+\end{center}
+\paragraph{}Stewart platforms that use screw jacks driven by electric motors as leg actuators have the advantage of being light and easy to control. Velocity and position control for these platforms can be done using shaft encoders and tachometers. A ball screw is used to minimize friction in a screw drive and backlash in the ball screw can be eliminated by use of double nuts preloaded with spring washers \cite{fichter1986stewart}.
+\paragraph{}In order to control the platform in the required direction, a program involving linear or angular accelerations or a combination of both is necessary so that signals can be given to the various legs in accordance with the input requirements. The six inputs to the Stewart
+platform in terms of torque are calculated by the controller and the outputs of the Stewart platform are the upper plate's angular and translational positions sensed by highly precise sensors or estimated by the motor's encoders \cite{iqbal_dynamic_2008}.
+\paragraph{}Further, as concerns the control aspect, in recent years many researchers have worked on robust controllers for the Stewart platform. Some of these works include:
+\begin{enumerate}
+\item A Lyapunov based approach for designing robust PD controller was proposed in presence of uncertainties 
+\cite{kang1996robust}.
+\item The model based sliding mode control with perturbation 
+\cite{kang1996robust}.
+\item Robust tracking control design in the presence of time varying
+uncertainties 
+\cite{kim1998high}.
+\item Tracking errors drive to zero asymptotically with help of sliding mode
+controller design 
+\cite{huang2004sliding}.
+\item A simple way to calculate control law using sliding-mode technique 
+\cite{iqbal2006direct}.
+\end{enumerate}
 \subsection{Force Balances}
 \paragraph{}For wind tunnel applications, the wind axes is used as the reference frame. Where, X axis points to the accelerated air; Z axis points downward and; Y axis points to the right in the direction of the wind. In the reference frame above, lift is in the negative z-direction, drag in the negative x-direction and, side force in the negative y-direction.
 \paragraph{}Moment components on the x,y,z axes are rolling moment, pitching moment and yawing moment respectively. A three-component force balance can be considered to measure the lift, drag and pitch (angle of attack).
