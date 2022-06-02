@@ -1,34 +1,46 @@
 \section{Methodology}
-\subsection{System Modelling}
-\paragraph{}The fuel cell system model will be obtained from governing equations from which a transfer function will be generated from the linearized model. The transfer function will be used to generate a state space model for the system. 
-\paragraph{}The system will then be represented in matlab and the controllers designed will be tested on the system to observe the effectiveness of each control method. 
-\paragraph{} Two genral types of models are used in simulation of fuel cell technology, the approaches are detailed lumped parameter dynamic models and black-box models based on system identification. The black box model commonly expresses as NARX (Nonlinear Auto Regressive with eXogenous input) or ARMAX (Auto Regressive Moving Average with eXogenous input) equations. This project addresses both modelling approaches by presenting an ARMAX model for the black-box modelling approach and a detailed mechanistic model for the dynamic modelling approach.
-\subsubsection{ARMAX Model}
-\paragraph{}Hydrogen is an input variable and is fed at an adjustable flow rate N\textsubscript{H} as well as oxygen expressed as n\textsubscript{A} derived from air. Voltage and current are the system outputs. Franklin et al \cite{franklin_feedback_2002}, represent this as Multiple Input Multiple Output (MIMO) System as shown in the Figure 3.4 below.
-\begin{figure}[!h]
-\includegraphics{Figures/mimo}
-\caption{ MIMO representation of fuel cell \cite{thanapalan_model_2011}}
-\end{figure}
-\paragraph{}The relationship between the inputs (N\textsubscript{A} and N\textsubscript{H}) and the outputs (I\textsubscript{c} and V\textsubscript{c}), while R represents the internal resistance. The system can be represented using the following equations:
-\begin{equation}
-$$ V_{c} = G_{2}N_{A} + G_{4}N_{H} + RI_{C} $$
-\end{equation}
-\begin{equation}
-$$ I_{C} = G_{1}N_{A} + G_{3}N_{H} $$
-\end{equation}
-\paragraph{}Equation 3.1 and 3.2 will be used as a basis for system identification and controller design.
-\subsection{Simulations}
-\paragraph{}From the generated models on matlab, simulations will be performed using the different controllers and the responses and other metrics will be plotted out for further analysis. Metrics such as rise time, settling time and stochastic response will be observed to determine the system performance.
-\subsection{Sensors}
-\paragraph{}Sensors will be used to collect data from the system as it runs. These include:
+\subsection{Force Sensor}
+\paragraph{}The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
-\item Humidity sensor
-\item Temperature sensor
-\item Flow rate sensor
-\item Pressure sensors
-\item Voltage sensor
-\item Current sensor
+\item External force sensor
+\item Stewart Platform as a force sensor
 \end{itemize}
-\paragraph{}These sensors will be used by the controller to observe system performance and optimize for each parameter as well as the performance requirements.
-\subsection{Data Analysis}
-\paragraph{}The data collected from the simulations and sensors will be analysed using custom software created using jupyter notebooks. Graphs will  be generated to compare the performance of each controller and evaluation of the selected controller.
+\subsubsection{External Force Sensor}
+\paragraph{}In this case it would require at least 3 orthgonally positioned load cells measuring each force component. Each load cell would be mechanically linked to the model such that forces experienced on each axis. 
+\begin{center}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{Figures/modBal}
+		\caption{Diagram of a force balance \cite{post_force_2010}}
+	\end{figure}
+\end{center}
+\paragraph{} This configuration is however bulky by requiring an additional external system for force measurements in addition to the stewart platform for poositioning the model. This is however complemented by the simplicity in calibration of the load cells and does not require a complex force transformation matrix and other issues with force amplification created by the use of an integrated system.
+\subsubsection{Stewart Platform as a force sensor}
+\paragraph{} In this configuration the stewart platform legs are used as force sensors by attaching strain gauges in the legs of platform. Similar work has been done by \cite{ferreira2015design} without the use of actuators as is proposed in this project. Using the stewart platform as a force sensor requires the actuators to be locked with zero deegrees of freedom.
+\paragraph{} Four strain gauges are required for each leg for a full wheatstone bridge configuration. 
+\begin{center}
+	\begin{figure}[!h]
+		\centering
+		\includegraphics{Figures/loadConf}
+		\caption{Diagram of a force balance \cite{post_force_2010}}
+	\end{figure}
+\end{center}
+\paragraph{}In this case as shown in the figure the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gages measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the wheatstone bridge is then amplified and read to determine the strain on each leg.
+\paragraph{Force transformation matrix}
+In such a case the forces experienced at the top of the platform are distributed between the 6 legs and as result, a force transformation matrix is required to resolve the forces apllied on each axis as measured by each load cell on each leg. 
+\paragraph{} If the platform is acted upon by an external wrench {$\vec{F}_e, \vec{M}_e$}, for static equilibrium of the body, the external wrench is statically balanced by the six leg forces of the stewart platform. Representing the unit vector $\hat{I}_i$ along the i-th leg with respect to B, the leg force is given  by $\hat{I}_if_i$. Considering the force equilibrium of the platform along  three mutually perpendicular directions in B(XYZ), the following force equations can be obtained:
+\paragraph{}$(F_e)_x = f_1I_{1x} + f_2I_{2x} + f_3I_{3x} + f_4I_{4x} + f_5I_{5x} + f_6I_{6x}$
+\paragraph{}$(F_e)_y = f_1I_{1y} + f_2I_{2y} + f_3I_{3y} + f_4I_{4y} + f_5I_{5y} + f_6I_{6y}$
+\paragraph{}$(F_e)_z = f_1I_{1z} + f_2I_{2z} + f_3I_{3z} + f_4I_{4z} + f_5I_{5z} + f_6I_{6z}$
+\paragraph{} where $(F_e)_x$, $(F_e)_y$ and $(F_e)_z$ are the external forces on the platform along three mutually perpendicular directions x, y and z of the frame B, respectively.
+\paragraph{} The moment due to the forces $\hat{I}_if_i$ about the origin of B is $(\vec{b}_i x \hat{I}_i)f_i$. Considering the moment equilibrium about x, y and z axes of B, the following moment equations can be obtained:
+\paragraph{}$(M_e)_x = f_1(\vec{b}_1 x \hat{I}_1)_x + f_2(\vec{b}_2 x \hat{I}_2)_x + f_3(\vec{b}_3 x \hat{I}_3)_x + f_4(\vec{b}_4 x \hat{I}_4)_x + f_5(\vec{b}_5 x \hat{I}_5)_x + f_6(\vec{b}_6 x \hat{I}_6)_x$
+\paragraph{}$(M_e)_y = f_1(\vec{b}_1 x \hat{I}_1)_y + f_2(\vec{b}_2 x \hat{I}_2)_y + f_3(\vec{b}_3 x \hat{I}_3)_y + f_4(\vec{b}_4 x \hat{I}_4)_y + f_5(\vec{b}_5 x \hat{I}_5)_y + f_6(\vec{b}_6 x \hat{I}_6)_y$
+\paragraph{}$(M_e)_z = f_1(\vec{b}_1 x \hat{I}_1)_z + f_2(\vec{b}_2 x \hat{I}_2)_z + f_3(\vec{b}_3 x \hat{I}_3)_z + f_4(\vec{b}_4 x \hat{I}_4)_z + f_5(\vec{b}_5 x \hat{I}_5)_z + f_6(\vec{b}_6 x \hat{I}_6)_z$
+where $(M_e)_x$, $(M_e)_y$ and $(M_e)_z$ are the external moments on the platform  about the three coordinate axes of B. Combining the equations the relationship between the external wrench and the forces experienced by the legs can be expressed as follows:
+$$
+\begin{Bmatrix}
+\vec{F}_e \\
+\vec{M}_e \\
+\end{Bmatrix} = [H]\{F\}
+$$
