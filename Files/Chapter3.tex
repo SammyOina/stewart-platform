@@ -6,7 +6,7 @@
 \item Stewart Platform as a force sensor
 \end{itemize}
 \subsubsection{External Force Sensor}
-\paragraph{}In this case it would require at least 3 orthgonally positioned load cells measuring each force component. Each load cell would be mechanically linked to the model such that forces experienced on each axis. 
+\paragraph{}In this case it would require at least 3 orthgonally positioned load cells measuring each force component. Each load cell would be mechanically linked to the model such that forces experienced on each axis are measured by each load cell. 
 \begin{center}
 	\begin{figure}[!h]
 		\centering
@@ -14,18 +14,18 @@
 		\caption{Diagram of a force balance \cite{post_force_2010}}
 	\end{figure}
 \end{center}
-\paragraph{} This configuration is however bulky by requiring an additional external system for force measurements in addition to the stewart platform for poositioning the model. This is however complemented by the simplicity in calibration of the load cells and does not require a complex force transformation matrix and other issues with force amplification created by the use of an integrated system.
+\paragraph{} This configuration is however bulky by requiring an additional external system for force measurements in addition to the stewart platform for positioning the model. This is however complemented by the simplicity in calibration of the load cells and does not require a complex force transformation matrix and other issues with force amplification created by the use of an integrated system.
 \subsubsection{Stewart Platform as a force sensor}
-\paragraph{} In this configuration the stewart platform legs are used as force sensors by attaching strain gauges in the legs of platform. Similar work has been done by \cite{ferreira2015design} without the use of actuators as is proposed in this project. Using the stewart platform as a force sensor requires the actuators to be locked with zero deegrees of freedom.
+\paragraph{} In this configuration the stewart platform legs are used as force sensors by attaching strain gauges in the legs of platform. Similar work has been done by \cite{ferreira2015design} without the use of actuators as is proposed in this project. Using the stewart platform as a force sensor requires the actuators to be locked with zero degrees of freedom.
 \paragraph{} Four strain gauges are required for each leg for a full wheatstone bridge configuration. 
 \begin{center}
 	\begin{figure}[!h]
 		\centering
 		\includegraphics{Figures/loadConf}
-		\caption{Diagram of a force balance \cite{post_force_2010}}
+		\caption{Strain Gauge Configuration \cite{noauthor_measuring_nodate}}
 	\end{figure}
 \end{center}
-\paragraph{}In this case as shown in the figure the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gages measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the wheatstone bridge is then amplified and read to determine the strain on each leg.
+\paragraph{}In this case as shown in the figure the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gauges measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the wheatstone bridge is then amplified and read to determine the strain on each leg.
 \paragraph{Force transformation matrix}
 In such a case the forces experienced at the top of the platform are distributed between the 6 legs and as result, a force transformation matrix is required to resolve the forces apllied on each axis as measured by each load cell on each leg. 
 \paragraph{} If the platform is acted upon by an external wrench {$\vec{F}_e, \vec{M}_e$}, for static equilibrium of the body, the external wrench is statically balanced by the six leg forces of the stewart platform. Representing the unit vector $\hat{I}_i$ along the i-th leg with respect to B, the leg force is given  by $\hat{I}_if_i$. Considering the force equilibrium of the platform along  three mutually perpendicular directions in B(XYZ), the following force equations can be obtained:
