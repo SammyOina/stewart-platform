@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 13:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 13:38
 entering extended mode
 **./Main_file.tex
 (Main_file.tex
@@ -762,27 +762,24 @@ Package pdftex.def Info: Figures/Fig10.jpg  used on input line 160.
 <Figures/modBal.jpg, id=87, 355.3275pt x 203.25937pt>
 File: Figures/modBal.jpg Graphic file (type jpg)
 <use Figures/modBal.jpg>
-Package pdftex.def Info: Figures/modBal.jpg  used on input line 25.
+Package pdftex.def Info: Figures/modBal.jpg  used on input line 27.
 (pdftex.def)             Requested size: 355.32661pt x 203.25887pt.
-<Figures/loadConf.jpg, id=88, 201.75375pt x 170.13562pt>
+ [16 <./Figures/modBal.jpg>]
+<Figures/loadConf.jpg, id=91, 201.75375pt x 170.13562pt>
 File: Figures/loadConf.jpg Graphic file (type jpg)
 <use Figures/loadConf.jpg>
-Package pdftex.def Info: Figures/loadConf.jpg  used on input line 36.
+Package pdftex.def Info: Figures/loadConf.jpg  used on input line 38.
 (pdftex.def)             Requested size: 201.75325pt x 170.1352pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[16 <./Figures/modBal.jpg>] [17 <./Figures/loadConf.jpg>] [18]
+ [17 <./Figures/loadConf.jpg>] [18]
 <Figures/pitot.jpg, id=104, 229.60782pt x 133.24782pt>
 File: Figures/pitot.jpg Graphic file (type jpg)
 <use Figures/pitot.jpg>
-Package pdftex.def Info: Figures/pitot.jpg  used on input line 65.
+Package pdftex.def Info: Figures/pitot.jpg  used on input line 67.
 (pdftex.def)             Requested size: 229.60725pt x 133.24748pt.
 
 
 LaTeX Warning: Citation `noauthor_wind_nodate' on page 19 undefined on input li
-ne 66.
+ne 68.
 
 ) [19 <./Figures/pitot.jpg>] (Files/Chapter4.tex [20
 
@@ -837,7 +834,7 @@ msfonts/cm/cmr12.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><F:/Mik
 Tex/fonts/type1/public/amsfonts/cm/cmsl12.pfb><F:/MikTex/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmti12.pfb><F:/Mi
 kTex/fonts/type1/public/amsfonts/euler/eurm10.pfb>
-Output written on Main_file.pdf (30 pages, 654883 bytes).
+Output written on Main_file.pdf (30 pages, 655004 bytes).
 PDF statistics:
  196 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

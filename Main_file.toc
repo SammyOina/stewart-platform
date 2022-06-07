@@ -28,15 +28,15 @@
 \contentsline {subsubsection}{\numberline {3.1.2}Kinematic Analysis}{15}{}%
 \contentsline {subsection}{\numberline {3.2}Force Sensor}{15}{}%
 \contentsline {paragraph}{}{15}{}%
-\contentsline {subsubsection}{\numberline {3.2.1}External Force Sensor}{15}{}%
-\contentsline {paragraph}{}{15}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}External Force Sensor}{16}{}%
+\contentsline {paragraph}{}{16}{}%
 \contentsline {paragraph}{}{16}{}%
 \contentsline {subsubsection}{\numberline {3.2.2}Stewart Platform as a force sensor}{16}{}%
 \contentsline {paragraph}{}{16}{}%
 \contentsline {paragraph}{}{17}{}%
 \contentsline {paragraph}{}{17}{}%
 \contentsline {paragraph}{Force transformation matrix}{17}{}%
-\contentsline {paragraph}{}{17}{}%
+\contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{18}{}%
