@@ -4,8 +4,6 @@
 \contentsline {section}{List of Tables}{V}{}%
 \contentsline {section}{List of Abbreviations}{VI}{}%
 \contentsline {section}{Abstract}{VI}{}%
-\contentsline {paragraph}{}{VI}{}%
-\contentsline {paragraph}{}{VI}{}%
 \contentsline {section}{\numberline {1}Introduction}{1}{}%
 \contentsline {subsection}{\numberline {1.1}Background}{1}{}%
 \contentsline {subsubsection}{\numberline {1.1.1}Stewart Platform}{1}{}%
