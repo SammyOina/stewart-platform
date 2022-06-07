@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 13:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 13:23
 entering extended mode
 **./Main_file.tex
 (Main_file.tex
@@ -759,7 +759,7 @@ Package pdftex.def Info: Figures/Fig10.jpg  used on input line 160.
 <Figures/modBal.jpg, id=83, 355.3275pt x 203.25937pt>
 File: Figures/modBal.jpg Graphic file (type jpg)
 <use Figures/modBal.jpg>
-Package pdftex.def Info: Figures/modBal.jpg  used on input line 13.
+Package pdftex.def Info: Figures/modBal.jpg  used on input line 14.
 (pdftex.def)             Requested size: 355.32661pt x 203.25887pt.
 
 
@@ -771,20 +771,24 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Figures/loadConf.jpg, id=88, 201.75375pt x 170.13562pt>
 File: Figures/loadConf.jpg Graphic file (type jpg)
 <use Figures/loadConf.jpg>
-Package pdftex.def Info: Figures/loadConf.jpg  used on input line 24.
+Package pdftex.def Info: Figures/loadConf.jpg  used on input line 25.
 (pdftex.def)             Requested size: 201.75325pt x 170.1352pt.
- [16 <./Figures/modBal.jpg> <./Figures/loadConf.jpg>] [17]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[16 <./Figures/modBal.jpg>] [17 <./Figures/loadConf.jpg>]
 <Figures/pitot.jpg, id=98, 229.60782pt x 133.24782pt>
 File: Figures/pitot.jpg Graphic file (type jpg)
 <use Figures/pitot.jpg>
-Package pdftex.def Info: Figures/pitot.jpg  used on input line 53.
+Package pdftex.def Info: Figures/pitot.jpg  used on input line 54.
 (pdftex.def)             Requested size: 229.60725pt x 133.24748pt.
 
 
 LaTeX Warning: Citation `noauthor_wind_nodate' on page 18 undefined on input li
-ne 54.
+ne 55.
 
-[18 <./Figures/pitot.jpg>]) [19] (Files/Chapter4.tex [20
+[18]) [19 <./Figures/pitot.jpg>] (Files/Chapter4.tex [20
 
 ]
 <Figures/budget.pdf, id=111, 394.47375pt x 73.27374pt>
@@ -823,7 +827,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  4797 strings out of 478927
  69220 string characters out of 2869020
- 357969 words of memory out of 3000000
+ 358969 words of memory out of 3000000
  22533 multiletter control sequences out of 15000+600000
  411818 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -837,7 +841,7 @@ msfonts/cm/cmr12.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><F:/Mik
 Tex/fonts/type1/public/amsfonts/cm/cmsl12.pfb><F:/MikTex/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmti12.pfb><F:/Mi
 kTex/fonts/type1/public/amsfonts/euler/eurm10.pfb>
-Output written on Main_file.pdf (30 pages, 654636 bytes).
+Output written on Main_file.pdf (30 pages, 654833 bytes).
 PDF statistics:
  196 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

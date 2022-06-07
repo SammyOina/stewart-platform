@@ -28,17 +28,17 @@
 \contentsline {subsubsection}{\numberline {3.1.1}External Force Sensor}{15}{}%
 \contentsline {paragraph}{}{15}{}%
 \contentsline {paragraph}{}{15}{}%
-\contentsline {subsubsection}{\numberline {3.1.2}Stewart Platform as a force sensor}{15}{}%
-\contentsline {paragraph}{}{15}{}%
+\contentsline {subsubsection}{\numberline {3.1.2}Stewart Platform as a force sensor}{16}{}%
 \contentsline {paragraph}{}{16}{}%
-\contentsline {paragraph}{}{17}{}%
+\contentsline {paragraph}{}{16}{}%
+\contentsline {paragraph}{}{16}{}%
 \contentsline {paragraph}{Force transformation matrix}{17}{}%
 \contentsline {paragraph}{}{17}{}%
 \contentsline {paragraph}{}{17}{}%
 \contentsline {paragraph}{}{17}{}%
 \contentsline {paragraph}{}{17}{}%
-\contentsline {paragraph}{}{17}{}%
-\contentsline {paragraph}{}{17}{}%
+\contentsline {paragraph}{}{18}{}%
+\contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{18}{}%
