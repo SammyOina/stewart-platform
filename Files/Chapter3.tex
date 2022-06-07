@@ -10,8 +10,18 @@ platform must have a corresponding fixed position.
 \item The mechanism should be light.
 \item Velocity and position control of the mechanism should be easy to achieve.
 \end{enumerate}
-\subsubsection{Kinematic Analysis}
-
+\subsubsection{Kinematic Analysis - Rotational matrix}
+Euler angles are utilized to obtain rotational matrix for the moving platform of the Stewart platform mechanism. The rotational matrix is represented as follows:
+\begin{equation}
+\label{eqn} R_{P}^B = R_{Z}(\gamma)*R_{Y}(\beta)*R_{X}(\alpha)
+\end{equation}
+%\begin{tabular}{ccc}
+%content...
+%\end{tabular}
+Generalized coordinate position and velocity vector of the moving platform is represented below:
+%\begin{gather}
+%\label{eqn} q = 
+%\end{gather}
 
 \subsection{Force Sensor}
 \paragraph{}The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:

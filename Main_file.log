@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 13:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 17:00
 entering extended mode
 **./Main_file.tex
 (Main_file.tex
@@ -546,7 +546,11 @@ Package textgreek Info: Loaded fontmap: {phv/*/*}{U/psy/*/*} {*/bx/n}{U/eur/b/n
 File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count272
 \l__pdf_internal_box=\box52
-) (Main_file.aux)
+) (Main_file.aux
+
+LaTeX Warning: Label `eqn' multiply defined.
+
+)
 \openout1 = `Main_file.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
@@ -566,8 +570,7 @@ LaTeX Font Info:    ... okay on input line 70.
 LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 70.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 7
 0.
-
-(F:\MikTex\tex/latex/cbfonts-fd\lgrcmr.fd
+ (F:\MikTex\tex/latex/cbfonts-fd\lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
 LaTeX Font Info:    ... okay on input line 70.
@@ -759,42 +762,42 @@ Package pdftex.def Info: Figures/Fig10.jpg  used on input line 160.
 [15
 
 ]
-<Figures/modBal.jpg, id=87, 355.3275pt x 203.25937pt>
+<Figures/modBal.jpg, id=89, 355.3275pt x 203.25937pt>
 File: Figures/modBal.jpg Graphic file (type jpg)
 <use Figures/modBal.jpg>
-Package pdftex.def Info: Figures/modBal.jpg  used on input line 27.
+Package pdftex.def Info: Figures/modBal.jpg  used on input line 37.
 (pdftex.def)             Requested size: 355.32661pt x 203.25887pt.
  [16 <./Figures/modBal.jpg>]
-<Figures/loadConf.jpg, id=91, 201.75375pt x 170.13562pt>
+<Figures/loadConf.jpg, id=94, 201.75375pt x 170.13562pt>
 File: Figures/loadConf.jpg Graphic file (type jpg)
 <use Figures/loadConf.jpg>
-Package pdftex.def Info: Figures/loadConf.jpg  used on input line 38.
+Package pdftex.def Info: Figures/loadConf.jpg  used on input line 48.
 (pdftex.def)             Requested size: 201.75325pt x 170.1352pt.
  [17 <./Figures/loadConf.jpg>] [18]
-<Figures/pitot.jpg, id=104, 229.60782pt x 133.24782pt>
+<Figures/pitot.jpg, id=103, 229.60782pt x 133.24782pt>
 File: Figures/pitot.jpg Graphic file (type jpg)
 <use Figures/pitot.jpg>
-Package pdftex.def Info: Figures/pitot.jpg  used on input line 67.
+Package pdftex.def Info: Figures/pitot.jpg  used on input line 77.
 (pdftex.def)             Requested size: 229.60725pt x 133.24748pt.
 
 
 LaTeX Warning: Citation `noauthor_wind_nodate' on page 19 undefined on input li
-ne 68.
+ne 78.
 
-) [19 <./Figures/pitot.jpg>] (Files/Chapter4.tex [20
+[19 <./Figures/pitot.jpg>]) [20] (Files/Chapter4.tex [21
 
 ]
-<Figures/budget.pdf, id=111, 394.47375pt x 73.27374pt>
+<Figures/budget.pdf, id=114, 394.47375pt x 73.27374pt>
 File: Figures/budget.pdf Graphic file (type pdf)
 <use Figures/budget.pdf>
 Package pdftex.def Info: Figures/budget.pdf  used on input line 12.
 (pdftex.def)             Requested size: 394.47278pt x 73.27354pt.
-<Figures/workplan.pdf, id=112, 386.44376pt x 119.44624pt>
+<Figures/workplan.pdf, id=115, 386.44376pt x 119.44624pt>
 File: Figures/workplan.pdf Graphic file (type pdf)
 <use Figures/workplan.pdf>
 Package pdftex.def Info: Figures/workplan.pdf  used on input line 17.
 (pdftex.def)             Requested size: 386.44281pt x 119.44594pt.
-) [21 <./Figures/budget.pdf> <./Figures/workplan.pdf
+) [22 <./Figures/budget.pdf> <./Figures/workplan.pdf
 
 pdfTeX warning: pdflatex.exe (file ./Figures/workplan.pdf): PDF inclusion: mult
 iple pdfs with page group included in a single page
@@ -802,15 +805,18 @@ iple pdfs with page group included in a single page
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `en'. Using the pattern for
 ** the default language instead.
-[22
+[23
 
 ])
 
 LaTeX Warning: Citation `Lun01' undefined on input line 147.
 
-[23] (Main_file.aux)
+[24] (Main_file.aux)
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
 
  )
 (\end occurred inside a group at level 1)
@@ -818,10 +824,10 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 115 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4797 strings out of 478927
- 69220 string characters out of 2869020
- 359969 words of memory out of 3000000
- 22533 multiletter control sequences out of 15000+600000
+ 4798 strings out of 478927
+ 69225 string characters out of 2869020
+ 359019 words of memory out of 3000000
+ 22534 multiletter control sequences out of 15000+600000
  411818 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,12n,70p,813b,534s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -834,9 +840,9 @@ msfonts/cm/cmr12.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><F:/Mik
 Tex/fonts/type1/public/amsfonts/cm/cmsl12.pfb><F:/MikTex/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmti12.pfb><F:/Mi
 kTex/fonts/type1/public/amsfonts/euler/eurm10.pfb>
-Output written on Main_file.pdf (30 pages, 655004 bytes).
+Output written on Main_file.pdf (31 pages, 659256 bytes).
 PDF statistics:
- 196 PDF objects out of 1000 (max. 8388607)
+ 200 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  71 words of extra memory for PDF output out of 10000 (max. 10000000)
 

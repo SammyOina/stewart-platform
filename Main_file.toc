@@ -25,17 +25,17 @@
 \contentsline {section}{\numberline {3}Methodology}{15}{}%
 \contentsline {subsection}{\numberline {3.1}Stewart Platform}{15}{}%
 \contentsline {subsubsection}{\numberline {3.1.1}Design Considerations}{15}{}%
-\contentsline {subsubsection}{\numberline {3.1.2}Kinematic Analysis}{15}{}%
+\contentsline {subsubsection}{\numberline {3.1.2}Kinematic Analysis - Rotational matrix}{15}{}%
 \contentsline {subsection}{\numberline {3.2}Force Sensor}{15}{}%
 \contentsline {paragraph}{}{15}{}%
 \contentsline {subsubsection}{\numberline {3.2.1}External Force Sensor}{16}{}%
 \contentsline {paragraph}{}{16}{}%
 \contentsline {paragraph}{}{16}{}%
-\contentsline {subsubsection}{\numberline {3.2.2}Stewart Platform as a force sensor}{16}{}%
-\contentsline {paragraph}{}{16}{}%
+\contentsline {subsubsection}{\numberline {3.2.2}Stewart Platform as a force sensor}{17}{}%
 \contentsline {paragraph}{}{17}{}%
 \contentsline {paragraph}{}{17}{}%
-\contentsline {paragraph}{Force transformation matrix}{17}{}%
+\contentsline {paragraph}{}{17}{}%
+\contentsline {paragraph}{Force transformation matrix}{18}{}%
 \contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{18}{}%
@@ -44,9 +44,9 @@
 \contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{18}{}%
-\contentsline {paragraph}{}{18}{}%
+\contentsline {paragraph}{}{19}{}%
 \contentsline {subsection}{\numberline {3.3}Velocity Measurement}{19}{}%
-\contentsline {section}{\numberline {4}Expected Outcomes}{20}{}%
-\contentsline {section}{\numberline {5}Proposed Budget}{21}{}%
-\contentsline {section}{\numberline {6}Work Plan}{21}{}%
-\contentsline {section}{References}{22}{}%
+\contentsline {section}{\numberline {4}Expected Outcomes}{21}{}%
+\contentsline {section}{\numberline {5}Proposed Budget}{22}{}%
+\contentsline {section}{\numberline {6}Work Plan}{22}{}%
+\contentsline {section}{References}{23}{}%
