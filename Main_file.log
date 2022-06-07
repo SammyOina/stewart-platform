@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 22:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  8 JUN 2022 00:18
 entering extended mode
 **./Main_file.tex
 (Main_file.tex
@@ -627,31 +627,37 @@ LaTeX Font Info:    Redeclaring math accent \vec on input line 1848.
 File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count272
 \l__pdf_internal_box=\box52
-) (Main_file.aux)
+) (Main_file.aux
+
+LaTeX Warning: Label `eqn' multiply defined.
+
+
+LaTeX Warning: Label `eqn' multiply defined.
+
+)
 \openout1 = `Main_file.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 78.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 79.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 7
-8.
-
-(F:\MikTex\tex/latex/cbfonts-fd\lgrcmr.fd
+9.
+ (F:\MikTex\tex/latex/cbfonts-fd\lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
-LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    ... okay on input line 79.
 
 (F:\MikTex\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -677,7 +683,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 <Figures/JKUAT_logo.png, id=1, 196.48407pt x 178.41656pt>
 File: Figures/JKUAT_logo.png Graphic file (type png)
 <use Figures/JKUAT_logo.png>
-Package pdftex.def Info: Figures/JKUAT_logo.png  used on input line 85.
+Package pdftex.def Info: Figures/JKUAT_logo.png  used on input line 86.
 (pdftex.def)             Requested size: 136.5746pt x 124.025pt.
  [1
 Non-PDF special ignored!
@@ -805,43 +811,81 @@ Package pdftex.def Info: Figures/Fig10.jpg  used on input line 160.
 ) [13 <./Figures/Fig9.jpg> <./Figures/Fig10.jpg>] [14] (Files/Chapter3.tex
 [15
 
-] [16]
-<Figures/modBal.jpg, id=96, 355.3275pt x 203.25937pt>
+]
+<Figures/Fig12.jpg, id=91, 507.39563pt x 438.13687pt>
+File: Figures/Fig12.jpg Graphic file (type jpg)
+<use Figures/Fig12.jpg>
+Package pdftex.def Info: Figures/Fig12.jpg  used on input line 94.
+(pdftex.def)             Requested size: 273.14922pt x 235.86835pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (13.02176pt too wide) detected at line 102
+ $\OML/cmm/m/it/12 l[] \U/MnSymbolD/m/n/12   \OMX/MnSymbolE/m/n/12 à\OML/cmm/m/
+it/12 a[] \U/MnSymbolC/m/n/12 á \OML/cmm/m/it/12 r[] \U/MnSymbolC/m/n/12 á \OML
+/cmm/m/it/12 c[] \U/MnSymbolC/m/n/12  \OML/cmm/m/it/12 b[] \U/MnSymbolC/m/n/12
+ á \OML/cmm/m/it/12 r[] \U/MnSymbolC/m/n/12 á \OML/cmm/m/it/12 s[] \U/MnSymbolC
+/m/n/12  \OML/cmm/m/it/12 t[] \U/MnSymbolC/m/n/12  \OML/cmm/m/it/12 r[] \U/Mn
+SymbolC/m/n/12 á \OML/cmm/m/it/12 c[]\OMX/MnSymbolE/m/n/12 ç[][]  \U/MnSymbolC/
+m/n/12  \OMX/MnSymbolE/m/n/12 à\OML/cmm/m/it/12 a[] \U/MnSymbolC/m/n/12 á \OML
+/cmm/m/it/12 r[] \U/MnSymbolC/m/n/12 á \OML/cmm/m/it/12 c[] \U/MnSymbolC/m/n/12
+  \OML/cmm/m/it/12 b[] \U/MnSymbolC/m/n/12 á \OML/cmm/m/it/12 r[] \U/MnSymbolC
+/m/n/12 á \OML/cmm/m/it/12 s[] \U/MnSymbolC/m/n/12  \OML/cmm/m/it/12 t[] \U/Mn
+SymbolC/m/n/12  \OML/cmm/m/it/12 r[] \U/MnSymbolC/m/n/12 á \OML/cmm/m/it/12 s[
+]\OMX/MnSymbolE/m/n/12 ç[][]  \U/MnSymbolC/m/n/12  \OMX/MnSymbolE/m/n/12 à\OML
+/cmm/m/it/12 a[] \U/MnSymbolC/m/n/12 á \OML/cmm/m/it/12 r[] \U/MnSymbolC/m/n/12
+ á \OML/cmm/m/it/12 c[] \U/MnSymbolC/m/n/12  \OML/cmm/m/it/12 b[] \U/MnSymbolC
+/m/n/12 á \OML/cmm/m/it/12 r[] \U/MnSymbolC/m/n/12 á \OML/cmm/m/it/12 s[] \U/Mn
+SymbolC/m/n/12  \OML/cmm/m/it/12 t[]\OMX/MnSymbolE/m/n/12 ç[]$  
+ []
+
+[16] [17 <./Figures/Fig12.jpg>]
+<Figures/modBal.jpg, id=100, 355.3275pt x 203.25937pt>
 File: Figures/modBal.jpg Graphic file (type jpg)
 <use Figures/modBal.jpg>
-Package pdftex.def Info: Figures/modBal.jpg  used on input line 89.
+Package pdftex.def Info: Figures/modBal.jpg  used on input line 129.
 (pdftex.def)             Requested size: 355.32661pt x 203.25887pt.
- [17 <./Figures/modBal.jpg>]
-<Figures/loadConf.jpg, id=100, 201.75375pt x 170.13562pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[18]
+<Figures/loadConf.jpg, id=106, 201.75375pt x 170.13562pt>
 File: Figures/loadConf.jpg Graphic file (type jpg)
 <use Figures/loadConf.jpg>
-Package pdftex.def Info: Figures/loadConf.jpg  used on input line 100.
+Package pdftex.def Info: Figures/loadConf.jpg  used on input line 140.
 (pdftex.def)             Requested size: 201.75325pt x 170.1352pt.
- [18 <./Figures/loadConf.jpg>] [19]
-<Figures/pitot.jpg, id=109, 229.60782pt x 133.24782pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[19 <./Figures/modBal.jpg>] [20 <./Figures/loadConf.jpg>]
+<Figures/pitot.jpg, id=113, 229.60782pt x 133.24782pt>
 File: Figures/pitot.jpg Graphic file (type jpg)
 <use Figures/pitot.jpg>
-Package pdftex.def Info: Figures/pitot.jpg  used on input line 129.
+Package pdftex.def Info: Figures/pitot.jpg  used on input line 169.
 (pdftex.def)             Requested size: 229.60725pt x 133.24748pt.
 
 
-LaTeX Warning: Citation `noauthor_wind_nodate' on page 20 undefined on input li
-ne 130.
+LaTeX Warning: Citation `noauthor_wind_nodate' on page 21 undefined on input li
+ne 170.
 
-) [20 <./Figures/pitot.jpg>] (Files/Chapter4.tex [21
+[21]) [22 <./Figures/pitot.jpg>] (Files/Chapter4.tex [23
 
 ]
-<Figures/budget.pdf, id=116, 394.47375pt x 73.27374pt>
+<Figures/budget.pdf, id=123, 394.47375pt x 73.27374pt>
 File: Figures/budget.pdf Graphic file (type pdf)
 <use Figures/budget.pdf>
 Package pdftex.def Info: Figures/budget.pdf  used on input line 12.
 (pdftex.def)             Requested size: 394.47278pt x 73.27354pt.
-<Figures/workplan.pdf, id=117, 386.44376pt x 119.44624pt>
+<Figures/workplan.pdf, id=124, 386.44376pt x 119.44624pt>
 File: Figures/workplan.pdf Graphic file (type pdf)
 <use Figures/workplan.pdf>
 Package pdftex.def Info: Figures/workplan.pdf  used on input line 17.
 (pdftex.def)             Requested size: 386.44281pt x 119.44594pt.
-) [22 <./Figures/budget.pdf> <./Figures/workplan.pdf
+) [24 <./Figures/budget.pdf> <./Figures/workplan.pdf
 
 pdfTeX warning: pdflatex.exe (file ./Figures/workplan.pdf): PDF inclusion: mult
 iple pdfs with page group included in a single page
@@ -849,26 +893,29 @@ iple pdfs with page group included in a single page
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `en'. Using the pattern for
 ** the default language instead.
-[23
+[25
 
 ])
 
-LaTeX Warning: Citation `Lun01' undefined on input line 155.
+LaTeX Warning: Citation `Lun01' undefined on input line 156.
 
-[24] (Main_file.aux)
+[26] (Main_file.aux)
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
 
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 123 ({)
+### simple group (level 1) entered at line 124 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 6524 strings out of 478927
- 89737 string characters out of 2869020
- 355409 words of memory out of 3000000
- 24271 multiletter control sequences out of 15000+600000
+ 6538 strings out of 478927
+ 90014 string characters out of 2869020
+ 356459 words of memory out of 3000000
+ 24284 multiletter control sequences out of 15000+600000
  415937 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,12n,66p,813b,534s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -883,9 +930,9 @@ s/cm/cmr10.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmr12.pfb><F:/MikTex/f
 onts/type1/public/amsfonts/cm/cmr8.pfb><F:/MikTex/fonts/type1/public/amsfonts/c
 m/cmsl12.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmti12.pfb><F:/MikTex/fo
 nts/type1/public/amsfonts/euler/eurm10.pfb>
-Output written on Main_file.pdf (31 pages, 681939 bytes).
+Output written on Main_file.pdf (33 pages, 724574 bytes).
 PDF statistics:
- 209 PDF objects out of 1000 (max. 8388607)
+ 216 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 
