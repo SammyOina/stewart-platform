@@ -13,16 +13,68 @@ platform must have a corresponding fixed position.
 \subsubsection{Kinematic Analysis - Rotational matrix}
 Euler angles are utilized to obtain rotational matrix for the moving platform of the Stewart platform mechanism. The rotational matrix is represented as follows:
 \begin{equation}
-\label{eqn} R_{P}^B = R_{Z}(\gamma)*R_{Y}(\beta)*R_{X}(\alpha)
+ R_{P}^B = R_{Z}(\gamma)*R_{Y}(\beta)*R_{X}(\alpha)
 \end{equation}
-%\begin{tabular}{ccc}
-%content...
-%\end{tabular}
+In matrix form:
+\[ R_{P}^B =
+ \begin{bmatrix}
+ c\beta c\gamma & s\alpha s\beta c\gamma - c\alpha s\gamma & c\alpha s\beta c\gamma + s\alpha s\gamma\\
+ c\beta s\gamma & s\alpha s\beta s\gamma + c\alpha c\gamma & c\alpha s\beta s\gamma - s\alpha c\gamma\\
+ -s\beta & s\alpha c\beta & c\alpha c\beta  
+ \end{bmatrix}
+\]
 Generalized coordinate position and velocity vector of the moving platform is represented below:
-%\begin{gather}
-%\label{eqn} q = 
-%\end{gather}
-
+\[
+q=
+\begin{bmatrix}
+tx & ty & tz & \alpha & \beta & \gamma
+\end{bmatrix}^\top
+\]
+\[
+\dot{q}=
+\begin{bmatrix}
+\dot{tx} & \dot{ty} & \dot{tz} & \dot{\alpha} & \dot{\beta} & \dot{\gamma}
+\end{bmatrix}^\top
+\]
+Transformation of angular velocity of moving platform to the base frame can be done using Euler angles:
+\[
+\omega =
+\begin{bmatrix}
+1 & 0 & s\beta \\
+0 & c\alpha & -s\alpha c\beta \\
+0 & s\alpha & c\alpha c\beta 
+\end{bmatrix}
+\begin{bmatrix}
+\dot{\alpha} \\
+\dot{\beta}\\
+\dot{\gamma}
+\end{bmatrix}
+\]
+To get the acceleration of the moving platform, differentiate the velocity of the moving platform with respect to time:
+\[
+\dot{\omega} =
+\begin{bmatrix}
+1 & 0 & s\beta \\
+0 & c\alpha & -s\alpha c\beta \\
+0 & s\alpha & c\alpha c\alpha c\beta 
+\end{bmatrix}
+\begin{bmatrix}
+\ddot{\alpha} \\
+\ddot{\beta}\\
+\ddot{\gamma}
+\end{bmatrix}
++
+\begin{bmatrix}
+0 & 0 & \dot{\beta}c\beta \\
+0 & \dot{\alpha}s\alpha & -\dot{alpha}c\alpha c\beta + s\alpha \dot{\beta}s\beta \\
+0 & \dot{alpha}c\alpha & -\dot{alpha}s\alpha c\beta - c\alpha \dot{\beta}s\beta
+\end{bmatrix}
+\begin{bmatrix}
+\dot{\alpha} \\
+\dot{\beta}\\
+\dot{\gamma}
+\end{bmatrix}
+\]
 \subsection{Force Sensor}
 \paragraph{}The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
