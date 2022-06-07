@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 17:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 17:23
 entering extended mode
 **./Main_file.tex
 (Main_file.tex
@@ -546,11 +546,7 @@ Package textgreek Info: Loaded fontmap: {phv/*/*}{U/psy/*/*} {*/bx/n}{U/eur/b/n
 File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count272
 \l__pdf_internal_box=\box52
-) (Main_file.aux
-
-LaTeX Warning: Label `eqn' multiply defined.
-
-)
+) (Main_file.aux)
 \openout1 = `Main_file.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
@@ -570,7 +566,8 @@ LaTeX Font Info:    ... okay on input line 70.
 LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 70.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 7
 0.
- (F:\MikTex\tex/latex/cbfonts-fd\lgrcmr.fd
+
+(F:\MikTex\tex/latex/cbfonts-fd\lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
 LaTeX Font Info:    ... okay on input line 70.
@@ -815,9 +812,6 @@ LaTeX Warning: Citation `Lun01' undefined on input line 147.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  )
 (\end occurred inside a group at level 1)
 
@@ -826,7 +820,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  4798 strings out of 478927
  69225 string characters out of 2869020
- 359019 words of memory out of 3000000
+ 358980 words of memory out of 3000000
  22534 multiletter control sequences out of 15000+600000
  411818 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -840,7 +834,7 @@ msfonts/cm/cmr12.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><F:/Mik
 Tex/fonts/type1/public/amsfonts/cm/cmsl12.pfb><F:/MikTex/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmti12.pfb><F:/Mi
 kTex/fonts/type1/public/amsfonts/euler/eurm10.pfb>
-Output written on Main_file.pdf (31 pages, 659256 bytes).
+Output written on Main_file.pdf (31 pages, 659253 bytes).
 PDF statistics:
  200 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
