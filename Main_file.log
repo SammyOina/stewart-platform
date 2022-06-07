@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 12:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 13:17
 entering extended mode
 **./Main_file.tex
 (Main_file.tex
@@ -676,16 +676,7 @@ File: ueur.fd 2013/01/14 v3.01 Euler Roman
 ] (Files/Introduction.tex [1
 
 ]
-[2]) [3] (Files/Chapter2.tex
-
-LaTeX Warning: Citation `iqbal_dynamic_2008' on page 4 undefined on input line 
-3.
-
-
-LaTeX Warning: Citation `iqbal_dynamic_2008' on page 4 undefined on input line 
-8.
-
-[4
+[2]) [3] (Files/Chapter2.tex [4
 
 ]
 <Figures/Fig11.jpg, id=43, 442.65375pt x 319.1925pt>
@@ -693,24 +684,11 @@ File: Figures/Fig11.jpg Graphic file (type jpg)
 <use Figures/Fig11.jpg>
 Package pdftex.def Info: Figures/Fig11.jpg  used on input line 25.
 (pdftex.def)             Requested size: 273.14922pt x 196.97678pt.
-
-
-LaTeX Warning: Citation `csumnu2017simulation' on page 5 undefined on input lin
-e 30.
-
-
-LaTeX Warning: Citation `fichter1986stewart' on page 5 undefined on input line 
-32.
-
-
-LaTeX Warning: Citation `iqbal_dynamic_2008' on page 5 undefined on input line 
-34.
-
-[5 <./Figures/Fig11.jpg>]
+ [5 <./Figures/Fig11.jpg>]
 <Figures/Fig2.jpg, id=47, 645.16031pt x 235.63031pt>
 File: Figures/Fig2.jpg Graphic file (type jpg)
 <use Figures/Fig2.jpg>
-Package pdftex.def Info: Figures/Fig2.jpg  used on input line 60.
+Package pdftex.def Info: Figures/Fig2.jpg  used on input line 61.
 (pdftex.def)             Requested size: 341.43306pt x 124.70009pt.
 
 
@@ -720,7 +698,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Figures/Fig3.jpg, id=52, 243.91125pt x 207.77625pt>
 File: Figures/Fig3.jpg Graphic file (type jpg)
 <use Figures/Fig3.jpg>
-Package pdftex.def Info: Figures/Fig3.jpg  used on input line 74.
+Package pdftex.def Info: Figures/Fig3.jpg  used on input line 75.
 (pdftex.def)             Requested size: 243.91064pt x 207.77573pt.
 
 
@@ -730,7 +708,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Figures/Fig4.jpg, id=56, 183.68625pt x 276.03125pt>
 File: Figures/Fig4.jpg Graphic file (type jpg)
 <use Figures/Fig4.jpg>
-Package pdftex.def Info: Figures/Fig4.jpg  used on input line 84.
+Package pdftex.def Info: Figures/Fig4.jpg  used on input line 85.
 (pdftex.def)             Requested size: 183.68578pt x 276.03056pt.
 
 
@@ -740,10 +718,10 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Figures/Fig6.jpg, id=60, 488.57532pt x 424.58624pt>
 File: Figures/Fig6.jpg Graphic file (type jpg)
 <use Figures/Fig6.jpg>
-Package pdftex.def Info: Figures/Fig6.jpg  used on input line 106.
+Package pdftex.def Info: Figures/Fig6.jpg  used on input line 107.
 (pdftex.def)             Requested size: 488.57413pt x 424.5852pt.
 
-Overfull \hbox (33.33005pt too wide) in paragraph at lines 106--107
+Overfull \hbox (33.33005pt too wide) in paragraph at lines 107--108
  [][] 
  []
 
@@ -754,10 +732,10 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Figures/Fig7.jpg, id=67, 528.47438pt x 181.42781pt>
 File: Figures/Fig7.jpg Graphic file (type jpg)
 <use Figures/Fig7.jpg>
-Package pdftex.def Info: Figures/Fig7.jpg  used on input line 127.
+Package pdftex.def Info: Figures/Fig7.jpg  used on input line 128.
 (pdftex.def)             Requested size: 528.47308pt x 181.42737pt.
 
-Overfull \hbox (73.229pt too wide) in paragraph at lines 127--128
+Overfull \hbox (73.229pt too wide) in paragraph at lines 128--129
  [][] 
  []
 
@@ -765,7 +743,7 @@ Overfull \hbox (73.229pt too wide) in paragraph at lines 127--128
 <Figures/Fig9.jpg, id=71, 385.44pt x 249.93375pt>
 File: Figures/Fig9.jpg Graphic file (type jpg)
 <use Figures/Fig9.jpg>
-Package pdftex.def Info: Figures/Fig9.jpg  used on input line 147.
+Package pdftex.def Info: Figures/Fig9.jpg  used on input line 148.
 (pdftex.def)             Requested size: 273.14922pt x 177.11859pt.
 
 
@@ -775,7 +753,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Figures/Fig10.jpg, id=76, 308.65312pt x 157.33781pt>
 File: Figures/Fig10.jpg Graphic file (type jpg)
 <use Figures/Fig10.jpg>
-Package pdftex.def Info: Figures/Fig10.jpg  used on input line 159.
+Package pdftex.def Info: Figures/Fig10.jpg  used on input line 160.
 (pdftex.def)             Requested size: 273.14922pt x 139.24994pt.
 ) [13 <./Figures/Fig9.jpg> <./Figures/Fig10.jpg>] [14] (Files/Chapter3.tex
 <Figures/modBal.jpg, id=83, 355.3275pt x 203.25937pt>
@@ -843,10 +821,10 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 115 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4790 strings out of 478927
- 69126 string characters out of 2869020
- 357957 words of memory out of 3000000
- 22526 multiletter control sequences out of 15000+600000
+ 4797 strings out of 478927
+ 69220 string characters out of 2869020
+ 357969 words of memory out of 3000000
+ 22533 multiletter control sequences out of 15000+600000
  411818 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,12n,70p,813b,534s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -859,7 +837,7 @@ msfonts/cm/cmr12.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><F:/Mik
 Tex/fonts/type1/public/amsfonts/cm/cmsl12.pfb><F:/MikTex/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmti12.pfb><F:/Mi
 kTex/fonts/type1/public/amsfonts/euler/eurm10.pfb>
-Output written on Main_file.pdf (30 pages, 652723 bytes).
+Output written on Main_file.pdf (30 pages, 654636 bytes).
 PDF statistics:
  196 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

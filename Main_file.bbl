@@ -43,6 +43,24 @@ D.~Stewart, ``A platform with six degrees of freedom,'' \emph{Proceedings of
   the institution of mechanical engineers}, vol. 180, no.~1, pp. 371--386,
   1965.
 
+\bibitem{iqbal_dynamic_2008}
+\BIBentryALTinterwordspacing
+S.~Iqbal, A.~Bhatti, and Q.~Ahmed, ``Dynamic analysis and robust control design
+  for stewart platform with moving payloads,'' vol.~41, no.~2, pp. 5324--5329.
+  [Online]. Available:
+  \url{https://linkinghub.elsevier.com/retrieve/pii/S1474667016397907}
+\BIBentrySTDinterwordspacing
+
+\bibitem{fichter1986stewart}
+E.~F. Fichter, ``A stewart platform-based manipulator: general theory and
+  practical construction,'' \emph{The international journal of robotics
+  research}, vol.~5, no.~2, pp. 157--182, 1986.
+
+\bibitem{csumnu2017simulation}
+A.~{\c{S}}umnu, {\.I}.~H. G{\"u}zelbey, and M.~V. {\c{C}}akir, ``Simulation and
+  pid control of a stewart platform with linear motor,'' \emph{Journal of
+  mechanical science and technology}, vol.~31, no.~1, pp. 345--356, 2017.
+
 \bibitem{kang1996robust}
 J.-Y. Kang, D.~H. Kim, and K.-I. Lee, ``Robust tracking control of stewart
   platform,'' in \emph{Proceedings of 35th IEEE Conference on Decision and
