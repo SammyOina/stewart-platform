@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 00:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.12.1)  7 JUN 2022 12:47
 entering extended mode
 **./Main_file.tex
 (Main_file.tex
@@ -657,22 +657,14 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Trying to load font information for U+eur on input line 8.
  (F:\MikTex\tex/latex/amsfonts\ueur.fd
 File: ueur.fd 2013/01/14 v3.01 Euler Roman
-)
-
-LaTeX Warning: Citation `post_force_2010' on page IV undefined on input line 9.
-
-
-
-LaTeX Warning: Citation `noauthor_measuring_nodate' on page IV undefined on inp
-ut line 10.
-
-)
+))
 \tf@lof=\write5
 \openout5 = `Main_file.lof'.
 
  [4
 
-] (Main_file.lot)
+]
+(Main_file.lot)
 \tf@lot=\write6
 \openout6 = `Main_file.lot'.
 
@@ -681,25 +673,13 @@ ut line 10.
 ] (Files/Abstract.tex) [6
 
 
-] (Files/Introduction.tex
+] (Files/Introduction.tex [1
 
-LaTeX Warning: Citation `wittenburg2016stewart' on page 1 undefined on input li
-ne 6.
-
-
-LaTeX Warning: Citation `stewart1965platform' on page 1 undefined on input line
- 6.
-
-[1
-
-] [2]) [3] (Files/Chapter2.tex
+]
+[2]) [3] (Files/Chapter2.tex
 
 LaTeX Warning: Citation `iqbal_dynamic_2008' on page 4 undefined on input line 
 3.
-
-
-LaTeX Warning: Citation `stewart1965platform' on page 4 undefined on input line
- 7.
 
 
 LaTeX Warning: Citation `iqbal_dynamic_2008' on page 4 undefined on input line 
@@ -715,49 +695,34 @@ Package pdftex.def Info: Figures/Fig11.jpg  used on input line 25.
 (pdftex.def)             Requested size: 273.14922pt x 196.97678pt.
 
 
+LaTeX Warning: Citation `csumnu2017simulation' on page 5 undefined on input lin
+e 30.
+
+
 LaTeX Warning: Citation `fichter1986stewart' on page 5 undefined on input line 
-30.
+32.
 
 
 LaTeX Warning: Citation `iqbal_dynamic_2008' on page 5 undefined on input line 
-32.
+34.
 
 [5 <./Figures/Fig11.jpg>]
-
-LaTeX Warning: Citation `kang1996robust' on page 6 undefined on input line 37.
-
-
-LaTeX Warning: Citation `kang1996robust' on page 6 undefined on input line 39.
-
-
-LaTeX Warning: Citation `kim1998high' on page 6 undefined on input line 42.
-
-
-LaTeX Warning: Citation `huang2004sliding' on page 6 undefined on input line 45
-.
-
-
-LaTeX Warning: Citation `iqbal2006direct' on page 6 undefined on input line 47.
-
-
 <Figures/Fig2.jpg, id=47, 645.16031pt x 235.63031pt>
 File: Figures/Fig2.jpg Graphic file (type jpg)
 <use Figures/Fig2.jpg>
-Package pdftex.def Info: Figures/Fig2.jpg  used on input line 58.
+Package pdftex.def Info: Figures/Fig2.jpg  used on input line 60.
 (pdftex.def)             Requested size: 341.43306pt x 124.70009pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [6]
-
-LaTeX Warning: Citation `fernandes_design_nodate' on page 7 undefined on input 
-line 66.
-
 <Figures/Fig3.jpg, id=52, 243.91125pt x 207.77625pt>
 File: Figures/Fig3.jpg Graphic file (type jpg)
 <use Figures/Fig3.jpg>
-Package pdftex.def Info: Figures/Fig3.jpg  used on input line 72.
+Package pdftex.def Info: Figures/Fig3.jpg  used on input line 74.
 (pdftex.def)             Requested size: 243.91064pt x 207.77573pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -765,24 +730,20 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Figures/Fig4.jpg, id=56, 183.68625pt x 276.03125pt>
 File: Figures/Fig4.jpg Graphic file (type jpg)
 <use Figures/Fig4.jpg>
-Package pdftex.def Info: Figures/Fig4.jpg  used on input line 82.
+Package pdftex.def Info: Figures/Fig4.jpg  used on input line 84.
 (pdftex.def)             Requested size: 183.68578pt x 276.03056pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [8 <./Figures/Fig3.jpg>]
-
-LaTeX Warning: Citation `morris_force_2010' on page 9 undefined on input line 9
-4.
-
 <Figures/Fig6.jpg, id=60, 488.57532pt x 424.58624pt>
 File: Figures/Fig6.jpg Graphic file (type jpg)
 <use Figures/Fig6.jpg>
-Package pdftex.def Info: Figures/Fig6.jpg  used on input line 104.
+Package pdftex.def Info: Figures/Fig6.jpg  used on input line 106.
 (pdftex.def)             Requested size: 488.57413pt x 424.5852pt.
 
-Overfull \hbox (33.33005pt too wide) in paragraph at lines 104--105
+Overfull \hbox (33.33005pt too wide) in paragraph at lines 106--107
  [][] 
  []
 
@@ -793,10 +754,10 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Figures/Fig7.jpg, id=67, 528.47438pt x 181.42781pt>
 File: Figures/Fig7.jpg Graphic file (type jpg)
 <use Figures/Fig7.jpg>
-Package pdftex.def Info: Figures/Fig7.jpg  used on input line 125.
+Package pdftex.def Info: Figures/Fig7.jpg  used on input line 127.
 (pdftex.def)             Requested size: 528.47308pt x 181.42737pt.
 
-Overfull \hbox (73.229pt too wide) in paragraph at lines 125--126
+Overfull \hbox (73.229pt too wide) in paragraph at lines 127--128
  [][] 
  []
 
@@ -804,7 +765,7 @@ Overfull \hbox (73.229pt too wide) in paragraph at lines 125--126
 <Figures/Fig9.jpg, id=71, 385.44pt x 249.93375pt>
 File: Figures/Fig9.jpg Graphic file (type jpg)
 <use Figures/Fig9.jpg>
-Package pdftex.def Info: Figures/Fig9.jpg  used on input line 145.
+Package pdftex.def Info: Figures/Fig9.jpg  used on input line 147.
 (pdftex.def)             Requested size: 273.14922pt x 177.11859pt.
 
 
@@ -814,7 +775,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Figures/Fig10.jpg, id=76, 308.65312pt x 157.33781pt>
 File: Figures/Fig10.jpg Graphic file (type jpg)
 <use Figures/Fig10.jpg>
-Package pdftex.def Info: Figures/Fig10.jpg  used on input line 157.
+Package pdftex.def Info: Figures/Fig10.jpg  used on input line 159.
 (pdftex.def)             Requested size: 273.14922pt x 139.24994pt.
 ) [13 <./Figures/Fig9.jpg> <./Figures/Fig10.jpg>] [14] (Files/Chapter3.tex
 <Figures/modBal.jpg, id=83, 355.3275pt x 203.25937pt>
@@ -824,15 +785,7 @@ Package pdftex.def Info: Figures/modBal.jpg  used on input line 13.
 (pdftex.def)             Requested size: 355.32661pt x 203.25887pt.
 
 
-LaTeX Warning: Citation `post_force_2010' on page 15 undefined on input line 14
-.
-
-
 LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: Citation `ferreira2015design' on page 15 undefined on input line
- 19.
 
 [15
 
@@ -842,12 +795,7 @@ File: Figures/loadConf.jpg Graphic file (type jpg)
 <use Figures/loadConf.jpg>
 Package pdftex.def Info: Figures/loadConf.jpg  used on input line 24.
 (pdftex.def)             Requested size: 201.75325pt x 170.1352pt.
-
-
-LaTeX Warning: Citation `noauthor_measuring_nodate' on page 16 undefined on inp
-ut line 25.
-
-[16 <./Figures/modBal.jpg> <./Figures/loadConf.jpg>] [17]
+ [16 <./Figures/modBal.jpg> <./Figures/loadConf.jpg>] [17]
 <Figures/pitot.jpg, id=98, 229.60782pt x 133.24782pt>
 File: Figures/pitot.jpg Graphic file (type jpg)
 <use Figures/pitot.jpg>
@@ -876,16 +824,16 @@ Package pdftex.def Info: Figures/workplan.pdf  used on input line 17.
 pdfTeX warning: pdflatex.exe (file ./Figures/workplan.pdf): PDF inclusion: mult
 iple pdfs with page group included in a single page
 >] (Main_file.bbl
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `en'. Using the pattern for
+** the default language instead.
+[22
 
-LaTeX Warning: Empty `thebibliography' environment on input line 24.
-
-)
+])
 
 LaTeX Warning: Citation `Lun01' undefined on input line 147.
 
-[22
-
-] (Main_file.aux)
+[23] (Main_file.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -895,13 +843,13 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 115 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4778 strings out of 478927
- 68906 string characters out of 2869020
- 357922 words of memory out of 3000000
- 22514 multiletter control sequences out of 15000+600000
+ 4790 strings out of 478927
+ 69126 string characters out of 2869020
+ 357957 words of memory out of 3000000
+ 22526 multiletter control sequences out of 15000+600000
  411818 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 61i,12n,70p,813b,431s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,12n,70p,813b,534s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\earls\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
 ec/dpi600\tcrm1200.pk><F:/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><F:/
 MikTex/fonts/type1/public/amsfonts/cm/cmex10.pfb><F:/MikTex/fonts/type1/public/
@@ -911,9 +859,9 @@ msfonts/cm/cmr12.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><F:/Mik
 Tex/fonts/type1/public/amsfonts/cm/cmsl12.pfb><F:/MikTex/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb><F:/MikTex/fonts/type1/public/amsfonts/cm/cmti12.pfb><F:/Mi
 kTex/fonts/type1/public/amsfonts/euler/eurm10.pfb>
-Output written on Main_file.pdf (29 pages, 642615 bytes).
+Output written on Main_file.pdf (30 pages, 652723 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
+ 196 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
