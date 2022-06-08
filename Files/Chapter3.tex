@@ -7,7 +7,8 @@ This section deals with: design considerations, position, velocity and accelerat
 \item When the controllable axes are active, the platform must be controlled in six degrees of motion.
 \item When the controllable members are stationary the
 platform must have a corresponding fixed position.
-\item The mechanism should be light.
+\item The design parameters for consideration are: mobile platform radius, height of the platform and angle between adjacent joints of mobile platform and base plate.
+\item The mechanism should be lightweight.
 \item Velocity and position control of the mechanism should be easy to achieve.
 \end{enumerate}
 \subsubsection{Kinematic Analysis - Rotational matrix}
@@ -75,6 +76,47 @@ To get the acceleration of the moving platform, differentiate the velocity of th
 \dot{\gamma}
 \end{bmatrix}
 \]
+\subsubsection{Inverse Kinematic Analysis}
+Inverse kinematic analysis is used to determine the length of the legs according to planned trajectories of the moving platform position. In order to consider the length of the leg of a Stewart platform, closed-loop of one leg is used as shown in figure 3.1. Using this closed-form representation, the leg
+vector with respect to base platform can be obtained as follows:
+\begin{equation}
+\label{eqn}
+L_{i} = q_{i}^{B} - b_{i}
+\end{equation}
+The position vector of ith upper junction point with respect to the base frame is given by the following;
+\begin{equation}
+\label{eqn}
+q_{i}^{B} = t + R_{p}^{B} * q_{i}^{p}
+\end{equation}
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{Figures/Fig12}
+	\caption[Closed-loop representation]{Closed-loop representation of one leg of the Stewart Platform}
+	\end{figure}
+\end{center}
+Then the length of the ith leg can be acquired as follows:
+\begin{equation}
+\label{eqn}
+l_{i}^2 = (a_{x} * r_{p} * c_{i} + b_{x}*r_{p}*s_{i} + t_{x}-r_{b}*c_{i})^2 \\+ (a_{y}*r_{p}*c_{i} + b_{y}*r_{p}*s_{i} + t_{y}-r_{b}*s_{i})^2 \\+ (a_{z}*r_{p}*c_{i}+b_{z}*r_{p}*s_{i}+t_{z})^2
+\end{equation}
+\subsubsection{Inverse Velocity Analysis}
+Inverse Jacobian matrix can be used to perform inverse velocity analysis of the Stewart
+platform. Inverse Jacobian matrix describes relation between velocity of the moving platform and the leg velocity.
+
+Inverse Jacobian matrix for a 6-DOF Stewart Platform:
+\[ J^-1 =
+\begin{bmatrix}
+u_{1}^{T} & (R_{P}^{B}q_{1}^{B} * u_{1})^T\\
+u_{2}^{T} & (R_{P}^{B}q_{2}^{B} * u_{2})^T\\
+u_{3}^{T} & (R_{P}^{B}q_{3}^{B} * u_{3})^T\\
+u_{4}^{T} & (R_{P}^{B}q_{4}^{B} * u_{4})^T\\
+u_{5}^{T} & (R_{P}^{B}q_{5}^{B} * u_{5})^T\\
+u_{6}^{T} & (R_{P}^{B}q_{6}^{B} * u_{6})^T
+\end{bmatrix}
+\]
+\subsubsection{PID Control of the Stewart Platform}
+Proportional-integral-derivative (PID) control is used to control the Stewart platform. A dynamic model of the system is implemented in MatLab/Simulink.
 \subsection{Force Sensor}
 The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
