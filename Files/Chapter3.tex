@@ -1,7 +1,9 @@
 \section{Methodology}
-This section deals with: design considerations, position, velocity and acceleration analysis of the Stewart platform. Both kinematic analysis and dynamic analysis will be looked at.
+\subsection{Outline}
+This section looks into the mathematical designs for the stewart platform, considerations for the force sensor and the velocity measurement within the wind tunnel. The section finally looks into the design of a human machine interface that will be used to control the stewart platform,  obtain the measurements and display results.
 
-\subsection{Stewart Platform}
+\subsection{Design of Stewart Platform}
+This section deals with: design considerations, position, velocity and acceleration analysis of the Stewart platform. Both kinematic analysis and dynamic analysis will be looked at.
 \subsubsection{Design Considerations}
 \begin{enumerate}
 \item When the controllable axes are active, the platform must be controlled in six degrees of motion.
@@ -117,7 +119,7 @@ u_{6}^{T} & (R_{P}^{B}q_{6}^{B} * u_{6})^T
 \]
 \subsubsection{PID Control of the Stewart Platform}
 Proportional-integral-derivative (PID) control is used to control the Stewart platform. A dynamic model of the system is implemented in MatLab/Simulink.
-\subsection{Force Sensor}
+\subsection{Design of the Force Sensor}
 The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
 \item External force sensor
@@ -129,7 +131,7 @@ In this case it would require at least 3 orthogonally positioned load cells meas
 	\begin{figure}[!h]
 		\centering
 		\includegraphics{Figures/modBal}
-		\caption{Diagram of a force balance \cite{post_force_2010}}
+		\caption[Diagram of a force balance]{Diagram of a force balance \cite{post_force_2010}}
 	\end{figure}
 \end{center}
 This configuration is however bulky by requiring an additional external system for force measurements in addition to the stewart platform for positioning the model. This is however complemented by the simplicity in calibration of the load cells and does not require a complex force transformation matrix and other issues with force amplification created by the use of an integrated system.
@@ -141,10 +143,24 @@ Four strain gauges are required for each leg for a full wheatstone bridge config
 	\begin{figure}[!h]
 		\centering
 		\includegraphics{Figures/loadConf}
-		\caption{Strain Gauge Configuration \cite{noauthor_measuring_nodate}}
+		\caption[Strain Gauge Configuration]{Strain Gauge Configuration \cite{noauthor_measuring_nodate}}
 	\end{figure}
 \end{center}
 In this case as shown in the figure the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gauges measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the wheatstone bridge is then amplified and read to determine the strain on each leg.
+
+\paragraph{Force measurement Circuit}
+The output excitation of the wheatstone brisge needs to be amplified as it reulsts in low outputs. There is also a need to digital to analog converter. Some considerable options are the hx711 or the AD7193 converters which may be used as digital to analog converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements. 
+
+The connection of the AD7193 to the microcontroller will be via Serial Peripheral Interface (SPI). the configuration is as shown below:
+\begin{center}
+\begin{figure}
+\centering
+\includegraphics[width=0.55\linewidth]{Figures/SPI}
+\caption[SPI configuration]{SPI configuration}
+\end{figure}
+\end{center}
+
+In this configuration the when the chip select of an amplifier is set to low, the microcontrller is able to obtain data from that strain gauge. This configuration allows for a four wire interface to connect to six strain gauge sensors and obtain measurements.
 
 \paragraph{Force transformation matrix} 
 In such a case the forces experienced at the top of the platform are distributed between the 6 legs and as result, a force transformation matrix is required to resolve the forces apllied on each axis as measured by each load cell on each leg. 
@@ -192,3 +208,18 @@ $$ v = \sqrt{\frac{2(P_0 - P)}{\rho}}$$
 Where V is the speed of the fluid, P0 is the total, also called the stagnation, pressure at that point of measurement, and p is the static pressure at the same point.
 
 Three pitot probes are to be used in the wind tunnel, these are in the test section, intake and dissuser sections.
+
+\subsection{Design of Human Machine Interface}
+The purpose of the interface is to enable control of the platform position as well as to ontain measured data from the strain gauges and pitot tubes. 
+The genral layout is as shown in the figure below:
+\begin{center}
+\begin{figure}
+\centering
+\includegraphics{Figures/interface}
+\caption[Human Machine Interface]{Human Machine Interface}
+\end{figure}
+\end{center}
+
+The primary interface between the microcontroller is via serial interface by use of USB. This is used due to wide availability and integration on many personal computers. Serial communication allows for bidirectional transfer of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data aquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
+
+The decoupling of the microcontroller and the program to be hosted on the desktop allows for advanced data processing such as application of filters and resolving measurements into useable information. It also allows for the use of more powerful processor and high level programmming languages to more effectively perform complex calculations without taking a toll the sensor samping rate that would occur with onboard processing in the microcontroller.

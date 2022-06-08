@@ -121,13 +121,15 @@
 \tableofcontents
 \clearpage
 \addcontentsline{toc}{section}{List of Figures}
-{%
+{
+%
 \let\oldnumberline\numberline%
 \renewcommand{\numberline}{\figurename~\oldnumberline}%
 \listoffigures
 \clearpage
 \addcontentsline{toc}{section}{List of Tables}
-\listoftables
+\renewcommand{\numberline}{\tablename~\oldnumberline}%
+\listoftables 
 \newpage
 \clearpage
 \addcontentsline{toc}{section}{List of Abbreviations}
