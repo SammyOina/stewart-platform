@@ -118,7 +118,25 @@ u_{6}^{T} & (R_{P}^{B}q_{6}^{B} * u_{6})^T
 \end{bmatrix}
 \]
 \subsubsection{PID Control of the Stewart Platform}
-Proportional-integral-derivative (PID) control is used to control the Stewart platform. A dynamic model of the system is implemented in MatLab/Simulink.
+The controller will consist of two sections:
+\begin{enumerate}
+\item The leg trajectory - will be used to generate the desired leg lengths for each time step.
+\item The Controller.
+\end{enumerate}  The following equation will be used to calculate the leg lengths for each leg 
+\cite{smith2002creating}:
+\begin{equation}
+\label{eqn}
+((R*p_{t,i} + p)-p_{b,j}))- l_{n,i}
+\end{equation}
+where R is the rotation matrix relating the top plate orientation with respect to the bottom plate, $P_{t,i}$ is the attachment point of leg i in the top plate with respect to the top plate coordinate system, P is the position of the top plate with respect to the bottom plate, $P_{b,i}$ is the attachment point of leg i in the bottom plate with respect to the bottom plate coordinate system, and $ln,i$ is the nominal length of leg i. 
+
+Proportional-integral-derivative (PID) control will be used to control the Stewart platform. A dynamic model of the system will be implemented in MatLab/Simulink.
+%\begin{center}
+	%\begin{figure}
+	%\centering
+	%\includegraphics{Figures/Fig13}
+	%\end{figure}
+%\end{center}
 \subsection{Design of the Force Sensor}
 The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
