@@ -14,7 +14,7 @@ platform must have a corresponding fixed position.
 \item Velocity and position control of the mechanism should be easy to achieve.
 \end{enumerate}
 \subsubsection{Kinematic Analysis - Rotational matrix}
-Euler angles are utilized to obtain rotational matrix for the moving platform of the Stewart platform mechanism. The rotational matrix is represented as follows:
+Euler angles are utilized to obtain rotational matrix for the moving platform of the Stewart platform mechanism. The rotational matrix is represented as follows \cite{csumnu2017simulation}:
 \begin{equation}
  R_{P}^B = R_{Z}(\gamma)*R_{Y}(\beta)*R_{X}(\alpha)
 \end{equation}
@@ -26,7 +26,7 @@ In matrix form:
  -s\beta & s\alpha c\beta & c\alpha c\beta  
  \end{bmatrix}
 \]
-Generalized coordinate position and velocity vector of the moving platform is represented below:
+Generalized coordinate position and velocity vector of the moving platform is represented below \cite{csumnu2017simulation}:
 \[
 q=
 \begin{bmatrix}
@@ -39,7 +39,7 @@ tx & ty & tz & \alpha & \beta & \gamma
 \dot{tx} & \dot{ty} & \dot{tz} & \dot{\alpha} & \dot{\beta} & \dot{\gamma}
 \end{bmatrix}^\top
 \]
-Transformation of angular velocity of moving platform to the base frame can be done using Euler angles:
+Transformation of angular velocity of moving platform to the base frame can be done using Euler angles \cite{csumnu2017simulation}:
 \[
 \omega =
 \begin{bmatrix}
@@ -80,7 +80,7 @@ Acceleration of the moving platform is obtained by differentiating the velocity 
 \]
 \subsubsection{Inverse Kinematic Analysis}
 Inverse kinematic analysis is used to determine the length of the legs according to planned trajectories of the moving platform position. In order to consider the length of the leg of a Stewart platform, closed-loop of one leg is used as shown in figure 3.1. Using this closed-form representation, the leg
-vector with respect to base platform can be obtained as follows:
+vector with respect to base platform can be obtained as follows \cite{csumnu2017simulation}:
 \begin{equation}
 \label{eqn}
 L_{i} = q_{i}^{B} - b_{i}
@@ -94,7 +94,7 @@ q_{i}^{B} = t + R_{p}^{B} * q_{i}^{p}
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.6\linewidth]{Figures/Fig12}
-	\caption[Closed-loop representation]{Closed-loop representation of one leg of the Stewart Platform}
+	\caption[Closed-loop representation]{Closed-loop representation of one leg of the Stewart Platform \cite{csumnu2017simulation}}
 	\end{figure}
 \end{center}
 Then the length of the ith leg can be acquired as follows:
