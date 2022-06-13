@@ -18,6 +18,8 @@ Euler angles are utilized to obtain rotational matrix for the moving platform of
 \begin{equation}
  R_{P}^B = R_{Z}(\gamma)*R_{Y}(\beta)*R_{X}(\alpha)
 \end{equation}
+Where $\gamma, \beta, \alpha$ - angles of rotation about the z-, y- and x-axis respectively.
+
 In matrix form:
 \[ R_{P}^B =
  \begin{bmatrix}
@@ -98,15 +100,18 @@ q_{i}^{B} = t + R_{p}^{B} * q_{i}^{p}
 	\end{figure}
 \end{center}
 Then the length of the ith leg can be acquired as follows:
+\newpage
 \begin{equation}
 \label{eqn}
-l_{i}^2 = (a_{x} * r_{p} * c_{i} + b_{x}*r_{p}*s_{i} + t_{x}-r_{b}*c_{i})^2 \\+ (a_{y}*r_{p}*c_{i} + b_{y}*r_{p}*s_{i} + t_{y}-r_{b}*s_{i})^2 \\+ (a_{z}*r_{p}*c_{i}+b_{z}*r_{p}*s_{i}+t_{z})^2
+l_{i}^2 = (a_{x} * r_{p} * c_{i} + b_{x}*r_{p}*s_{i}
++ t_{x}-r_{b}*c_{i})^2 \\+ (a_{y}*r_{p}*c_{i} + b_{y}*r_{p}*s_{i} + t_{y}-r_{b}*s_{i})^2 \\+ (a_{z}*r_{p}*c_{i}+b_{z}*r_{p}*s_{i}+t_{z})^2
 \end{equation}
 \subsubsection{Inverse Velocity Analysis}
 Inverse Jacobian matrix can be used to perform inverse velocity analysis of the Stewart
 platform. Inverse Jacobian matrix describes relation between velocity of the moving platform and the leg velocity.
 
-Inverse Jacobian matrix for a 6-DOF Stewart Platform:
+Inverse Jacobian matrix for a 6-DOF Stewart Platform
+\cite{csumnu2017simulation}:
 \[ J^-1 =
 \begin{bmatrix}
 u_{1}^{T} & (R_{P}^{B}q_{1}^{B} * u_{1})^T\\
@@ -168,7 +173,7 @@ Four strain gauges are required for each leg for a full wheatstone bridge config
 In this case as shown in the figure the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gauges measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the wheatstone bridge is then amplified and read to determine the strain on each leg.
 
 \paragraph{Force measurement Circuit}
-The output excitation of the wheatstone brisge needs to be amplified as it reulsts in low outputs. There is also a need to digital to analog converter. Some considerable options are the hx711 or the AD7193 converters which may be used as digital to analog converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements. 
+The output excitation of the Wheatstone bridge needs to be amplified as it results in low outputs. There is also need for a digital to analog converter. Some considerable options are the hx711 or the AD7193 converters which may be used as digital to analog converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements. 
 
 The connection of the AD7193 to the microcontroller will be via Serial Peripheral Interface (SPI). the configuration is as shown below:
 \begin{center}
@@ -215,11 +220,10 @@ An important part in wind tunnel measurements is the measure of pressure at spec
 \begin{center}
 \begin{figure}
 \centering
-\includegraphics{Figures/pitot}
+\includegraphics[width=0.6\linewidth]{Figures/pitot}
 \caption[Pitot-static tube]{Pitot-static tube \cite{noauthor_wind_nodate}}
 \end{figure}
 \end{center}
-
 The equation relates the speed of the fluid at a point to both the mass density of the fluid and the pressures at the same point in the flow field. For steady flow of an incompressible fluid for which viscosity can be neglected, the fundamental equation has the form:
 
 $$ v = \sqrt{\frac{2(P_0 - P)}{\rho}}$$
@@ -242,11 +246,10 @@ The general layout is as shown in the figure below:
 The primary interface between the microcontroller is via serial interface by use of USB. This is used due to wide availability and integration on many personal computers. Serial communication allows for bidirectional transfer of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data aquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
 
 The decoupling of the microcontroller and the program to be hosted on the desktop allows for advanced data processing such as application of filters and resolving measurements into useable information. It also allows for the use of more powerful processor and high level programmming languages to more effectively perform complex calculations without taking a toll the sensor samping rate that would occur with onboard processing in the microcontroller.
-\newpage
 \begin{center}
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/Fig14}
-	\caption[Control Algorithim]{Control Algorithim for the Stewart Platform with Force Measurement}
+	\caption[Control Algorithm]{Control Algorithm for the Stewart Platform with Force Measurement}
 	\end{figure}
 \end{center}
