@@ -173,9 +173,9 @@ Four strain gauges are required for each leg for a full wheatstone bridge config
 In this case as shown in the figure the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gauges measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the wheatstone bridge is then amplified and read to determine the strain on each leg.
 
 \paragraph{Force measurement Circuit}
-The output excitation of the Wheatstone bridge needs to be amplified as it results in low outputs. There is also need for a digital to analog converter. Some considerable options are the hx711 or the AD7193 converters which may be used as digital to analog converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements. 
+The output excitation of the wheatstone brisge needs to be amplified as it results in low outputs. An analog to digital converter is also reuiqred fot the analog to digital conveter. Some considerable options are the hx711 or the AD7193 converters which may be used as digital to analog converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements. 
 
-The connection of the AD7193 to the microcontroller will be via Serial Peripheral Interface (SPI). the configuration is as shown below:
+The connection of the AD7193 to the microcontroller will be via Serial Peripheral Interface (SPI). the configuration is as shown in the figure:
 \begin{center}
 \begin{figure}
 \centering
@@ -183,7 +183,6 @@ The connection of the AD7193 to the microcontroller will be via Serial Periphera
 \caption[SPI configuration]{SPI configuration}
 \end{figure}
 \end{center}
-
 In this configuration the when the chip select of an amplifier is set to low, the microcontroller is able to obtain data from that strain gauge. This configuration allows for a four wire interface to connect to six strain gauge sensors and obtain measurements.
 
 \paragraph{Force transformation matrix} 
