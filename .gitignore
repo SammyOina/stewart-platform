@@ -1,0 +1,9 @@
+
+*.aux
+Main_file.bbl
+*.blg
+*.lof
+Main_file.log
+Main_file.lot
+Main_file.synctex.gz
+Main_file.toc
