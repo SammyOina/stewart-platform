@@ -1,11 +1,11 @@
-﻿Study Modal Analysis:1 started: 7/1/2022, 12:46:13 PM
+﻿Study Modal Analysis:2 started: 7/4/2022, 4:16:19 PM
 Number of configurations: 1
-Default mesh: 156369 elements, 277639 nodes
-A model separates into 45 independent components
+Default mesh: 148198 elements, 258421 nodes
+A model separates into 7 independent components
 Soft spring was added
 Computed 8 frequency modes
-Solution time 69.6s
+Solution time 98.8s
 Reached the total number of h refinements 
-Study Modal Analysis:1 finished: 7/1/2022, 12:47:29 PM
-Total time 0:01:16
+Study Modal Analysis:2 finished: 7/4/2022, 4:18:14 PM
+Total time 0:01:55
 
