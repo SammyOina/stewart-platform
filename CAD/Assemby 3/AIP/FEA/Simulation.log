@@ -9,3 +9,84 @@ Reached the total number of h refinements
 Study Modal Analysis:2 finished: 7/4/2022, 4:18:14 PM
 Total time 0:01:55
 
+Study Static Analysis:1 started: 7/4/2022, 5:13:34 PM
+Number of configurations: 1
+Default mesh: 118791 elements, 213376 nodes
+A model separates into 7 independent components
+Soft spring was added
+Solution time 69.7s
+Convergence rate: 50%
+Reached the total number of h refinements 
+Study Static Analysis:1 finished: 7/4/2022, 5:14:54 PM
+Total time 0:01:20
+
+Study Static Analysis:1 started: 7/4/2022, 5:21:15 PM
+Number of configurations: 1
+Default mesh: 118791 elements, 213376 nodes
+A model separates into 7 independent components
+Soft spring was added
+Solution time 53.3s
+Convergence rate: 50%
+Reached the total number of h refinements 
+Study Static Analysis:1 finished: 7/4/2022, 5:22:18 PM
+Total time 0:01:03
+
+Study Static Analysis:2 started: 7/4/2022, 6:19:02 PM
+Number of configurations: 1
+Default mesh: 118791 elements, 213376 nodes
+A model separates into 7 independent components
+Soft spring was added
+Solution time 52.6s
+Convergence rate: 50%
+Reached the total number of h refinements 
+Study Static Analysis:2 finished: 7/4/2022, 6:20:08 PM
+Total time 0:01:06
+
+Study Static Analysis:3 started: 7/4/2022, 6:43:55 PM
+Number of configurations: 1
+Default mesh: 118791 elements, 213376 nodes
+A model separates into 7 independent components
+Soft spring was added
+Soft spring was added
+Solution time 34.3s
+Convergence rate: 50%
+Reached the total number of h refinements 
+Study Static Analysis:3 finished: 7/4/2022, 6:44:46 PM
+Total time 0:00:51
+
+Study Static Analysis:4 started: 7/4/2022, 7:14:56 PM
+Number of configurations: 1
+Default mesh: 118345 elements, 213036 nodes
+A model separates into 8 independent components
+Soft spring was added
+Soft spring was added
+Solution time 49.8s
+Convergence rate: 50%
+Reached the total number of h refinements 
+Study        Worst Jacobian ratio :  1  on element 1 finished: 7/4/2022, 7:16:56 PM
+Total time 0:02:00
+
+Study Static Analysis:5 started: 7/4/2022, 7:21:31 PM
+Number of configurations: 1
+Default mesh: 118345 elements, 213036 nodes
+A model separates into 8 independent components
+Soft spring was added
+Soft spring was added
+Solution time 44s
+Convergence rate: 50%
+Reached the total number of h refinements 
+Study Static Analysis:5 finished: 7/4/2022, 7:22:44 PM
+Total time 0:01:13
+
+Study Static Analysis:6 started: 7/4/2022, 7:28:22 PM
+Number of configurations: 1
+Default mesh: 118345 elements, 213036 nodes
+A model separates into 8 independent components
+Soft spring was added
+Soft spring was added
+Solution time 37.6s
+Convergence rate: 50%
+Reached the total number of h refinements 
+Study Static Analysis:6 finished: 7/4/2022, 7:29:14 PM
+Total time 0:00:52
+

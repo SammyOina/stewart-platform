@@ -19,7 +19,13 @@ Euler angles are utilized to obtain rotational matrix for the moving platform of
  R_{P}^B = R_{Z}(\gamma)*R_{Y}(\beta)*R_{X}(\alpha)
 \end{equation}
 Where $\gamma, \beta, \alpha$ - angles of rotation about the z-, y- and x-axis respectively.
+\begin{equation}
+ T.F_{PID} = \frac{kd(s^2 + \frac{kp}{kd}s)+ \frac{ki}{kd}}{s}
+\end{equation}
 
+\begin{equation}
+ T.F_{Stewart} = \frac{74.75s^2 + 312s + 4.819e005}{s^4 + 12.79s^3+6394s^2 + 8.177e004s}
+\end{equation}
 In matrix form:
 \[ R_{P}^B =
  \begin{bmatrix}
