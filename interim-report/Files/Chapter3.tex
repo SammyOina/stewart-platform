@@ -276,7 +276,58 @@ Two options are considered:
 \end{itemize}
 Cylindrical bars are selected due to their ease of coupling with the available spherical joints. Cylindrical bars also guarantee uniform deformation of the bars - both in the axial and cross-sectional directions.
 
-From inquiries around suppliers in the Kenyan Market, these bars are usually available in steel and aluminum. In order to select the optimum solution for our application, the Yield Strength and density of both materials will be considered. 
+From inquiries around suppliers in the Kenyan Market, these bars are usually available in steel and aluminum. In order to select the optimum solution for our application, the Yield Strength, modulus of rigidity, Young's Modulus and density of both materials will be considered. 
+\begin{table}[!h]
+\caption[Aluminium and Steel Properties]{Material Properties of Aluminium and Steel}
+\end{table}
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Material} & \textbf{Yield Strength (MPa)} & \textbf{G (GPa)} & \textbf{E (GPa)} & \textbf{Density ($g/cm^3$)}\\
+\hline
+Steel & 240 & 79 & 190 - 215 & 7.8\\
+\hline
+Aluminium & 270 & 26 & 69 - 70 & 2.7\\
+\hline
+\end{tabular}
+
+E - Young's Modulus\\
+G - Modulus of Rigidity
+
+From $ \sigma = E \epsilon $, where $\sigma$ - Stress , E - Young's Modulus and $ \epsilon$ - Strain, materials with high values of Young Modulus will give smaller values of strain when subjected to a deforming force. Thus, aluminum rods will experience higher strains than steel rods.
+
+Materials with high modulus of rigidity will require huge amounts of force to deform. Aluminum rods will experience deformation under small amounts of force as compared to steel rods.
+
+Aluminum rods have the capability of bearing higher loads before their deformation goes from elastic to plastic as compared to steel rods. Aluminum rods also have the benefit of being lightweight.
+
+\subsection{Sensing Rods Design - Length}
+From the previously selected dimensions i.e diameter of platform, diameter of base and distance between the base and platform, the length of each rod can be determined by geometry.
+
+Rod length = 140mm
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{Figures/Ideation}
+	\caption[Ideation]{Ideation technique to obtain rod length}
+	\end{figure}
+\end{center}
+
+\subsection{Sensing Rods Design - Shape}
+Two options can be considered:
+\begin{itemize}
+\item Solid cylindrical rods
+\item Hollow Cylindrical rods
+\end{itemize}
+From local suppliers, 10mm aluminium rods are available and economical. The rods are not hollow. From $\sigma = \frac{F}{A}$, where $\sigma$ - Stress, F - Axial Force on the leg and, A - Cross-sectional area, for the same amount of axial load, the hollow rod will experience more stress and consequently larger strains as compared to the solid rod. The rods are threaded at the ends for coupling with the spherical joints.
+
+If solid rods are used, strain gauges of high sensitivity should be used.
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Figures/Rod}
+	\caption[Aluminum rod]{Aluminum rod}
+	\end{figure}
+\end{center}
 
 \section{Spherical Joints}
 For the 6-6 type, both platforms have six vertices and
