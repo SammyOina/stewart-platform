@@ -1,6 +1,6 @@
 \chapter{Methodology}
 \section{Outline}
-This section will look into the mathematical designs for the Stewart platform, considerations for the force sensor and the velocity measurement within the wind tunnel. It will finally look into the design of a human machine interface that will be used to control the Stewart platform,  obtain the measurements and display results.
+This section looks into the mechanical designs for the Stewart platform, considerations for the force sensor and the velocity measurement within the wind tunnel. It will finally look into the design of a human machine interface that will be used to control the Stewart platform,  obtain the measurements and display results.
 
 \section{Design of Stewart Platform}
 This section deals with: design considerations, position, velocity and acceleration analysis of the Stewart platform.
@@ -101,11 +101,11 @@ q_{i}^{B} = t + R_{p}^{B} * q_{i}^{p}
 \end{center}
 Then the length of the ith leg can be acquired as follows:
 \newpage
-\begin{equation}
+\begin{multline}
 \label{eqn}
 l_{i}^2 = (a_{x} * r_{p} * c_{i} + b_{x}*r_{p}*s_{i}
-+ t_{x}-r_{b}*c_{i})^2 \\+ (a_{y}*r_{p}*c_{i} + b_{y}*r_{p}*s_{i} + t_{y}-r_{b}*s_{i})^2 \\+ (a_{z}*r_{p}*c_{i}+b_{z}*r_{p}*s_{i}+t_{z})^2
-\end{equation}
++ t_{x}-r_{b}*c_{i})^2 \\+ (a_{y}*r_{p}*c_{i} + b_{y}*r_{p}*s_{i} + t_{y}-r_{b}*s_{i})^2+ \\(a_{z}*r_{p}*c_{i}+b_{z}*r_{p}*s_{i}+t_{z})^2
+\end{multline}
 \subsection{Inverse Velocity Analysis}
 Inverse Jacobian matrix can be used to perform inverse velocity analysis of the Stewart
 platform. Inverse Jacobian matrix describes relation between velocity of the moving platform and the leg velocity.
@@ -122,27 +122,103 @@ u_{5}^{T} & (R_{P}^{B}q_{5}^{B} * u_{5})^T\\
 u_{6}^{T} & (R_{P}^{B}q_{6}^{B} * u_{6})^T
 \end{bmatrix}
 \]
-\subsection{PID Control of the Stewart Platform}
-The controller will consist of two sections:
-\begin{enumerate}
-\item The leg trajectory - will be used to generate the desired leg lengths for each time step.
-\item The Controller.
-\end{enumerate}  The following equation will be used to calculate the leg lengths for each leg 
-\cite{smith2002creating}:
-\begin{equation}
-\label{eqn}
-((R*p_{t,i} + p)-p_{b,j}))- l_{n,i}
-\end{equation}
-where R is the rotation matrix relating the top plate orientation with respect to the bottom plate, $P_{t,i}$ is the attachment point of leg i in the top plate with respect to the top plate coordinate system, P is the position of the top plate with respect to the bottom plate, $P_{b,i}$ is the attachment point of leg i in the bottom plate with respect to the bottom plate coordinate system, and $ln,i$ is the nominal length of leg i. 
-
-Proportional-integral-derivative (PID) control will be used to control the Stewart platform. A dynamic model of the system, such as the one shown in figure 3.2, will be implemented in MatLab/Simulink.
+\section{Base and Moving Platform}
+ The Stewart platform should be stable. Thus the base will have a larger diameter than that of the moving platform. The Center of Gravity (COG) shouldn't fall outside the base during any of the platform movements.
+\subsection{Stewart Plaform Configurations}
+Stewart platforms can take three primary configurations i.e. 3-3 type, 3-6 type or 6-6 type.
 \begin{center}
 	\begin{figure}[!h]
 	\centering
-	\includegraphics{Figures/Fig13}
-	\caption[PID Controller]{Simple Low-level PID Controller}
+	\includegraphics{Figures/stewart}
+	\caption[Configurations]{Type 3-3, 3-6 and 6-6 respectively
+	\cite{fernandes_design_nodate}}
 	\end{figure}
 \end{center}
+The base and the platform (for the 3-3 type), and the platform (for the 3-6 type) are triangular in shape. Theoretically and for certain dimensions, this shape gives good load carrying capability. These configurations are, however,not possible in practice since double spherical joints will be needed where two bars have to be joined at the same vertex
+\cite{fernandes_design_nodate}.
+
+Thus a 6-6 type platform is considered. The base and platform will be hexagon in shape.
+
+\subsection{Quality Index $(\lambda)$ of Stewart Platform Design}
+Quality index $(\lambda)$ varies from 0 to 1.\\
+Where,\\
+0 - design with singularities and\\
+1 - Optimal design in which the determinant of the correspondent Jacobian matrix is maximum.
+
+\textbf{Singularities} - uncontrollable states.
+
+The Jacobian matrix relates the axial forces in the $i^{th}$ bar with the applied
+forces and torques and is given in equation \eqref{eq:myeqn}:
+
+\begin{equation}
+J =
+\begin{pmatrix}
+\hat{\boldsymbol{S_{1}}} & \hat{\boldsymbol{S_{2}}} & \hat{\boldsymbol{S_{3}}} & ... & \hat{\boldsymbol{S_{n}}}
+\end{pmatrix}
+\label{eq:myeqn}
+\end{equation}
+Where n - number of bars and $ \hat{\boldsymbol{S_{i}}}$ - unit vector of the Plucker coordinates along the line of the
+$i_{th}$ bar.
+
+Quality index can be obtained as shown:
+\begin{equation}
+\lambda = \frac{|J|}{|J|_{m}}
+\label{eq:myeqn}
+\end{equation}
+Where, $|J|$ is the jacobian matrix of a given Stewart platform configuration, and $ |J|_{m} $ - Jacobian Matrix of the optimal configuration.
+
+Applying equation 3.3.1 to the general configuration of a 6-6 platform, it is
+possible to obtain the Jacobian matrix and thus its determinant which can be obtained as in equation \eqref{eq:myeqn},
+\begin{equation}
+|J| =
+\begin{pmatrix}
+\frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3}
+\end{pmatrix}
+\label{eq:myeqn}
+\end{equation}
+Where: a - diameter of moving platform
+b - diameter of base
+$\alpha$ - angle of attack
+$ \beta $ - Side slip angle.
+h - distance between the base and the moving platform.
+$|J|_{m}$ is found by differentiating equation (3.3.3) with respect to h and equating to 0 resulting in \cite{fernandes_design_nodate}:
+\begin{equation}
+h = \sqrt{\frac{1}{3}(a^2 (3 \alpha^2 - 3 \alpha + 1)+ ab (3\alpha\beta - 1)+b^2(3 \beta^2 - 3 \beta + 1))}
+\label{eq:myeqn}
+\end{equation}
+A base diameter of 300mm, platform diameter of 200mm and height of 190mm is considered.
+\subsection{Sheet Metal Thickness and Material Selection}
+Metal used to manufacture the base should be of significant thickness to provide more support to the whole structure.
+
+Metal used to manufacture the moving platform should be lightweight and of enough thickness to enable it to withstand significant loads.
+
+Some sheet metal materials are considered and compared.
+\begin{table}[!h]
+	\caption[Sheet Metal Properties]{Material Properties}
+\end{table}
+\begin{center}
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Metal} & \textbf{Density$(gcm^{-3})$} & \textbf{Yield Strength(MPa)}\\
+\hline
+Aluminium (6061-T6)& 2.7 & 270\\
+\hline
+Mild Steel & 7.85 & 250\\
+\hline
+Stainless Steel & 7.5 - 8.0 & 215\\
+\hline
+\end{tabular}
+\end{center}
+Aluminum 6061 is preferable for the moving platform since it is lightweight and can withstand significant loads without yielding. It also has good machinability (50 per cent). A sheet metal of 2.5mm thickness will make a suitable platform to be used in wind tunnel testing.
+
+Both stainless steel and mild steel would make a suitable base for the Stewart platform due to their weight. They are also easy to machine (machinability for Mild steel - 78 per cent, for stainless steel - 45 - 110 per cent). Mild steel is readily available in the Kenyan market. Stainless steel is a bit more expensive.
+
+Due to cost purposes and for the Stewart platform's overall weight (and without compromising on the platform stability), aluminium can be used to manufacture the base. A thickness of 2.5mm is selected.
+
+Aluminium, unlike mild steel, would not require post-processing methods (e.g. powder coating) which would add on the cost.
+
+
 \section{Design of the Force Sensor}
 The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
