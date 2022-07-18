@@ -18,6 +18,7 @@
 %\newcommand*{\conj}[1]{\overline{#1}}
 %\newcommand*{\hermconj}{^{mathsf{H}}}
 \usepackage{MnSymbol}
+\usepackage{pdfpages}
 %\usepackage{breqn}
 %-----Tex width---------------------------------
 \textwidth 16cm
@@ -167,7 +168,10 @@
 \nocite{Lun01} 
 
                                      % Falls etwas in die Literaturliste soll, was nicht Referenziert wird
+\newpage
 \appendix
-\input{Files/Appendices}
-
+\pagenumbering{roman}
+\chapter{Stewart Platform and Wind Tunnel Configuration}
+\includepdf[pages=-]{Wind Tunnel Assembly + Stewart}
+\includepdf[pages=-]{Assemby 3 2}
 \end{document}
