@@ -475,9 +475,10 @@ Four strain gauges are required for each leg for a full wheatstone bridge config
 	\end{figure}
 \end{center}
 In this case as shown in the figure the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gauges measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the wheatstone bridge is then amplified and read to determine the strain on each leg.
+In the case of this project the use is of a full bridge strain gauge sensor with each strain gauge orthagonally positon allowing for elimination of noise and measurement of the strain axially on each rod.
 
 \paragraph{Force measurement Circuit}
-The output excitation of the wheatstone brisge needs to be amplified as it results in low outputs. An analog to digital converter is also reuiqred fot the analog to digital conveter. Some considerable options are the hx711 or the AD7193 converters which may be used as digital to analog converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements. 
+The output excitation of the wheatstone brisge needs to be amplified as it results in low outputs. An analog to digital converter is also reuiqred fot the analog to digital conveter. Some considerable options are the hx711 or the AD7193 converters which may be used as digital to analog converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements.  However the AD7193 was not used due to it's high cost compared to the HX711 regardless of the advantage it offers with serial peripheral Interface communication allowing for multiple modules on the same bus.
 
 The connection of the AD7193 to the microcontroller will be via Serial Peripheral Interface (SPI). the configuration is as shown in the figure:
 \begin{center}
@@ -488,6 +489,8 @@ The connection of the AD7193 to the microcontroller will be via Serial Periphera
 \end{figure}
 \end{center}
 In this configuration the when the chip select of an amplifier is set to low, the microcontroller is able to obtain data from that strain gauge. This configuration allows for a four wire interface to connect to six strain gauge sensors and obtain measurements.
+
+The HX711 however allows for the I2C like communication via two wires (serial clock (SCL and Serial Data SDA)). They however do not have hardware addresses thus many pins are required for the interface, This can however be remedied by the use of a shared SCL between each of the amplifier modules reducing the overal number of pins required to interface.
 
 \paragraph{Force transformation matrix} 
 In such a case the forces experienced at the top of the platform are distributed between the 6 legs and as result, a force transformation matrix is required to resolve the forces apllied on each axis as measured by each load cell on each leg. 
@@ -533,7 +536,16 @@ $$ v = \sqrt{\frac{2(P_{0} - P)}{\rho}}$$
 
 Where V is the speed of the fluid, P0 is the total, also called the stagnation, pressure at that point of measurement, and p is the static pressure at the same point.
 
-Three pitot probes are to be used in the wind tunnel, these are in the test section, intake and dissuser sections.
+Three pitot probes are to be used in the wind tunnel, these are in the test section, intake and difuser sections.
+
+Module communicates to the microcontroller using a ttl to RS485. Each module is individually addressable further simplifying the interface as shown in the figure:
+\begin{center}
+\begin{figure}
+\centering
+\includegraphics{Figures/modbus}
+\caption[RS485 communication]]{RS485 communication}
+\end{figure}
+\end{center}
 
 \section{Design of Human Machine Interface}
 The purpose of the interface is to enable control of the platform position as well as to obtain measured data from the strain gauges and pitot tubes. 
@@ -541,12 +553,12 @@ The general layout is as shown in the figure below:
 \begin{center}
 \begin{figure}
 \centering
-\includegraphics{Figures/interface}
+\includegraphics{Figures/Interface}
 \caption[Human Machine Interface]{Human Machine Interface}
 \end{figure}
 \end{center}
 
-The primary interface between the microcontroller is via serial interface by use of USB. This is used due to wide availability and integration on many personal computers. Serial communication allows for bidirectional transfer of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data aquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
+The primary interface between the microcontroller is via wirelessly via web sockets using User Datagram Protocol (UDP) interface. This allows for high speed low latency communication without need for a wired connection. It alsoo allows for bidirectional transfer of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data aquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
 
 The decoupling of the microcontroller and the program to be hosted on the desktop allows for advanced data processing such as application of filters and resolving measurements into useable information. It also allows for the use of more powerful processor and high level programmming languages to more effectively perform complex calculations without taking a toll the sensor samping rate that would occur with onboard processing in the microcontroller.
 \begin{center}
@@ -554,5 +566,50 @@ The decoupling of the microcontroller and the program to be hosted on the deskto
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/Fig14}
 	\caption[Control Algorithm]{Control Algorithm for the Stewart Platform with Force Measurement}
+	\end{figure}
+\end{center}
+\section{Printed Circuit Board Design}
+This section looks at the design of the circuits used to power and get readings from the sensors and control the actuators.
+
+\subsection{Microcontroller}
+The main requirement for this is the need for wireless communication via WIFI and large number of I/O interface at cost effective rate. This brings down the options to the ESP32 and Raspberry Pi RP2040. Both are dual core devices which are feature rich however the raspberry rp2040 only has 28 I/O pins while the ESP32 has 34 pins and due to this the ESP 32 was chosen. 
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics{Figures/mcu}
+	\caption[Microcotroller]{Microcontroller}
+	\end{figure}
+\end{center}
+
+\subsection{Power Suppply}
+The power supplt chosen is a AC/DC power converter. Since the highest voltage required is 12 volts. This also used as the highst power supply to yhe PCB.
+
+Both 5 and 3.3 volts are required in the PCB for other periferals. To this end a buck converter and linear converter are used for 5 ad 3.3 volts respectively.
+
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics{Figures/buck}
+	\caption[Buck converter]{Buck Converter 12V to 5v}
+	\end{figure}
+\end{center}
+
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics{Figures/5233}
+	\caption[Linear Voltage Converter]{Linear level converter 5V to 3.3v}
+	\end{figure}
+\end{center}
+
+The linear converter dissipates the energy loss though heat while buck conveter is through switching.
+
+\subsection{Servo Control}
+Since the microcontroller used (ESP32) is based on 3.3V logic. There is a need for 5V logic to contol the servos and thus a bidirectional logic level converter is utilized which leverages an internal drain N-channel MOSFET. 
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics{Figures/logik}
+	\caption[Bidirectional Logic Level converter]{Bidirectional Logic Level converter}
 	\end{figure}
 \end{center}
