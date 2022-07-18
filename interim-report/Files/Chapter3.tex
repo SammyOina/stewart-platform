@@ -400,6 +400,53 @@ The Spherical joint was done on Autodesk Inventor and included in the Stewart Pl
 	\end{figure}
 \end{center}
 
+\section{Electromechanical Design}
+Two methods of actuation are popular with Stewart platforms:
+\begin{itemize}
+\item Linear actuators
+\item Use of motors
+\end{itemize}
+Whereas linear actuators are relatively easy to control, they are very expensive. Thus the choice of motors.
+\subsection{Servo Horn}
+This will provide the connection between the motor and the spherical joints hence the aluminium rods. An 8mm hole on one end for mounting the spherical joint and another hole 8.5mm that will allow coupling with the servo arm bush of 8.6mm. The 1mm gap ensure tight fitting.
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{Figures/Horn}
+	\caption{Servo horn}
+	\end{figure}
+\end{center}
+
+\subsection{Motor Selection}
+One parameter was considered in our motor selection i.e. torque required. From the Autodesk Inventor design environment, the mass of the moving platform and mechanical couplings was 2.6kg. Each motor is supposed to move a minimum mass of 0.177kg. Using a servo horn of distance 45mm center-to-center, and Distance = $ \pi $ D, then:
+\begin{equation}
+Torque = (0.1777 \times 9.81)\times \frac{141.37}{1000} = 0.246 N\cdot m
+\end{equation}
+Motors of minimum torque of 0.2 N $\cdot m$ were considered. But for control considerations, only stepper motors and servo motors were shortlisted. Servo motor was considered over Stepper motor because they are cheaper. Also, we are only interested in 0 - 180 degrees positions.
+
+The Servo motor \textbf{TowerPro SG5010} used by the previous group is suitable for this project. The specifications provided by the manufacturer are as follows:
+
+\begin{table}[!h]
+\caption[Motor Specifications]{TowerPro SG5010 Specifications}
+\end{table}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Model}& TowerPro SG5010\\
+\hline
+\textbf{Operating Voltage} & 4.8V - 6.6V\\
+\hline
+\textbf{Operating Speed @ 4.8V} & 0.20sec/60$^{\circ}$\\
+\hline
+\textbf{Operating Speed @ 6.6V}& 0.16sec/60$^{\circ}$\\
+\hline
+\textbf{Stall torque @ 4.8V} & 5.5 kg-cm or 0.54 N $\cdot$ m\\
+\hline
+\textbf{Stall torque @ 6.6V} & 6.5 kg-cm or 0.64 N $\cdot$ m\\
+\hline
+\end{tabular}
+\end{center}
+
 \section{Design of the Force Sensor}
 The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
