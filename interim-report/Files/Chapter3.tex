@@ -187,6 +187,35 @@ h = \sqrt{\frac{1}{3}(a^2 (3 \alpha^2 - 3 \alpha + 1)+ ab (3\alpha\beta - 1)+b^2
 \label{eq:myeqn}
 \end{equation}
 A base diameter of 300mm, platform diameter of 200mm and height of 190mm is considered.
+
+For a = 200mm, b = 300mm, h = 190mm , $\alpha = 0.25$, $ \beta = 0.1667$,
+\begin{equation}
+|J| =
+\begin{pmatrix}
+\frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3}
+\end{pmatrix}
+= 2.437 \times 10^-3
+\label{eq:myeqn}
+\end{equation}
+And $ |J|_{m}$ where,
+\begin{equation}
+h = \sqrt{\frac{1}{3}(a^2 (3 \alpha^2 - 3 \alpha + 1)+ ab (3\alpha\beta - 1)+b^2(3 \beta^2 - 3 \beta + 1))} = 0.0764
+\label{eq:myeqn}
+\end{equation}
+\begin{equation}
+|J|_{m} =
+\begin{pmatrix}
+\frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3}
+\end{pmatrix}
+= 2.834 \times 10^-3
+\label{eq:myeqn}
+\end{equation}
+Quality index for this Stewart Platform design is therefore, 
+\begin{equation}
+\lambda = \frac{|J|}{|J|_{m}} = 0.86
+\label{eq:myeqn}
+\end{equation}
+A quality index of 0.86 presents a design of high quality and mechanical feasibility.
 \subsection{Sheet Metal Thickness and Material Selection}
 Metal used to manufacture the base should be of significant thickness to provide more support to the whole structure.
 
@@ -210,14 +239,95 @@ Stainless Steel & 7.5 - 8.0 & 215\\
 \hline
 \end{tabular}
 \end{center}
-Aluminum 6061 is preferable for the moving platform since it is lightweight and can withstand significant loads without yielding. It also has good machinability (50 per cent). A sheet metal of 2.5mm thickness will make a suitable platform to be used in wind tunnel testing.
+Aluminum 6061 is preferable for the moving platform since it is lightweight and can withstand significant loads without yielding. It also has good machinability (50 per cent). A sheet metal of 1.5mm thickness will make a suitable platform to be used in wind tunnel testing.
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{Figures/Flat}
+	\caption[Moving Platform]{Moving Platform (Flat Pattern)}
+	\end{figure}
+\end{center}
 
-Both stainless steel and mild steel would make a suitable base for the Stewart platform due to their weight. They are also easy to machine (machinability for Mild steel - 78 per cent, for stainless steel - 45 - 110 per cent). Mild steel is readily available in the Kenyan market. Stainless steel is a bit more expensive.
+The moving platform has flanges to provide linking points of the Stewart Platform legs. A flange of 30mm is considered. This will allow ample space for the spherical joint (whose connecting side diameter is 10mm) to fit and to be well centered.
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{Figures/Folded}
+	\caption[Moving Platform]{Moving Platform (Folded)}
+	\end{figure}
+\end{center}
 
-Due to cost purposes and for the Stewart platform's overall weight (and without compromising on the platform stability), aluminium can be used to manufacture the base. A thickness of 2.5mm is selected.
+Both stainless steel and mild steel would make a suitable base for the Stewart platform due to their weight. They are also easy to machine (machinability for Mild steel - 78 per cent, for stainless steel: 45 - 110 per cent). Mild steel is readily available in the Kenyan market. Stainless steel is a bit more expensive.
 
+Due to cost constraints and for the Stewart platform's overall weight (and without compromising on the platform stability), aluminium can be used to manufacture the base. A thickness of 2.5mm is selected.
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{Figures/Base}
+	\caption[Base Plates]{Base Plates}
+	\end{figure}
+\end{center}
 Aluminium, unlike mild steel, would not require post-processing methods (e.g. powder coating) which would add on the cost.
+\section{Sensing Bars/Rods}
+Two options are considered:
+\begin{itemize}
+\item Bars with square cross-section
+\item Cylindrical bars
+\end{itemize}
+Cylindrical bars are selected due to their ease of coupling with the available spherical joints. Cylindrical bars also guarantee uniform deformation of the bars - both in the axial and cross-sectional directions.
 
+From inquiries around suppliers in the Kenyan Market, these bars are usually available in steel and aluminum. In order to select the optimum solution for our application, the Yield Strength and density of both materials will be considered. 
+
+\section{Spherical Joints}
+For the 6-6 type, both platforms have six vertices and
+the connections between the sensing bars and the platforms is made by simple spherical joints. Single spherical joints are chosen because they are easy to manufacture and they eliminate the issues of interference between sensing bars when double spherical joints are used \cite{fernandes_design_nodate}. 
+
+Connection with spherical joints also prevents the torsion and bending phenomena in the bars when subjected to axial forces \cite{fernandes_design_nodate}.
+
+Spherical joints can be obtained from online stores. One such store is RS Components Africa. Options of spherical joints to choose from include:
+\begin{itemize}
+\item Ball and socket joint M5
+\item Ball and socket joint M6
+\item Ball and socket joint M8
+\item Ball and socket joint M10
+\end{itemize}
+Based on the diameter of the available aluminum rods, Ball and socket joint M10 is selected.
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{Figures/Spherical}
+	\caption[Spherical Joint]{Spherical Joint available from RS Components Africa \cite{datasheet_spherical}}
+	\end{figure}
+\end{center}
+The following dimensions are provided by the manufacturer:
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Figures/Spherical Dimensions}
+	\caption[Spherical Joint Dimensions]{Spherical Joint Dimensions \cite{datasheet_spherical}}
+	\end{figure}
+\end{center}
+\begin{table}[!h]
+\caption{Spherical Joint Dimensions}
+\end{table}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{Size(mm)}& \textbf{D1}& \textbf{D2}&\textbf{ D4}& \textbf{L1}& \textbf{L2}& \textbf{L3}& \textbf{L4}& \textbf{L5}& \textbf{R} & \textbf{A/F} & \textbf{min pull-off Force(N)}\\
+\hline
+10 & 16 & M10 & 16 & 47 & 35 & 15.5 & 47.5& 20 & 12 & 13 & 80\\
+\hline
+\end{tabular}
+
+\paragraph{}
+
+The Spherical joint was done on Autodesk Inventor and included in the Stewart Platform Assembly.
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.5\linewidth]{Figures/Spherical CAD}
+	\caption[Spherical Joint CAD]{Spherical Joint as designed on Autodesk Inventor}
+	\end{figure}
+\end{center}
 
 \section{Design of the Force Sensor}
 The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
