@@ -490,7 +490,7 @@ The connection of the AD7193 to the microcontroller will be via Serial Periphera
 \end{center}
 In this configuration the when the chip select of an amplifier is set to low, the microcontroller is able to obtain data from that strain gauge. This configuration allows for a four wire interface to connect to six strain gauge sensors and obtain measurements.
 
-The HX711 however allows for the I2C like communication via two wires (serial clock (SCL and Serial Data SDA)). They however do not have hardware addresses thus many pins are required for the interface, This can however be remedied by the use of a shared SCL between each of the amplifier modules reducing the overal number of pins required to interface.
+The HX711 however allows for the I2C like communication via two wires (serial clock (SCL) and Serial Data (SDA)). They however do not have hardware addresses thus many pins are required for the interface, This can however be remedied by the use of a shared SCL between each of the amplifier modules reducing the overall number of pins required to interface.
 
 \paragraph{Force transformation matrix} 
 In such a case the forces experienced at the top of the platform are distributed between the 6 legs and as result, a force transformation matrix is required to resolve the forces apllied on each axis as measured by each load cell on each leg. 
@@ -536,9 +536,9 @@ $$ v = \sqrt{\frac{2(P_{0} - P)}{\rho}}$$
 
 Where V is the speed of the fluid, P0 is the total, also called the stagnation, pressure at that point of measurement, and p is the static pressure at the same point.
 
-Three pitot probes are to be used in the wind tunnel, these are in the test section, intake and difuser sections.
+Three pitot probes are to be used in the wind tunnel i.e. in the test section, intake and diffuser sections.
 
-Module communicates to the microcontroller using a ttl to RS485. Each module is individually addressable further simplifying the interface as shown in the figure:
+Module communicates to the microcontroller using a TTL to RS485. Each module is individually addressable further simplifying the interface as shown in the figure:
 \begin{center}
 \begin{figure}
 \centering
@@ -558,9 +558,9 @@ The general layout is as shown in the figure below:
 \end{figure}
 \end{center}
 
-The primary interface between the microcontroller is via wirelessly via web sockets using User Datagram Protocol (UDP) interface. This allows for high speed low latency communication without need for a wired connection. It alsoo allows for bidirectional transfer of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data aquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
+The primary interface between the microcontroller is via wirelessly via web sockets using User Datagram Protocol (UDP) interface. This allows for high speed low latency communication without need for a wired connection. It also allows for bidirectional transfer of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data acquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
 
-The decoupling of the microcontroller and the program to be hosted on the desktop allows for advanced data processing such as application of filters and resolving measurements into useable information. It also allows for the use of more powerful processor and high level programmming languages to more effectively perform complex calculations without taking a toll the sensor samping rate that would occur with onboard processing in the microcontroller.
+The decoupling of the microcontroller and the program to be hosted on the desktop allows for advanced data processing such as application of filters and resolving measurements into usable information. It also allows for the use of more powerful processor and high level programming languages to more effectively perform complex calculations without taking a toll the sensor samping rate that would occur with on board processing in the microcontroller.
 \begin{center}
 	\begin{figure}[!h]
 	\centering
@@ -582,9 +582,9 @@ The main requirement for this is the need for wireless communication via WIFI an
 \end{center}
 
 \subsection{Power Suppply}
-The power supplt chosen is a AC/DC power converter. Since the highest voltage required is 12 volts. This also used as the highst power supply to yhe PCB.
+The power supply chosen is a AC/DC power converter. Since the highest voltage required is 12 volts. This also used as the highest power supply to the PCB.
 
-Both 5 and 3.3 volts are required in the PCB for other periferals. To this end a buck converter and linear converter are used for 5 ad 3.3 volts respectively.
+Both 5 and 3.3 volts are required in the PCB for other peripherals. To this end a buck converter and linear converter are used for 5 ad 3.3 volts respectively.
 
 \begin{center}
 	\begin{figure}[!h]
@@ -602,10 +602,10 @@ Both 5 and 3.3 volts are required in the PCB for other periferals. To this end a
 	\end{figure}
 \end{center}
 
-The linear converter dissipates the energy loss though heat while buck conveter is through switching.
+The linear converter dissipates the energy loss though heat while buck converter is through switching.
 
 \subsection{Servo Control}
-Since the microcontroller used (ESP32) is based on 3.3V logic. There is a need for 5V logic to contol the servos and thus a bidirectional logic level converter is utilized which leverages an internal drain N-channel MOSFET. 
+Since the microcontroller used (ESP32) is based on 3.3V logic. There is a need for 5V logic to control the servos and thus a bidirectional logic level converter is utilized which leverages an internal drain N-channel MOSFET. 
 \begin{center}
 	\begin{figure}[!h]
 	\centering
