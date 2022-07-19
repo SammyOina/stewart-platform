@@ -1,6 +1,6 @@
 \chapter{Methodology}
 \section{Outline}
-This section looks into the mechanical designs for the Stewart platform, considerations for the force sensor and the velocity measurement within the wind tunnel. It will finally look into the design of a human machine interface that will be used to control the Stewart platform,  obtain the measurements and display results.
+This section will look into the mechanical design of the Stewart platform, considerations for the force sensor and the velocity measurement within the wind tunnel. It will finally look into the design of a human machine interface that will be used to control the Stewart platform, obtain measurements and display results.
 
 \section{Design of Stewart Platform}
 This section deals with: design considerations, position, velocity and acceleration analysis of the Stewart platform.
@@ -104,24 +104,24 @@ Then the length of the ith leg can be acquired as follows:
 \begin{multline}
 \label{eqn}
 l_{i}^2 = (a_{x} * r_{p} * c_{i} + b_{x}*r_{p}*s_{i}
-+ t_{x}-r_{b}*c_{i})^2 \\+ (a_{y}*r_{p}*c_{i} + b_{y}*r_{p}*s_{i} + t_{y}-r_{b}*s_{i})^2+ \\(a_{z}*r_{p}*c_{i}+b_{z}*r_{p}*s_{i}+t_{z})^2
++ t_{x}-r_{b}*c_{i})^2 + \\(a_{y}*r_{p}*c_{i} + b_{y}*r_{p}*s_{i} + t_{y}-r_{b}*s_{i})^2+ (a_{z}*r_{p}*c_{i}+b_{z}*r_{p}*s_{i}+t_{z})^2
 \end{multline}
-\subsection{Inverse Velocity Analysis}
-Inverse Jacobian matrix can be used to perform inverse velocity analysis of the Stewart
-platform. Inverse Jacobian matrix describes relation between velocity of the moving platform and the leg velocity.
+%\subsection{Inverse Velocity Analysis}
+%Inverse Jacobian matrix can be used to perform inverse velocity analysis of the Stewart
+%platform. Inverse Jacobian matrix describes relation between velocity of the moving platform and the leg velocity.
 
-Inverse Jacobian matrix for a 6-DOF Stewart Platform
-\cite{csumnu2017simulation}:
-\[ J^-1 =
-\begin{bmatrix}
-u_{1}^{T} & (R_{P}^{B}q_{1}^{B} * u_{1})^T\\
-u_{2}^{T} & (R_{P}^{B}q_{2}^{B} * u_{2})^T\\
-u_{3}^{T} & (R_{P}^{B}q_{3}^{B} * u_{3})^T\\
-u_{4}^{T} & (R_{P}^{B}q_{4}^{B} * u_{4})^T\\
-u_{5}^{T} & (R_{P}^{B}q_{5}^{B} * u_{5})^T\\
-u_{6}^{T} & (R_{P}^{B}q_{6}^{B} * u_{6})^T
-\end{bmatrix}
-\]
+%Inverse Jacobian matrix for a 6-DOF Stewart Platform
+%\cite{csumnu2017simulation}:
+%\[ J^-1 =
+%\begin{bmatrix}
+%u_{1}^{T} & (R_{P}^{B}q_{1}^{B} * u_{1})^T\\
+%u_{2}^{T} & (R_{P}^{B}q_{2}^{B} * u_{2})^T\\
+%u_{3}^{T} & (R_{P}^{B}q_{3}^{B} * u_{3})^T\\
+%u_{4}^{T} & (R_{P}^{B}q_{4}^{B} * u_{4})^T\\
+%u_{5}^{T} & (R_{P}^{B}q_{5}^{B} * u_{5})^T\\
+%u_{6}^{T} & (R_{P}^{B}q_{6}^{B} * u_{6})^T
+%\end{bmatrix}
+%\]
 \section{Base and Moving Platform}
  The Stewart platform should be stable. Thus the base will have a larger diameter than that of the moving platform. The Center of Gravity (COG) shouldn't fall outside the base during any of the platform movements.
 \subsection{Stewart Plaform Configurations}
@@ -134,7 +134,7 @@ Stewart platforms can take three primary configurations i.e. 3-3 type, 3-6 type 
 	\cite{fernandes_design_nodate}}
 	\end{figure}
 \end{center}
-The base and the platform (for the 3-3 type), and the platform (for the 3-6 type) are triangular in shape. Theoretically and for certain dimensions, this shape gives good load carrying capability. These configurations are, however,not possible in practice since double spherical joints will be needed where two bars have to be joined at the same vertex
+The base and the platform (for the 3-3 type), and the platform (for the 3-6 type) are triangular in shape. The triangular shape has a good load carrying capability only in theory and for certain dimensions. These configurations are, however,not possible in practice since double spherical joints will be needed where two bars have to be joined at the same vertex
 \cite{fernandes_design_nodate}.
 
 Thus a 6-6 type platform is considered. The base and platform will be hexagon in shape.
@@ -165,7 +165,7 @@ Quality index can be obtained as shown:
 \lambda = \frac{|J|}{|J|_{m}}
 \label{eq:myeqn}
 \end{equation}
-Where, $|J|$ is the jacobian matrix of a given Stewart platform configuration, and $ |J|_{m} $ - Jacobian Matrix of the optimal configuration.
+Where, $|J|$ is the determinant of the Jacobian matrix of a given Stewart platform configuration, and $ |J|_{m} $ - determinant of Jacobian Matrix of the optimal configuration.
 
 Applying equation 3.3.1 to the general configuration of a 6-6 platform, it is
 possible to obtain the Jacobian matrix and thus its determinant which can be obtained as in equation \eqref{eq:myeqn},
@@ -424,7 +424,7 @@ Torque = (0.1777 \times 9.81)\times \frac{141.37}{1000} = 0.246 N\cdot m
 \end{equation}
 Motors of minimum torque of 0.2 N $\cdot m$ were considered. But for control considerations, only stepper motors and servo motors were shortlisted. Servo motor was considered over Stepper motor because they are cheaper. Also, we are only interested in 0 - 180 degrees positions.
 
-The Servo motor \textbf{TowerPro SG5010} used by the previous group is suitable for this project. The specifications provided by the manufacturer are as follows:
+The Servo motor \textbf{TowerPro SG5010} is suitable for this project. The specifications provided by the manufacturer are as follows:
 
 \begin{table}[!h]
 \caption[Motor Specifications]{TowerPro SG5010 Specifications}
@@ -462,11 +462,11 @@ In this case it would require at least 3 orthogonally positioned load cells meas
 		\caption[Diagram of a force balance]{Diagram of a force balance \cite{post_force_2010}}
 	\end{figure}
 \end{center}
-This configuration is however bulky by requiring an additional external system for force measurements in addition to the stewart platform for positioning the model. This is however complemented by the simplicity in calibration of the load cells and does not require a complex force transformation matrix and other issues with force amplification created by the use of an integrated system.
+This configuration is, however, bulky by since it requires an additional external system for force measurements in addition to the Stewart platform for positioning the model. This is however complemented by the simplicity in calibration of the load cells and does not require a complex force transformation matrix and other issues with force amplification created by the use of an integrated system.
 \subsection{Stewart Platform as a force sensor}
-In this configuration the stewart platform legs are used as force sensors by attaching strain gauges in the legs of platform. Similar work has been done by \cite{ferreira2015design} without the use of actuators as is proposed in this project. Using the stewart platform as a force sensor requires the actuators to be locked with zero degrees of freedom.
+In this configuration the Stewart platform legs are used as force sensors by attaching strain gauges on the legs of platform. Similar work has been done by \cite{ferreira2015design} without the use of actuators as is proposed in this project. Using the Stewart platform as a force sensor requires the actuators to be locked with zero degrees of freedom.
 
-Four strain gauges are required for each leg for a full wheatstone bridge configuration. 
+Four strain gauges are required for each leg for a full Wheatstone bridge configuration. 
 \begin{center}
 	\begin{figure}[!h]
 		\centering
@@ -474,13 +474,13 @@ Four strain gauges are required for each leg for a full wheatstone bridge config
 		\caption[Strain Gauge Configuration]{Strain Gauge Configuration \cite{noauthor_measuring_nodate}}
 	\end{figure}
 \end{center}
-In this case as shown in the figure the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gauges measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the wheatstone bridge is then amplified and read to determine the strain on each leg.
-In the case of this project the use is of a full bridge strain gauge sensor with each strain gauge orthagonally positon allowing for elimination of noise and measurement of the strain axially on each rod.
+In this case, as shown in figure 3.8.2, the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gauges measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the Wheatstone bridge is then amplified and read to determine the strain on each leg.
+In the case of this project, a full bridge strain gauge sensor with each strain gauge orthagonally positoned allowing for elimination of noise and measurement of the strain axially on each rod is used.
 
 \paragraph{Force measurement Circuit}
-The output excitation of the wheatstone brisge needs to be amplified as it results in low outputs. An analog to digital converter is also reuiqred fot the analog to digital conveter. Some considerable options are the hx711 or the AD7193 converters which may be used as digital to analog converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements.  However the AD7193 was not used due to it's high cost compared to the HX711 regardless of the advantage it offers with serial peripheral Interface communication allowing for multiple modules on the same bus.
+The output excitation of the Wheatstone bridge needs to be amplified as it results in low outputs. An analog to digital converter is also required for the analog to digital converter. Some considerable options are the HX711 or the AD7193 converters which may be used as digital to analog converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements.  However the AD7193 was not used due to it's high cost compared to the HX711 regardless of the advantage it offers with serial peripheral Interface communication allowing for multiple modules on the same bus.
 
-The connection of the AD7193 to the microcontroller will be via Serial Peripheral Interface (SPI). the configuration is as shown in the figure:
+The connection of the AD7193 to the microcontroller will be via Serial Peripheral Interface (SPI). The configuration is as shown in figure 3.8.3:
 \begin{center}
 \begin{figure}
 \centering
