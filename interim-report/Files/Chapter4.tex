@@ -19,7 +19,7 @@ The assembled Stewart platform is as shown in figure \ref{fig}. Figure \ref{fig1
 	\label{fig1}
 	\end{figure}
 \end{center}
-Assembling the Stewart platform legs as shown in \ref{fig} makes it easier to achieve the six degrees of freedom as opposed to having two legs on the attached on the same flange as in figure \ref{fig2}.
+Assembling the Stewart platform legs as shown in \ref{fig} makes it easier to achieve the six degrees of freedom as opposed to having two legs attached on the same flange as in figure \ref{fig2}.
 \begin{center}
 \begin{figure}[!htb]
 \centering
@@ -27,6 +27,28 @@ Assembling the Stewart platform legs as shown in \ref{fig} makes it easier to ac
 \caption[Stewart platform assembly]{Stewart platform alternative assembly}
 \label{fig2}
 \end{figure}
+\end{center}
+\subsection{Stability}
+The base of the Stewart platform has a bigger diameter (300mm) than that of the moving platform (200mm) hence the center of gravity will always fall within the base during operation. The Stewart platform is therefore stable.
+\subsection{Mechanical Feasibility}
+Based on the base and platform diameters, distance between the base and platform (i.e. height), an angle of attack of 0.25, and side slip angle of 0.16667, the quality index ($\lambda$) of the Stewart platform was found to be 0.86. This presents a design with few singularities. It is therefore mechanically feasible.
+\subsection{Weight}
+3D models of the Stewart platform were created using the three described earlier. Use of aluminum was verified to offer the most light-weight design.
+\begin{table}[!h]
+\caption{Weight Comparisons}
+\end{table}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Material} & \textbf{Mass(Kg)}\\
+\hline
+Aluminium & 2.8\\
+\hline
+Mild Steel & 4.6\\
+\hline
+Stainless steel & 5.0 \\
+\hline
+\end{tabular}
 \end{center}
 \subsection{Stewart Platform Simulation}
 Stewart Platform simulation was done on MatLab using the Inverse kinematics equations. Different servo angles for different platform movements can be obtained from the simulation. The angles for yaw, pitch and roll could be adjusted during simulations to predict the maximum allowable angle values. Value of displacement in the x-, y- and z-directions could also be adjusted enabling us to predict the maximum allowable displacement in the respective directions.
