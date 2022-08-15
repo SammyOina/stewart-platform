@@ -1,10 +1,10 @@
 \chapter{Methodology}
 \section{Outline}
-This section will look into the mechanical design of the Stewart platform, considerations for the force sensor and the velocity measurement within the wind tunnel. It will finally look into the design of a human machine interface that will be used to control the Stewart platform, obtain measurements and display results.
+This section will look into analysis of the six DOF Stewart platform, considerations for the force sensor and the velocity measurement within the wind tunnel. It will finally look into the design of a human machine interface that will be used to control the Stewart platform, obtain measurements and display results.
 
-\section{Design of Stewart Platform}
-This section deals with: design considerations, position, velocity and acceleration analysis of the Stewart platform.
-\subsection{Design Considerations}
+\section{Mechanical Design}
+Since a Stewart platform has already been designed and fabricated, this section will look at: design considerations and analysis and evaluation of the Stewart platform to verify whether it will be feasible to work with.
+\subsection{Design Considerations for the Stewart Platform}
 \begin{enumerate}
 \item When the controllable axes are active, the platform must be controlled in six degrees of motion.
 \item When the controllable members are stationary, the
@@ -13,99 +13,99 @@ platform must have a corresponding fixed position.
 \item The mechanism should be lightweight.
 \item Velocity and position control of the mechanism should be easy to achieve.
 \end{enumerate}
-\subsection{Kinematic Analysis - Rotational matrix}
-Euler angles are utilized to obtain rotational matrix for the moving platform of the Stewart platform mechanism. The rotational matrix is represented as follows \cite{csumnu2017simulation}:
-\begin{equation}
- R_{P}^B = R_{Z}(\gamma)*R_{Y}(\beta)*R_{X}(\alpha)
-\end{equation}
-Where $\gamma, \beta, \alpha$ - angles of rotation about the z-, y- and x-axis respectively.
+%\subsection{Kinematic Analysis - Rotational matrix}
+%Euler angles are utilized to obtain rotational matrix for the moving platform of the Stewart platform mechanism. The rotational matrix is represented as follows \cite{csumnu2017simulation}:
+%\begin{equation}
+% R_{P}^B = R_{Z}(\gamma)*R_{Y}(\beta)*R_{X}(\alpha)
+%\end{equation}
+%Where $\gamma, \beta, \alpha$ - angles of rotation about the z-, y- and x-axis respectively.
 
-In matrix form:
-\[ R_{P}^B =
- \begin{bmatrix}
- c\beta c\gamma & s\alpha s\beta c\gamma - c\alpha s\gamma & c\alpha s\beta c\gamma + s\alpha s\gamma\\
- c\beta s\gamma & s\alpha s\beta s\gamma + c\alpha c\gamma & c\alpha s\beta s\gamma - s\alpha c\gamma\\
- -s\beta & s\alpha c\beta & c\alpha c\beta  
- \end{bmatrix}
-\]
-Generalized coordinate position and velocity vector of the moving platform is represented below \cite{csumnu2017simulation}:
-\[
-q=
-\begin{bmatrix}
-tx & ty & tz & \alpha & \beta & \gamma
-\end{bmatrix}^\top
-\]
-\[
-\dot{q}=
-\begin{bmatrix}
-\dot{tx} & \dot{ty} & \dot{tz} & \dot{\alpha} & \dot{\beta} & \dot{\gamma}
-\end{bmatrix}^\top
-\]
-Transformation of angular velocity of moving platform to the base frame can be done using Euler angles \cite{csumnu2017simulation}:
-\[
-\omega =
-\begin{bmatrix}
-1 & 0 & s\beta \\
-0 & c\alpha & -s\alpha c\beta \\
-0 & s\alpha & c\alpha c\beta 
-\end{bmatrix}
-\begin{bmatrix}
-\dot{\alpha} \\
-\dot{\beta}\\
-\dot{\gamma}
-\end{bmatrix}
-\]
-Acceleration of the moving platform is obtained by differentiating the velocity of the moving platform with respect to time:
-\[
-\dot{\omega} =
-\begin{bmatrix}
-1 & 0 & s\beta \\
-0 & c\alpha & -s\alpha c\beta \\
-0 & s\alpha & c\alpha c\alpha c\beta 
-\end{bmatrix}
-\begin{bmatrix}
-\ddot{\alpha} \\
-\ddot{\beta}\\
-\ddot{\gamma}
-\end{bmatrix}
-+
-\begin{bmatrix}
-0 & 0 & \dot{\beta}c\beta \\
-0 & \dot{\alpha} s\alpha & -\dot{\alpha} c\alpha c\beta + s\alpha \dot{\beta} s\beta \\
-0 & \dot{\alpha}c\alpha & -\dot{\alpha}s\alpha c\beta - c\alpha \dot{\beta}s\beta
-\end{bmatrix}
-\begin{bmatrix}
-\dot{\alpha} \\
-\dot{\beta}\\
-\dot{\gamma}
-\end{bmatrix}
-\]
-\subsection{Inverse Kinematic Analysis}
-Inverse kinematic analysis is used to determine the length of the legs according to planned trajectories of the moving platform position. In order to consider the length of the leg of a Stewart platform, closed-loop of one leg is used as shown in figure 3.1. Using this closed-form representation, the leg
-vector with respect to base platform can be obtained as follows \cite{csumnu2017simulation}:
-\begin{equation}
-\label{eqn}
-L_{i} = q_{i}^{B} - b_{i}
-\end{equation}
-The position vector of ith upper junction point with respect to the base frame is given by the following;
-\begin{equation}
-\label{eqn}
-q_{i}^{B} = t + R_{p}^{B} * q_{i}^{p}
-\end{equation}
-\begin{center}
-	\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.6\linewidth]{Figures/Fig12}
-	\caption[Closed-loop representation]{Closed-loop representation of one leg of the Stewart Platform \cite{csumnu2017simulation}}
-	\end{figure}
-\end{center}
-Then the length of the ith leg can be acquired as follows:
-\newpage
-\begin{multline}
-\label{eqn}
-l_{i}^2 = (a_{x} * r_{p} * c_{i} + b_{x}*r_{p}*s_{i}
-+ t_{x}-r_{b}*c_{i})^2 + \\(a_{y}*r_{p}*c_{i} + b_{y}*r_{p}*s_{i} + t_{y}-r_{b}*s_{i})^2+ (a_{z}*r_{p}*c_{i}+b_{z}*r_{p}*s_{i}+t_{z})^2
-\end{multline}
+%In matrix form:
+%\[ R_{P}^B =
+% \begin{bmatrix}
+% c\beta c\gamma & s\alpha s\beta c\gamma - c\alpha s\gamma & c\alpha s\beta c\gamma + s\alpha s\gamma\\
+% c\beta s\gamma & s\alpha s\beta s\gamma + c\alpha c\gamma & c\alpha s\beta s\gamma - s\alpha c\gamma\\
+% -s\beta & s\alpha c\beta & c\alpha c\beta  
+% \end{bmatrix}
+%\]
+%Generalized coordinate position and velocity vector of the moving platform is represented below \cite{csumnu2017simulation}:
+%\[
+%q=
+%\begin{bmatrix}
+%tx & ty & tz & \alpha & \beta & \gamma
+%\end{bmatrix}^\top
+%\]
+%\[
+%\dot{q}=
+%\begin{bmatrix}
+%\dot{tx} & \dot{ty} & \dot{tz} & \dot{\alpha} & \dot{\beta} & \dot{\gamma}
+%\end{bmatrix}^\top
+%\]
+%Transformation of angular velocity of moving platform to the base frame can be done using Euler angles \cite{csumnu2017simulation}:
+%\[
+%\omega =
+%\begin{bmatrix}
+%1 & 0 & s\beta \\
+%0 & c\alpha & -s\alpha c\beta \\
+%0 & s\alpha & c\alpha c\beta 
+%\end{bmatrix}
+%\begin{bmatrix}
+%\dot{\alpha} \\
+%\dot{\beta}\\
+%\dot{\gamma}
+%\end{bmatrix}
+%\]
+%Acceleration of the moving platform is obtained by differentiating the velocity of the moving platform with respect to time:
+%\[
+%\dot{\omega} =
+%\begin{bmatrix}
+%1 & 0 & s\beta \\
+%0 & c\alpha & -s\alpha c\beta \\
+%0 & s\alpha & c\alpha c\alpha c\beta 
+%\end{bmatrix}
+%\begin{bmatrix}
+%\ddot{\alpha} \\
+%\ddot{\beta}\\
+%\ddot{\gamma}
+%\end{bmatrix}
+%+
+%\begin{bmatrix}
+%0 & 0 & \dot{\beta}c\beta \\
+%0 & \dot{\alpha} s\alpha & -\dot{\alpha} c\alpha c\beta + s\alpha \dot{\beta} s\beta \\
+%0 & \dot{\alpha}c\alpha & -\dot{\alpha}s\alpha c\beta - c\alpha \dot{\beta}s\beta
+%\end{bmatrix}
+%\begin{bmatrix}
+%\dot{\alpha} \\
+%\dot{\beta}\\
+%\dot{\gamma}
+%\end{bmatrix}
+%\]
+%\subsection{Inverse Kinematic Analysis}
+%Inverse kinematic analysis is used to determine the length of the legs according to planned trajectories of the moving platform position. In order to consider the length of the leg of a Stewart platform, closed-loop of one leg is used as shown in figure 3.1. Using this closed-form representation, the leg
+%vector with respect to base platform can be obtained as follows \cite{csumnu2017simulation}:
+%\begin{equation}
+%\label{eqn}
+%L_{i} = q_{i}^{B} - b_{i}
+%\end{equation}
+%The position vector of ith upper junction point with respect to the base frame is given by the following;
+%\begin{equation}
+%\label{eqn}
+%q_{i}^{B} = t + R_{p}^{B} * q_{i}^{p}
+%\end{equation}
+%\begin{center}
+%	\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=0.6\linewidth]{Figures/Fig12}
+%	\caption[Closed-loop representation]{Closed-loop representation of one leg of the Stewart Platform \cite{csumnu2017simulation}}
+%	\end{figure}
+%\end{center}
+%Then the length of the ith leg can be acquired as follows:
+%\newpage
+%\begin{multline}
+%\label{eqn}
+%l_{i}^2 = (a_{x} * r_{p} * c_{i} + b_{x}*r_{p}*s_{i}
+%+ t_{x}-r_{b}*c_{i})^2 + \\(a_{y}*r_{p}*c_{i} + b_{y}*r_{p}*s_{i} + t_{y}-r_{b}*s_{i})^2+ (a_{z}*r_{p}*c_{i}+b_{z}*r_{p}*s_{i}+t_{z})^2
+%\end{multline}
 %\subsection{Inverse Velocity Analysis}
 %Inverse Jacobian matrix can be used to perform inverse velocity analysis of the Stewart
 %platform. Inverse Jacobian matrix describes relation between velocity of the moving platform and the leg velocity.
@@ -123,8 +123,8 @@ l_{i}^2 = (a_{x} * r_{p} * c_{i} + b_{x}*r_{p}*s_{i}
 %\end{bmatrix}
 %\]
 \section{Base and Moving Platform}
- The Stewart platform should be stable. Thus the base will have a larger diameter than that of the moving platform. The Center of Gravity (COG) shouldn't fall outside the base during any of the platform movements.
-\subsection{Stewart Platform Configurations}
+ The Stewart platform should be stable. Thus the base should have a larger diameter than that of the moving platform. The Center of Gravity (COG) shouldn't fall outside the base during any of the platform movements.
+\section{Stewart Platform Configurations}
 Stewart platforms can take three primary configurations i.e. 3-3 type, 3-6 type or 6-6 type.
 \begin{center}
 	\begin{figure}[!h]
@@ -137,9 +137,9 @@ Stewart platforms can take three primary configurations i.e. 3-3 type, 3-6 type 
 The base and the platform (for the 3-3 type), and the platform (for the 3-6 type) are triangular in shape. The triangular shape has a good load carrying capability only in theory and for certain dimensions. These configurations are, however,not possible in practice since double spherical joints will be needed where two bars have to be joined at the same vertex
 \cite{fernandes_design_nodate}.
 
-Thus a 6-6 type platform is considered. The base and platform will be hexagon in shape.
+Thus a 6-6 type platform is considered. The base and platform are hexagon in shape.
 
-\subsection{Quality Index $(\lambda)$ of Stewart Platform Design}
+\section{Quality Index $(\lambda)$ of Stewart Platform Design}
 Quality index $(\lambda)$ varies from 0 to 1.\\
 Where,\\
 0 - design with singularities and\\
@@ -148,22 +148,21 @@ Where,\\
 \textbf{Singularities} - uncontrollable states.
 
 The Jacobian matrix relates the axial forces in the $i^{th}$ bar with the applied
-forces and torques and is given in equation \eqref{eq:myeqn}:
-
-\begin{equation}
+forces and torques and is given in equation \eqref{eq:myeqn}\cite{fernandes_design_nodate}:
+\begin{gather}
 J =
 \begin{pmatrix}
 \hat{\boldsymbol{S_{1}}} & \hat{\boldsymbol{S_{2}}} & \hat{\boldsymbol{S_{3}}} & ... & \hat{\boldsymbol{S_{n}}}
 \end{pmatrix}
 \label{eq:myeqn}
-\end{equation}
+\end{gather}
 Where n - number of bars and $ \hat{\boldsymbol{S_{i}}}$ - unit vector of the Plucker coordinates along the line of the
 $i_{th}$ bar.
 
 Quality index can be obtained as shown:
 \begin{equation}
 \lambda = \frac{|J|}{|J|_{m}}
-\label{eq:myeqn}
+%\label{eq:myeqn}
 \end{equation}
 Where, $|J|$ is the determinant of the Jacobian matrix of a given Stewart platform configuration, and $ |J|_{m} $ - determinant of Jacobian Matrix of the optimal configuration.
 
@@ -171,9 +170,7 @@ Applying equation 3.3.1 to the general configuration of a 6-6 platform, it is
 possible to obtain the Jacobian matrix and thus its determinant which can be obtained as in equation \eqref{eq:myeqn},
 \begin{equation}
 |J| =
-\begin{pmatrix}
 \frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3}
-\end{pmatrix}
 \label{eq:myeqn}
 \end{equation}
 Where: a - diameter of moving platform
@@ -186,36 +183,30 @@ $|J|_{m}$ is found by differentiating equation (3.3.3) with respect to h and equ
 h = \sqrt{\frac{1}{3}(a^2 (3 \alpha^2 - 3 \alpha + 1)+ ab (3\alpha\beta - 1)+b^2(3 \beta^2 - 3 \beta + 1))}
 \label{eq:myeqn}
 \end{equation}
-A base diameter of 300mm, platform diameter of 200mm and height of 190mm is considered.
+The Stewart platform has a base diameter of 300mm, platform diameter of 200mm and height of 190mm.
 
 For a = 200mm, b = 300mm, h = 190mm , $\alpha = 0.25$, $ \beta = 0.1667$,
-\begin{equation}
+\begin{equation*}
 |J| =
-\begin{pmatrix}
-\frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3}
-\end{pmatrix}
-= 2.437 \times 10^-3
+\frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3} = 2.437 \times 10^{-3}
 \label{eq:myeqn}
-\end{equation}
+\end{equation*}
 And $ |J|_{m}$ where,
 \begin{equation}
 h = \sqrt{\frac{1}{3}(a^2 (3 \alpha^2 - 3 \alpha + 1)+ ab (3\alpha\beta - 1)+b^2(3 \beta^2 - 3 \beta + 1))} = 0.0764
 \label{eq:myeqn}
 \end{equation}
-\begin{equation}
+\begin{equation*}
 |J|_{m} =
-\begin{pmatrix}
-\frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3}
-\end{pmatrix}
-= 2.834 \times 10^-3
+\frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3} = 2.834 \times 10^{-3}
 \label{eq:myeqn}
-\end{equation}
+\end{equation*}
 Quality index for this Stewart Platform design is therefore, 
 \begin{equation}
 \lambda = \frac{|J|}{|J|_{m}} = 0.86
 \label{eq:myeqn}
 \end{equation}
-A quality index of 0.86 presents a design of high quality and mechanical feasibility.
+%A quality index of 0.86 presents a design of high quality and mechanical feasibility.
 \subsection{Sheet Metal Thickness and Material Selection}
 Metal used to manufacture the base should be of significant thickness to provide more support to the whole structure.
 
@@ -239,7 +230,7 @@ Stainless Steel & 7.5 - 8.0 & 215\\
 \hline
 \end{tabular}
 \end{center}
-Aluminium 6061 is preferable for the moving platform since it is lightweight and can withstand significant loads without yielding. It also has good machinability (50 per cent). A sheet metal of 1.5mm thickness will make a suitable platform to be used in wind tunnel testing.
+Aluminium 6061 is preferable for the moving platform since it is lightweight and can withstand significant loads without yielding. It also has good machinability (50 per cent). A sheet metal of 1.5mm thickness is used for the platform.
 \begin{center}
 	\begin{figure}[!h]
 	\centering
@@ -248,7 +239,7 @@ Aluminium 6061 is preferable for the moving platform since it is lightweight and
 	\end{figure}
 \end{center}
 
-The moving platform has flanges to provide linking points of the Stewart Platform legs. A flange of 30mm is considered. This will allow ample space for the spherical joint (whose connecting side diameter is 10mm) to fit and to be well centred.
+The moving platform has flanges to provide linking points of the Stewart Platform legs. A flange of 30mm is considered allows ample space for the spherical joint (whose connecting side diameter is 10mm) to fit and to be well centered.
 \begin{center}
 	\begin{figure}[!h]
 	\centering
@@ -259,7 +250,8 @@ The moving platform has flanges to provide linking points of the Stewart Platfor
 
 Both stainless steel and mild steel would make a suitable base for the Stewart platform due to their weight. They are also easy to machine (machinability for Mild steel - 78 per cent, for stainless steel: 45 - 110 per cent). Mild steel is readily available in the Kenyan market. Stainless steel is a bit more expensive.
 
-Due to cost constraints and for the Stewart platform's overall weight (and without compromising on the platform stability), aluminium can be used to manufacture the base. A thickness of 2.5mm is selected.
+Due to cost constraints and for the Stewart platform's overall weight (and without compromising on the platform stability), aluminium can be used to manufacture the base. A thickness of 2.5mm for the base is used.
+Aluminium, unlike mild steel, would not require post-processing methods (e.g. powder coating) which would add on the cost.
 \begin{center}
 	\begin{figure}[!h]
 	\centering
@@ -267,14 +259,14 @@ Due to cost constraints and for the Stewart platform's overall weight (and witho
 	\caption[Base Plates]{Base Plates}
 	\end{figure}
 \end{center}
-Aluminium, unlike mild steel, would not require post-processing methods (e.g. powder coating) which would add on the cost.
+
 \section{Sensing Bars/Rods}
-Two options are considered:
+Two options can be considered:
 \begin{itemize}
 \item Bars with square cross-section
 \item Cylindrical bars
 \end{itemize}
-Cylindrical bars are selected due to their ease of coupling with the available spherical joints. Cylindrical bars also guarantee uniform deformation of the bars - both in the axial and cross-sectional directions.
+Cylindrical bars are preferable due to their ease of coupling with the available spherical joints. Cylindrical bars also guarantee uniform deformation of the bars - both in the axial and cross-sectional directions.
 
 From inquiries around suppliers in the Kenyan Market, these bars are usually available in steel and aluminium. In order to select the optimum solution for our application, the Yield Strength, modulus of rigidity, Young's Modulus and density of both materials will be considered. 
 \begin{table}[!h]
@@ -300,17 +292,17 @@ Materials with high modulus of rigidity will require huge amounts of force to de
 
 Aluminium rods have the capability of bearing higher loads before their deformation goes from elastic to plastic as compared to steel rods. Aluminium rods also have the benefit of being lightweight.
 
-\subsection{Sensing Rods Design - Length}
-From the previously selected dimensions i.e diameter of platform, diameter of base and distance between the base and platform, the length of each rod can be determined by geometry.
+%\subsection{Sensing Rods Design - Length}
+%From the previously selected dimensions i.e diameter of platform, diameter of base and distance between the base and platform, the length of each rod can be determined by geometry.
 
-Rod length = 140mm
-\begin{center}
-	\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.6\linewidth]{Figures/Ideation}
-	\caption[Ideation]{Ideation technique to obtain rod length}
-	\end{figure}
-\end{center}
+%Rod length = 140mm
+%\begin{center}
+%	\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=0.6\linewidth]{Figures/Ideation}
+%	\caption[Ideation]{Ideation technique to obtain rod length}
+%	\end{figure}
+%\end{center}
 
 \subsection{Sensing Rods Design - Shape}
 Two options can be considered:
@@ -340,7 +332,7 @@ The test flange should hold the strut for a considerable length in order to keep
 	\caption[Test flange]{Test flange design}
 	\end{figure}
 \end{center}
-The strut will go into the test section of the Wind tunnel at the Fluids lab in JKUAT. The strut should be long enough to position the model under testing in the middle of the test section. The strut will also be subjected to the flow forces in the wind tunnel. It should therefore be made of as small diameter as possible. A diameter 12.5mm of and a length of 400mm were considered, based on the Wind Tunnel set-up (Appendix).
+The strut will go into the test section of the Wind tunnel at the Fluids lab in JKUAT. The strut should be long enough to position the model under testing in the middle of the test section. The strut will also be subjected to the flow forces in the wind tunnel. It should therefore be made of as small diameter as possible. The strut dimensions of diameter 12.5mm and a length 400mm are practical, based on the Wind Tunnel set-up (Appendix).
 \begin{center}
 	\begin{figure}[!h]
 	\centering
@@ -351,7 +343,7 @@ The strut will go into the test section of the Wind tunnel at the Fluids lab in 
 
 \section{Spherical Joints}
 For the 6-6 type, both platforms have six vertices and
-the connections between the sensing bars and the platforms is made by simple spherical joints. Single spherical joints are chosen because they are easy to manufacture and they eliminate the issues of interference between sensing bars when double spherical joints are used \cite{fernandes_design_nodate}. 
+the connections between the sensing bars and the platforms is made by simple spherical joints. Single spherical joints are preferable because they are easy to manufacture and they eliminate the issues of interference between sensing bars when double spherical joints are used \cite{fernandes_design_nodate}. 
 
 Connection with spherical joints also prevents the torsion and bending phenomena in the bars when subjected to axial forces \cite{fernandes_design_nodate}.
 
@@ -393,7 +385,7 @@ The following dimensions are provided by the manufacturer:
 
 The Spherical joint was done on Autodesk Inventor and included in the Stewart Platform Assembly.
 \begin{center}
-	\begin{figure}[!h]
+	\begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.5\linewidth]{Figures/Spherical CAD}
 	\caption[Spherical Joint CAD]{Spherical Joint as designed on Autodesk Inventor}
@@ -407,15 +399,15 @@ Two methods of actuation are popular with Stewart platforms:
 \item Use of motors
 \end{itemize}
 Whereas linear actuators are relatively easy to control, they are very expensive. Thus the choice of motors.
-\subsection{Servo Horn}
-This will provide the connection between the motor and the spherical joints hence the aluminium rods. An 8mm hole on one end for mounting the spherical joint and another hole 8.5mm that will allow coupling with the servo arm bush of 8.6mm. The 1mm gap ensure tight fitting.
-\begin{center}
-	\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.6\linewidth]{Figures/Horn}
-	\caption{Servo horn}
-	\end{figure}
-\end{center}
+%\subsection{Servo Horn}
+%This will provide the connection between the motor and the spherical joints hence the aluminium rods. An 8mm hole on one end for mounting the spherical joint and another hole 8.5mm that will allow coupling with the servo arm bush of 8.6mm. The 1mm gap ensure tight fitting.
+%\begin{center}
+%	\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=0.6\linewidth]{Figures/Horn}
+%	\caption{Servo horn}
+%	\end{figure}
+%\end{center}
 
 \subsection{Motor Selection}
 One parameter was considered in our motor selection i.e. torque required. From the Autodesk Inventor design environment, the mass of the moving platform and mechanical couplings was 2.6kg. Each motor is supposed to move a minimum mass of 0.177kg. Using a servo horn of distance 45mm centre-to-centre, and Distance = $ \pi $ D, then:
@@ -446,7 +438,7 @@ The Servo motor \textbf{TowerPro SG5010} is suitable for this project. The speci
 \hline
 \end{tabular}
 \end{center}
-
+Prices range between \textbf{Ksh.700} and \textbf{Ksh.1400}.
 \section{Design of the Force Sensor}
 The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
