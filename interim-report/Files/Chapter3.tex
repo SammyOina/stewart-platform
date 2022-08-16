@@ -402,7 +402,7 @@ A Finite Element Analysis was done on the Stewart platform design to determine i
 The rods/legs of the Stewart platform are subjected to axial forces which cause slight strains which can be used to obtain force and moment measurements during wind tunnel testing.
 \subsection{Inverse Kinematics of a Stewart Platform}
 This is the calculation of each leg length based on the desired position of the Stewart platform. 
-For the Stewart platform, the translation $^{p}T_{b}$ from the base origin to the platform origin can be described with a single vector T = $(t_{x} t_{y} t_{z})^{T} $. The rotation of the platform can be denoted as $^{p}R_{b}$. Thus the following relationship for the frame of reference can be stated:
+For the Stewart platform, the translation $^{p}T_{b}$ from the base origin to the platform origin can be described with a single vector T = $(t_{x} t_{y} t_{z})^{T} $. The rotation of the platform can be denoted as $^{p}R_{b}$. Thus the following relationship for the frame of reference can be stated \cite{Eisele_2019}:
 $$^{p}T_{b} = T$$
 	$$^{p}R_{b} = R$$
 	$$^{b}T_{p} =(^{p}T_{b})^{-1} =T^{-1}$$
@@ -411,7 +411,7 @@ $$^{p}T_{b} = T$$
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.4\linewidth]{Figures/servo2}
-	\caption{Leg Length}
+	\caption[Leg length]{Leg Length \cite{Eisele_2019}}
 	\end{figure}
 \end{center}
 The leg length $l_{k}$ can therefore be found with:
@@ -424,7 +424,7 @@ For a rod of fixed length d between servo horn anchor $H_{k}$ and platform ancho
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.4\linewidth]{Figures/servo}
-	\caption{Servo angle}
+	\caption[Servo angle]{Servo angle \cite{Eisele_2019}}
 	\end{figure}
 \end{center}
 Further, looking from the top onto the base, each servo can be rotated by the angle $\beta_{k}$ in addition to its position $B_{k}$. The servo shaft $s_{k}$ moves in the x-y plane and is orthogonal to the vector h.
@@ -432,10 +432,10 @@ Further, looking from the top onto the base, each servo can be rotated by the an
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.4\linewidth]{Figures/servo1}
-	\caption{Planar view}
+	\caption[Planar view]{Planar view \cite{Eisele_2019}}
 	\end{figure}
 \end{center}
-The anchor $H_{k}$ can be calculated as we rotate around the z-axis with angle $\beta_{k}$ and  by $-\alpha_{k}$ around the y-axis to lift the servo horn which lies in the local x-axis.
+The anchor $H_{k}$ can be calculated as we rotate around the z-axis with angle $\beta_{k}$ and  by $-\alpha_{k}$ around the y-axis to lift the servo horn which lies in the local x-axis \cite{Eisele_2019}.
 \begin{equation}
 H_{k} = B_{k} + R_{z}(\beta_{k}) R_{y}(-\alpha_{k})\begin{pmatrix}
 |h|\\ 0 \\ 0
@@ -469,7 +469,7 @@ Squaring the lengths of h, d, $l_{k}$ we get the relationship:
 $$h^2 = (H_{k}-B_{k})^{T}(H_{k}-B_{k})$$
 $$d^2 = (P_{k}-H_{k})^{T}(P_{k}-H_{k})$$
 $$l_{k}^2 = (P_{k}-B_{k})^{T}(P_{k}-B_{k})$$
-From the above relationships, further derivation and trigonometric substitutions are done to obtain the inverse kinematics used to calculate each servo angle. This is given as:
+From the above relationships, further derivation and trigonometric substitutions are done to obtain the inverse kinematics used to calculate each servo angle. This is given as \cite{Eisele_2019}:
 \begin{equation}
 \alpha_{k} = sin^{-1}(\frac{g_{k}}{\sqrt{e_{k}^2+f_{k}^2}})-arctan2(f_{k}, e_{k})
 \end{equation}
