@@ -439,13 +439,23 @@ The Servo motor \textbf{TowerPro SG5010} is suitable for this project. The speci
 \end{tabular}
 \end{center}
 Prices range between \textbf{Ksh.700} and \textbf{Ksh.1400}.
+\section{Finite Element Analysis}
+A Finite Element Analysis was done on the Stewart platform design to determine its performance under given loads. The platform is going to be subjected to a force during wind tunnel testing. A maximum load of 50N is selected for the Finite Element Analysis. This could be more or less since models vary in size. The z-component of the force is considered.
+\begin{center}
+	\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.75\linewidth]{Figures/Von}
+	\caption[Von Mise's Stress]{Von Mise's Stress}
+	\end{figure}
+\end{center}
+The rods/legs of the Stewart platform are subjected to axial forces which cause slight strains which can be used to obtain force and moment measurements during wind tunnel testing.
 \section{Design of the Force Sensor}
 The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
 \item External force sensor
 \item Stewart Platform as a force sensor
 \end{itemize}
-\subsection{External Force Sensor}
+\section{External Force Sensor}
 In this case it would require at least 3 orthogonally positioned load cells measuring each force component. Each load cell would be mechanically linked to the model such that forces experienced on each axis are measured by each load cell. 
 \begin{center}
 	\begin{figure}[H]
