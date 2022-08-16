@@ -33,7 +33,7 @@ The base of the Stewart platform has a bigger diameter (300mm) than that of the 
 \subsection{Mechanical Feasibility}
 Based on the base and platform diameters, distance between the base and platform (i.e. height), an angle of attack of 0.25, and side slip angle of 0.16667, the quality index ($\lambda$) of the Stewart platform was found to be 0.86. This presents a design with few singularities. It is therefore mechanically feasible.
 \subsection{Weight}
-3D models of the Stewart platform were created using the three described earlier. Use of aluminum was verified to offer the most light-weight design.
+3D models of the Stewart platform were modeled on Autodesk Inventor using the three materials described earlier. Use of aluminum was verified to offer the most light-weight design.
 \begin{table}[!h]
 \caption{Weight Comparisons}
 \end{table}
@@ -49,6 +49,37 @@ Mild Steel & 4.6\\
 Stainless steel & 5.0 \\
 \hline
 \end{tabular}
+\end{center}
+\subsection{Finite Element Analysis on Stewart Platform}
+Finite Element Analysis was done on FEA environment in Autodesk inventor. A static analysis test was performed and the following results were obtained:
+\begin{table}[!h]
+\caption{FEA Results}
+\end{table}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Name} & \textbf{Minimum} & \textbf{Maximum}\\
+\hline
+Von Mise's & 0 MPa & 63.19 MPa\\
+\hline
+Displacement & 0 mm & 23.74 mm\\
+\hline
+Safety Factor & 10.3426 ul & 15 ul\\
+\hline
+Equivalent Strain & 0 ul & 0.052 ul\\
+\hline
+\end{tabular}
+\end{center}
+Von Mise's stress does not exceed the Yield Stress of Aluminum (275 MPa) hence the platform will not yield under this applied load.
+
+Application of loads on the platform translates to induced strain in the Stewart platform legs. This will provide an input for the strain gauges used for force measurements. Such strains are shown in figure \ref{eq}.
+\begin{center}
+	\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.6\linewidth]{Figures/Equivalent}
+	\caption[Equivalent strain]{Strain induced on each of the legs}
+	\label{eq}
+	\end{figure}
 \end{center}
 \subsection{Stewart Platform Simulation}
 Stewart Platform simulation was done on MatLab using the Inverse kinematics equations. Different servo angles for different platform movements can be obtained from the simulation. The angles for yaw, pitch and roll could be adjusted during simulations to predict the maximum allowable angle values. Value of displacement in the x-, y- and z-directions could also be adjusted enabling us to predict the maximum allowable displacement in the respective directions.
@@ -66,30 +97,7 @@ Stewart Platform simulation was done on MatLab using the Inverse kinematics equa
 	\caption[Angular displacements]{Matlab simulation for yaw,pitch and roll movements}
 	\end{figure}
 \end{center}
-\subsection{Finite Element Analysis on Stewart Platform}
-Finite Element Analysis was done on FEA environment in Autodesk inventor. A maximum possible model weight of 50N was applied on the platform. 
-A ststic analysis test was performed and the following results were obtained:
-\begin{table}[!h]
-\caption{FEA Results}
-\end{table}
-\begin{center}
-\begin{tabular}{|l|l|l|}
-\hline
-\textbf{Name} & \textbf{Minimum} & \textbf{Maximum}\\
-\hline
-Von Mise's & 0 MPa & 24.1718 MPa\\
-\hline
-Displacement & 0 mm & 23.7377 mm\\
-\hline
-Safety Factor & 10.3426 ul & 15 ul\\
-\hline
-Equivalent Strain & 0 ul & 0.000153819 ul\\
-\hline
-\end{tabular}
-\end{center}
-Von Mise's stress does not exceed the Yield Stress of Aluminum (275 MPa) hence the platform will not yield under this applied load.
 
-Application of loads on the platform translates to induced strain in the Stewart platform legs. This will provide an input for the strain gauges used for force measurements.
 
 \section{Human Machine Interface}
 The user interface of the platform was programmed using golang and this resulted in the view below with the use of sliders for platform positioning and buttons to set model orientations and start data collection.

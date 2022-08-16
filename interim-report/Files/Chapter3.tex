@@ -148,14 +148,14 @@ Where,\\
 \textbf{Singularities} - uncontrollable states.
 
 The Jacobian matrix relates the axial forces in the $i^{th}$ bar with the applied
-forces and torques and is given in equation \eqref{eq:myeqn}:
+forces and torques and is given in equation \eqref{eq:myeqn} \cite{fernandes_design_nodate}:
 
 \begin{equation}
 J =
 \begin{pmatrix}
 \hat{\boldsymbol{S_{1}}} & \hat{\boldsymbol{S_{2}}} & \hat{\boldsymbol{S_{3}}} & ... & \hat{\boldsymbol{S_{n}}}
 \end{pmatrix}
-\label{eq:myeqn}
+\label{eq:myeqn1}
 \end{equation}
 Where n - number of bars and $ \hat{\boldsymbol{S_{i}}}$ - unit vector of the Plucker coordinates along the line of the
 $i_{th}$ bar.
@@ -167,26 +167,26 @@ Quality index can be obtained as shown:
 \end{equation}
 Where, $|J|$ is the determinant of the Jacobian matrix of a given Stewart platform configuration, and $ |J|_{m} $ - determinant of Jacobian Matrix of the optimal configuration.
 
-Applying equation 3.3.1 to the general configuration of a 6-6 platform, it is
-possible to obtain the Jacobian matrix and thus its determinant which can be obtained as in equation \eqref{eq:myeqn},
+Applying equation \ref{eq:myeqn1} to the general configuration of a 6-6 platform, it is
+possible to obtain the Jacobian matrix and thus its determinant which can be obtained as follows:
 \begin{equation}
 |J| =
 \frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3}
-\label{eq:myeqn}
+\label{eq:myeqn2}
 \end{equation}
 Where: a - diameter of moving platform
 b - diameter of base
 $\alpha$ - angle of attack
 $ \beta $ - Side slip angle.
 h - distance between the base and the moving platform.
-$|J|_{m}$ is found by differentiating equation (3.3.3) with respect to h and equating to 0 resulting in \cite{fernandes_design_nodate}:
+$|J|_{m}$ is found by differentiating equation \ref{eq:myeqn2} with respect to h and equating to 0 resulting in \cite{fernandes_design_nodate}:
 \begin{equation}
 h = \sqrt{\frac{1}{3}(a^2 (3 \alpha^2 - 3 \alpha + 1)+ ab (3\alpha\beta - 1)+b^2(3 \beta^2 - 3 \beta + 1))}
 \label{eq:myeqn}
 \end{equation}
-A base diameter of 300mm, platform diameter of 200mm and height of 190mm is considered.
+Taking the Stewart Platform base diameter of 300mm, platform diameter of 200mm and height of 190mm i.e.: 
 
-For a = 200mm, b = 300mm, h = 190mm , $\alpha = 0.25$, $ \beta = 0.1667$,
+a = 200mm, b = 300mm, h = 190mm , $\alpha = 0.25$, $ \beta = 0.1667$,
 \begin{equation*}
 |J| =
 \frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3} = 2.437 \times 10^{-3}
@@ -203,11 +203,10 @@ h = \sqrt{\frac{1}{3}(a^2 (3 \alpha^2 - 3 \alpha + 1)+ ab (3\alpha\beta - 1)+b^2
 \label{eq:myeqn}
 \end{equation*}
 Quality index for this Stewart Platform design is therefore, 
-\begin{equation}
-\lambda = \frac{|J|}{|J|_{m}} = 0.86
-\label{eq:myeqn}
-\end{equation}
-A quality index of 0.86 presents a design of high quality and mechanical feasibility.
+
+$$\lambda = \frac{|J|}{|J|_{m}} = 0.86$$
+%\label{eq:myeqn}
+%A quality index of 0.86 presents a design of high quality and mechanical feasibility.
 \subsection{Sheet Metal Thickness and Material Selection}
 Metal used to manufacture the base should be of significant thickness to provide more support to the whole structure.
 
