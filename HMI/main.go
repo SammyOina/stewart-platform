@@ -5,6 +5,7 @@ import (
 	"math"
 
 	g "github.com/AllenDang/giu"
+	"github.com/AllenDang/imgui-go"
 )
 
 var (
@@ -27,6 +28,10 @@ var (
 )
 
 func loop() {
+	//g.PushColorWindowBg(color.White)
+	//g.PushColorText(color.RGBA{R: 20, G: 205, B: 200, A: 1})
+	//g.PushColorButton(color.White)
+	//g.PushStyleColor(g.StyleColorWindowBg, color.Opaque)
 	g.SingleWindowWithMenuBar().Layout(
 		g.SplitLayout(g.DirectionVertical, tabheight,
 			g.SplitLayout(g.DirectionHorizontal, tabwidth,
@@ -71,6 +76,9 @@ func loop() {
 			},
 		),
 	)
+	//g.PopStyleColor()
+	//g.PopStyleColor()
+	//g.PopStyleColor()
 }
 
 func main() {
@@ -86,5 +94,7 @@ func main() {
 		airVelocity = append(airVelocity, 1.5)
 	}
 	w := g.NewMasterWindow("Overview", 1300, 700, 0)
+	//w.SetBgColor(color.White)
+	imgui.StyleColorsLight()
 	w.Run(loop)
 }
