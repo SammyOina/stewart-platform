@@ -531,13 +531,13 @@ The Servo motor \textbf{TowerPro SG5010} is suitable for this project. The speci
 \end{center}
 Prices range between \textbf{Ksh.700} and \textbf{Ksh.1400}
 
-\section{Design of the Force Sensor}
+\subsection{Design of the Force Sensor}
 The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
 \item External force sensor
 \item Stewart Platform as a force sensor
 \end{itemize}
-\section{External Force Sensor}
+\subsubsection*{External Force Sensor}
 In this case it would require at least 3 orthogonally positioned load cells measuring each force component. Each load cell would be mechanically linked to the model such that forces experienced on each axis are measured by each load cell. 
 \begin{center}
 	\begin{figure}[H]
@@ -547,7 +547,7 @@ In this case it would require at least 3 orthogonally positioned load cells meas
 	\end{figure}
 \end{center}
 This configuration is, however, bulky since it requires an additional external system for force measurements in addition to the Stewart platform for positioning the model. This is however complemented by the simplicity in calibration of the load cells and does not require a complex force transformation matrix and other issues with force amplification created by the use of an integrated system.
-\subsection{Stewart Platform as a force sensor}
+\subsubsection*{Stewart Platform as a force sensor}
 In this configuration the Stewart platform legs are used as force sensors by attaching strain gauges on the legs of platform. Similar work has been done by \cite{ferreira2015design} without the use of actuators as is proposed in this project. Using the Stewart platform as a force sensor requires the actuators to be locked with zero degrees of freedom.
 
 Four strain gauges are required for each leg for a full Wheatstone bridge configuration. 
@@ -562,6 +562,7 @@ In this case, as shown in figure 3.8.2, the load cells are able to measure the a
 In the case of this project, a full bridge strain gauge sensor with each strain gauge orthogonally positioned allowing for elimination of noise and measurement of the strain axially on each rod is used.
 
 \paragraph{Force measurement Circuit}
+
 The output excitation of the Wheatstone bridge needs to be amplified as it results in low outputs. An analogue to digital converter is also required for the analogue to digital converter. Some considerable options are the HX711 or the AD7193 converters which may be used as digital to analogue converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements.  However the AD7193 was not used due to it's high cost compared to the HX711 regardless of the advantage it offers with serial peripheral Interface communication allowing for multiple modules on the same bus.
 
 The connection of the AD7193 to the microcontroller will be via Serial Peripheral Interface (SPI). The configuration is as shown in figure 3.8.3:
@@ -615,7 +616,7 @@ $$
 \end{equation}
 
 
-\section{Velocity Measurement}
+\subsection{Velocity Measurement}
 An important part in wind tunnel measurements is the measure of pressure at specific points in the wind tunnel and computing the corresponding air speed. This is achieved by the use of a pitot probe. 
 \begin{center}
 \begin{figure}[H]
@@ -634,23 +635,27 @@ Where V is the speed of the fluid, P0 is the total, also called the stagnation, 
 
 Three pitot probes are to be used in the wind tunnel i.e. in the test section, intake and diffuser sections.
 
-Module communicates to the microcontroller using a TTL to RS485. Each module is individually addressable further simplifying the interface as shown in figure 3.9.2:
+Module communicates to the microcontroller using a TTL to RS485. Each module is individually addressable further simplifying the interface as shown in figure \ref{fig:rs485}:
 \begin{center}
 \begin{figure}[H]
 \centering
 \includegraphics{Figures/modbus}
 \caption[RS485 communication]{RS485 communication}
+\label{fig:rs485}
 \end{figure}
 \end{center}
 
-\section{Control - Design of Human Machine Interface}
+\section{Control system}
+This section deals with the control of the stewart platform. It involves allowing input and obtaining output form the platform force balance.
+\subsection{Human Machine Interface}
 The purpose of the interface is to enable control of the platform position as well as to obtain measured data from the strain gauges and pitot tubes. 
-The general layout is as shown in the figure below:
+The general layout is as shown in the figure \ref{fig:hmi}:
 \begin{center}
 \begin{figure}[H]
 \centering
 \includegraphics{Figures/Interface}
 \caption[Human Machine Interface]{Human Machine Interface}
+\label{fig:hmi}
 \end{figure}
 \end{center}
 
@@ -665,7 +670,9 @@ The decoupling of the microcontroller and the program to be hosted on the deskto
 	\caption[Control Algorithm]{Control Algorithm for the Stewart Platform with Force Measurement}
 	\end{figure}
 \end{center}
-\section{Printed Circuit Board Design}
+\section{Electrical Design}
+This section looks at the required electrical connections to make the system functional and interface with the control unit.
+\subsection{Printed Circuit Board Design}
 This section looks at the design of the circuits used to power and get readings from the sensors and control the actuators.
 
 \subsection{Microcontroller}
