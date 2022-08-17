@@ -271,10 +271,10 @@ Two options can be considered:
 \end{itemize}
 Cylindrical bars are preferable due to their ease of coupling with the available spherical joints. Cylindrical bars also guarantee uniform deformation of the bars - both in the axial and cross-sectional directions.
 
-From inquiries around suppliers in the Kenyan Market, these bars are usually available in steel and aluminium. In order to select the optimum solution for this application, the Yield Strength, modulus of rigidity, Young's Modulus and density of both materials are considered. 
+From inquiries around suppliers in the Kenyan Market, these bars are usually available in steel and aluminium. In order to select the optimum solution for this application, the Yield Strength, modulus of rigidity, Young's Modulus and density of both materials are compared. The different values are shown in table \ref{tabmat}. 
 \begin{table}[!h]
 \caption[Aluminium and Steel Properties]{Material Properties of Aluminium and Steel}
-
+\label{tabmat}
 
 \begin{tabular}{|l|l|l|l|l|}
 \hline
@@ -406,24 +406,36 @@ A Finite Element Analysis was done on the Stewart platform design to determine i
 %\end{center}
 The rods/legs of the Stewart platform are subjected to axial forces which cause slight strains which can be used to obtain force and moment measurements during wind tunnel testing.
 \begin{center}
-\begin{table}[!h]
-\caption{FEA Setup}
+\begin{table}[H]
+\caption{Operating Conditions}
 \centering
 \end{table}
 \begin{tabular}{|l|l|}
 \hline
-\textbf{Input parameter} & \textbf{Value}\\
+\textbf{Load Type} & \textbf{Force}\\
 \hline
-Force z-direction & 50N\\
+Magnitude & 50.0N\\
 \hline
-Force y-direction & 0 N\\
+Vector X & 7.794N\\
 \hline
-Force x-direction & 0 N\\
+Vector Y & -48.206N\\
+\hline
+Vector Z & 10.745N\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{table}[!h]
+\caption[FEA Setup]{Other FEA setup parameters}
+\centering
+\end{table}
+\begin{tabular}{|l|l|}
+\hline
+Constraint & Fixed\\
 \hline
 Materials & Aluminium 6061\\
  & Stainless steel\\
-\hline
-Constraints & Fixed constraint of the base\\
 \hline
 Contacts & All bonded\\
 \hline
