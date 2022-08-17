@@ -256,7 +256,7 @@ Aluminium 6061 is preferable for the moving platform since it is lightweight and
 	\end{figure}
 \end{center}
 
-The moving platform has flanges to provide linking points of the Stewart Platform legs. A flange of 30mm is considered allows ample space for the spherical joint (whose connecting side diameter is 10mm) to fit and to be well centered.
+The moving platform has flanges to provide linking points of the Stewart Platform legs. A flange of 30mm is considered allows ample space for the spherical joint (whose connecting side diameter is 10mm) to fit and to be well centred.
 \begin{center}
 	\begin{figure}[H]
 	\centering
@@ -528,19 +528,31 @@ Carrying out the same procedure but with the servo arm when it is on the opposit
 \end{align}
 \end{ceqn}
 \begin{ceqn}
- \chapter{\begin{align}
+	\begin{align}
 	= B_{k} + |h|\begin{pmatrix}
 	cos(\alpha_{k})cos(\beta_{k})\\
 	 cos(\alpha_{k})sin(\beta_{k})\\
 	  sin(\alpha_{k})
 	\end{pmatrix}
 	\label{eq:myeqn2}
-\end{align}}
+\end{align}
 \end{ceqn}
 Squaring the lengths of h, d, $l_{k}$ we get the relationship:
-$$h^2 = (H_{k}-B_{k})^{T}(H_{k}-B_{k})$$
-$$d^2 = (P_{k}-H_{k})^{T}(P_{k}-H_{k})$$
-$$l_{k}^2 = (P_{k}-B_{k})^{T}(P_{k}-B_{k})$$
+\begin{ceqn}
+	\begin{align}
+		h^2 = (H_{k}-B_{k})^{T}(H_{k}-B_{k})
+	\end{align}
+\end{ceqn}
+\begin{ceqn}
+	\begin{align}
+		d^2 = (P_{k}-H_{k})^{T}(P_{k}-H_{k})
+	\end{align}
+\end{ceqn}
+\begin{ceqn}
+	\begin{align}
+		l_{k}^2 = (P_{k}-B_{k})^{T}(P_{k}-B_{k})
+	\end{align}
+\end{ceqn}
 From the above relationships, further derivation and trigonometric substitutions are done to obtain the inverse kinematics used to calculate each servo angle. This is given as \cite{Eisele_2019}:
 \begin{ceqn}
 \begin{align}
@@ -609,12 +621,13 @@ The force sensor module will be used to measure the force and moments from the a
 \item Stewart Platform as a force sensor
 \end{itemize}
 \subsubsection*{External Force Sensor}
-In this case it would require at least 3 orthogonally positioned load cells measuring each force component. Each load cell would be mechanically linked to the model such that forces experienced on each axis are measured by each load cell. 
+In this case it would require at least 3 orthogonally positioned load cells measuring each force component. Each load cell would be mechanically linked to the model such that forces experienced on each axis are measured by each load cell as shown in figure \ref{fig:balex}. 
 \begin{center}
 	\begin{figure}[H]
 		\centering
 		\includegraphics{Figures/modBal}
 		\caption[Diagram of a force balance]{Diagram of a force balance \cite{post_force_2010}}
+		\label{fig:balex}
 	\end{figure}
 \end{center}
 This configuration is, however, bulky since it requires an additional external system for force measurements in addition to the Stewart platform for positioning the model. This is however complemented by the simplicity in calibration of the load cells and does not require a complex force transformation matrix and other issues with force amplification created by the use of an integrated system.
@@ -633,7 +646,8 @@ Four strain gauges are required for each leg for a full Wheatstone bridge config
 In this case, as shown in figure \ref{strain}, the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gauges measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the Wheatstone bridge is then amplified and read to determine the strain on each leg.
 In the case of this project, a full bridge strain gauge sensor with each strain gauge orthogonally positioned allowing for elimination of noise and measurement of the strain axially on each rod is used.
 
-\paragraph{Force measurement Circuit}
+%\paragraph{Force measurement Circuit}
+\subsubsection*{Force measurement Circuit}
 
 The output excitation of the Wheatstone bridge needs to be amplified as it results in low outputs. An analogue to digital converter is also required for the analogue to digital converter. Some considerable options are the HX711 or the AD7193 converters which may be used as digital to analogue converters. The AD7193 is designed for high precision and has a delta sigma filter to remove noise from measurements.  However, the AD7193 was not used due to it's high cost compared to the HX711 regardless of the advantage it offers with serial peripheral Interface communication allowing for multiple modules on the same bus.
 
@@ -650,7 +664,7 @@ In this configuration the when the chip select pin of an amplifier is set to low
 
 The HX711 however allows for the I2C like communication via two wires (serial clock (SCL) and Serial Data (SDA)). They however do not have hardware addresses thus many pins are required for the interface, This can however be remedied by the use of a shared SCL between each of the amplifier modules reducing the overall number of pins required to interface.
 
-\paragraph{Force transformation matrix} 
+\subsubsection*{Force transformation matrix} 
 In such a case the forces experienced at the top of the platform are distributed between the 6 legs and as result, a force transformation matrix is required to resolve the forces applied on each axis as measured by each load cell on each leg. 
 
 If the platform is acted upon by an external wrench {$\vec{F}_e, \vec{M}_e$}, for static equilibrium of the body, the external wrench is statically balanced by the six leg forces of the Stewart platform. Representing the unit vector $\hat{I}_i$ along the i-th leg with respect to B, the leg force is given  by $\hat{I}_if_i$. Considering the force equilibrium of the platform along  three mutually perpendicular directions in B(XYZ), the following force equations can be obtained as in \cite{dwarakanath_design_2001}:
@@ -722,7 +736,6 @@ Where V is the speed of the fluid, $P_{0}$ is the total, also called the stagnat
 
 Three pitot probes are to be used in the wind tunnel i.e. in the test section, intake and diffuser sections.
                                                                                                                                                                    
-Module communicates to the microcontroller using a TTL to RS485. Each module is individually addressable further simplifying the interface as shown in figure \ref{fig:rs485}:
 \begin{center}
 \begin{figure}[H]
 \centering
@@ -731,6 +744,8 @@ Module communicates to the microcontroller using a TTL to RS485. Each module is 
 \label{fig:rs485}
 \end{figure}
 \end{center}
+Module communicates to the microcontroller using a TTL to RS485. Each module is individually addressable further simplifying the interface as shown in figure \ref{fig:rs485}. 
+The protocol allows for long distance serial communication and interface with multiple devices on the same bus.
 
 \section{Control system}
 This section deals with the control of the stewart platform. It involves allowing input and obtaining output form the platform force balance.
@@ -800,5 +815,7 @@ Since the microcontroller used (ESP32) is based on 3.3V logic. There is a need f
 	\centering
 	\includegraphics{Figures/logik}
 	\caption[Bidirectional Logic Level converter]{Bidirectional Logic Level converter}
+	\label{fig:logik}
 	\end{figure}
 \end{center}
+The configuration designed is shown in figure \ref{fig:logik}
