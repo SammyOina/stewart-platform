@@ -4,6 +4,7 @@
 \usepackage{psfrag}
 \usepackage{amsmath}                     % \boldsymbol{#1}
 \usepackage{amssymb}
+
 %\usepackage{hangcaption}
 %\usepackage{Styles/pstricks}
 %\usepackage{Styles/pst-node}
@@ -21,8 +22,11 @@
 \usepackage{pdfpages}
 %\usepackage{breqn}
 \usepackage{float}
+%\usepackage{chngcntr}
 %-----Tex width---------------------------------
 \textwidth 16cm
+
+%\counterwithout{figure}{chapter}
 
 %-----Line spacing-------------------------------
 \renewcommand{\baselinestretch}{1.5}     % 1,1-zeilig
@@ -59,11 +63,11 @@
 
 %-----Equations / Figures / Tables numbering according to \ sections
 \makeatletter
-\renewcommand\theequation{\thesection.\arabic{equation}}
-\renewcommand\thefigure{\thesection.\arabic{figure}}
-\renewcommand\thetable{\thesection.\arabic{table}}
-\@addtoreset{equation}{section} \@addtoreset{figure}{section}
-\@addtoreset{table}{section} \makeatother
+\renewcommand\theequation{\arabic{chapter}.\arabic{equation}}
+\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
+\renewcommand\thetable{\arabic{chapter}.\arabic{table}}
+\@addtoreset{equation}{chapter} \@addtoreset{figure}{chapter}
+\@addtoreset{table}{chapter} \makeatother
 
 %-----Useful abbreviations----------------------
 \newcommand{\mr}{\mathrm}
