@@ -173,14 +173,15 @@ Metal foil strain gauges are widely used. This type of strain gauges provide mor
 \end{center}
 Load cells can also be used to measure the drag and lift forces\cite{ferreira2015design}.
 \subsection{Attitude Sensor}
-It is important to define the desired aerodynamic angles and to guarantee that they are measured accurately in relation to the air stream. One such angle is the angle of attack (\textalpha) shown in Figure 2.4. For this reason, specific devices that provide the attitude measurement should be implemented in order to improve the precision of the results.
+It is important to define the desired aerodynamic angles and to guarantee that they are measured accurately in relation to the air stream. One such angle is the angle of attack (\textalpha) shown in Figure \ref{att}. For this reason, specific devices that provide the attitude measurement should be implemented in order to improve the precision of the results.
 
-Angle of attack (\textalpha)- angle measured between the longitudinal axis of the model and the direction of the flow on a vertical (Figure 2.4)
+Angle of attack (\textalpha)is the angle measured between the longitudinal axis of the model and the direction of the flow on a vertical (Figure \ref{att})
 \begin{center}
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{Figures/Fig10}
 	\caption[Angle of attack]{Angle of attack (\textalpha) \cite{ferreira2015design}}
+	\label{att}
 	\end{figure}
 \end{center}
 \section{State of the Art}
@@ -191,8 +192,8 @@ and cars \cite{morris_force_2010}.
 Force balances can be used in conjunction with a linear actuator where the
 actuator is mounted inside the force balance apparatus, using a parallel four-bar linkage so that
 the angle of attack is linearly related to the actuator position. Alternatively, manipulators such as the Stewart platform can serve as force balances. This section presents some of the work that has been done in this area.
-\subsection{Bradley University}
-The Mechanical Engineering department has a force balance installed in the test-section of a subsonic wind tunnel. The force balance comprises of two load cells to measure lift and drag forces. A linear actuator is used in conjunction with the force balance to change the angle of attack of models during testing.
+\subsection{Bradley University (USA)}
+The Mechanical Engineering department of Bradley University has a force balance installed in the test-section of a subsonic wind tunnel. The force balance comprises of two load cells to measure lift and drag forces. A linear actuator is used in conjunction with the force balance to change the angle of attack of models during testing.
 \begin{center}
 	\begin{figure}[H]
 	\centering
@@ -224,7 +225,7 @@ The overall cost of coming up with this force balance is given as 1000 dollars w
 	%\end{figure}
 %\end{center}
 \subsection{East Africa School of Aviation (EASA)}
-The EASA Aerodynamics lab has a subsonic wind tunnel 300mm (AF1300) and a flight demonstration wind tunnel(AF41) supplied by TECQUIPMENT. The Subsonic wind tunnel is equipped with a three component force balance, smoke generator, multi-tube manometer and a range of aerofoil drag, boundary layer low and high wing models. The Flight demonstration wind tunnel has a data acquisition module for classroom demonstrations and investigations into the behavior of fixed-wing aircraft and wing-performanceduring take-off, flight and landing \cite{TEC}.
+The EASA Aerodynamics lab has a subsonic wind tunnel 300mm (AF1300) and a flight demonstration wind tunnel(AF41) supplied by TECQUIPMENT. The Subsonic wind tunnel is equipped with a three-component force balance, smoke generator, multi-tube manometer and a range of aerofoil drag, boundary layer low and high wing models. The Flight demonstration wind tunnel has a data acquisition module for classroom demonstrations and investigations into the behavior of fixed-wing aircraft and wing-performance during take-off, flight and landing \cite{TEC}.
 
 \subsection{Tecnico Lisboa}
 In 2018, Joao Fernandes of Tecnico Lisboa developed a force balance system to
@@ -241,11 +242,11 @@ Further developments were made two years later to this design which are enumerat
 compensation of switching to a half bridge configuration for the strain gauges.
 \end{enumerate}
 \subsection{Stewart Platform at JKUAT}
-Six-DOF Stewart platforms have been designed and fabricated by students in the Mechatronic Engineering department as part of their final year projects. The Stewart platforms by the first two groups of students were for different applications and the one from FYP-17 was to be used as a force balance for Wind tunnel testing. 
+Six-DOF Stewart platforms have been designed and fabricated by students in the Mechatronic Engineering department as part of their final year projects. The Stewart platforms by the first two groups of students were for different applications and the one from FYP-17 was to be used as a force balance for Wind tunnel testing \cite{caleb}. 
 \section{Summary of Gaps}
-Whereas the Force balance by the Mechanical Engineering department in Bradley University is relatively simple to construct, it still poses a challenge in terms of cost. Cost can be minimized based on load cell and actuator selection but this does not guarantee that the level of accuracy will not be compromised. Also, only two or three force components can be obtained.
+Whereas the Force balance by the Mechanical Engineering department in Bradley University is relatively simple to construct, it still poses a challenge in terms of cost. Cost can be minimized based on load cell and actuator selection but this does not guarantee that the level of accuracy will not be compromised. Also, only two or three force components can be obtained. The force balace setup doesn't allow dynamic positioning of models in the wind tunnel during testing.
 
-Institutions such as EASA have procured their force balances. This may not be a cost-effective solution.
+Institutions such as EASA have procured their force balances. The force balances guarantee high accuracy but this may not be a cost-effective solution.
 
 With so much research in the area of Stewart platform, there remains still more work to be done in the areas of control, dynamics, and singular positions. A 6 DOF Stewart platform with force measurement for a low-speed wind tunnel has been done as final year project in JKUAT under the department of Mechatronic Engineering (FYP 17). Whereas the former team was able to successfully design and assemble the platform, as well as the actuation circuitry, there still remains work to do in the following areas \cite{caleb}:
 \begin{enumerate}
