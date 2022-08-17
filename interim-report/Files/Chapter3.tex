@@ -722,15 +722,14 @@ This section looks at the required electrical connections to make the system fun
 This section looks at the design of the circuits used to power and get readings from the sensors and control the actuators.
 
 \subsection{Microcontroller}
-The main requirement for this is the need for wireless communication via WIFI and large number of I/O interface at cost effective rate. This brings down the options to the ESP32 and Raspberry Pi RP2040. Both are dual core devices which are feature rich however the raspberry rp2040 only has 28 I/O pins while the ESP32 has 34 pins and due to this the ESP 32 was chosen. 
+The main requirement for this is the need for wireless communication via WIFI and large number of I/O interface at cost effective rate. This brings down the options to the ESP32 and Raspberry Pi RP2040. Both are dual core devices which are feature rich however the raspberry rp2040 only has 28 I/O pins while the ESP32 has 34 pins and due to this the ESP32 was chosen. 
 \begin{center}
 	\begin{figure}[H]
 	\centering
-	\includegraphics{Figures/mcu}
+	\includegraphics[width=0.68\linewidth]{Figures/mcu}
 	\caption[Microcontroller]{Microcontroller}
 	\end{figure}
 \end{center}
-
 \subsection{Power Supply}
 The power supply chosen is a AC/DC power converter. Since the highest voltage required is 12 volts. This also used as the highest power supply to the PCB.
 
