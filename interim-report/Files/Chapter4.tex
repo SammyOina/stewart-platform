@@ -83,7 +83,7 @@ Application of loads on the platform translates to induced strain in the Stewart
 \end{center}
 These strains are small thus they will need amplification in order provide substantial input for the strain gauges used for force measurements. 
 \subsection{Stewart Platform Simulation}
-Stewart Platform simulation was done on MatLab using the Inverse kinematic equations. Different servo angles for different platform movements can be obtained from the simulation. The angles for yaw, pitch and roll could be adjusted during simulations to predict the maximum allowable angle values. Value of displacement in the x-, y- and z-directions could also be adjusted enabling us to predict the maximum allowable displacement in the respective directions.
+Stewart Platform simulation was done on MatLab using the Inverse kinematic equations. Different servo angles for different platform movements can be obtained from the simulation. The angles for yaw, pitch and roll could be adjusted during simulations to predict the maximum allowable angle values. Value of displacement in the x-, y- and z-directions could also be adjusted enabling us to predict the maximum allowable displacement in the respective directions. A summary of these angles is given in table \ref{roll}.
 \begin{center}
 	\begin{figure}[H]
 	\centering
@@ -98,7 +98,41 @@ Stewart Platform simulation was done on MatLab using the Inverse kinematic equat
 	\caption[Angular displacements]{Matlab simulation for yaw,pitch and roll movements}
 	\end{figure}
 \end{center}
-
+\begin{center}
+	\begin{table}[H]
+	\centering
+	\caption{Maximum Servo angles for maximum yap,pitch, roll angles and maximum x,y and z displacements}
+	\label{roll}
+	\centering
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{Max. roll angle (deg)}& \textbf{Max. servo angle} \\
+	\hline
+	 $|15|$& 24.34\\
+	 \hline
+\textbf{Max. yaw angle (deg)}& \textbf{Max. servo angle(deg)}\\
+	\hline
+	$|15|$& 27.13\\
+	\hline
+	\textbf{Max. pitch angle (deg)}& \textbf{Max. servo angle(deg)}\\
+	\hline
+	$|15|$& 25.79 \\
+	\hline
+	\textbf{Max. x displacement(cm)} & \textbf{Max. servo angle(deg)}\\
+	\hline
+	4 & 71.58 \\
+	\hline
+	\textbf{Max. y displacement} & \textbf{Max. servo angle(deg)}\\
+	\hline
+	4	& 63.78\\
+	\hline
+	\textbf{Max. z displacement(cm)} & \textbf{Max. servo angle(deg)}\\
+	\hline
+	4	& 29.03\\
+	\hline
+	\end{tabular}
+\end{table}
+\end{center}
 
 \section{Human Machine Interface}
 The user interface of the platform was programmed using golang and this resulted in the view below with the use of sliders for platform positioning and buttons to set model orientations and start data collection.
