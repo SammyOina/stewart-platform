@@ -7,6 +7,7 @@ import (
 
 	g "github.com/AllenDang/giu"
 	"github.com/AllenDang/imgui-go"
+	"github.com/sammyoina/stewart-platform-ui/pipeline"
 )
 
 var (
@@ -101,5 +102,6 @@ func main() {
 	//w.SetBgColor(color.White)
 	imgui.StyleColorsLight()
 	go rotate()
+	go pipeline.InitPipeline()
 	w.Run(loop)
 }
