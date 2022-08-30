@@ -2,42 +2,57 @@ package pipeline
 
 import (
 	"fmt"
+	"io"
 	"net"
 
 	"github.com/sammyoina/stewart-platform-ui/queue"
 )
 
-type UdpListener struct {
+type TcpListener struct {
 	port int
 }
 
-func NewUdpListener(port int) *UdpListener {
-	return &UdpListener{port: port}
+func NewTcpListener(port int) *TcpListener {
+	return &TcpListener{port: port}
 }
 
-func (l *UdpListener) StartAccepting(q queue.Queue) {
-	fmt.Printf("Starting UDP listening on port %d\n", l.port)
+func (l *TcpListener) StartAccepting(q queue.Queue) {
+	fmt.Printf("Starting TCP listening on port %d\n", l.port)
 
-	addr, err := net.ResolveUDPAddr("udp", fmt.Sprintf(":%d", l.port))
+	ln, err := net.Listen("tcp", fmt.Sprintf(":%d", l.port))
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
-
-	conn, err := net.ListenUDP("udp", addr)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer conn.Close()
-
-	buf := make([]byte, 65536)
 
 	for {
-		n, _, err := conn.ReadFromUDP(buf)
+		conn, err := ln.Accept()
 		if err != nil {
-			fmt.Println("Error: ", err)
+			panic(err)
 		}
 
-		message := buf[0:n]
-		q.Enqueue(message)
+		go readFromConn(conn, q) // incl process buffer manually, retry logic, etc
+	}
+}
+
+func readFromConn(c net.Conn, q queue.Queue) {
+	var add = make(chan ([]byte), 1024)
+
+	//go processBuffer(add, q)
+
+	for {
+		msg := make([]byte, 1024)
+		rLen, err := c.Read(msg)
+
+		if err != nil {
+			if err == io.EOF {
+				c.Close()
+				return
+			}
+
+			panic(err)
+		}
+
+		add <- msg[:rLen]
+		q.Enqueue(msg[:rLen])
 	}
 }

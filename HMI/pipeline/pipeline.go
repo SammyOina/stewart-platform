@@ -33,7 +33,7 @@ func (p *Processor) Start() {
 }
 
 func InitPipeline() {
-	i := NewUdpListener(1234)
+	i := NewTcpListener(10101)
 
 	q := queue.NewChannelQueue()
 
