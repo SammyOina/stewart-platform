@@ -764,9 +764,16 @@ The general layout is as shown in the figure \ref{fig:hmi}:
 \end{figure}
 \end{center}
 
-The primary interface between the microcontroller is wireless via web sockets utilizing the User Datagram Protocol (UDP) interface. This allows for high speed low latency communication without need for a wired connection. It also allows for bidirectional transfer of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data acquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
+The primary interface between the microcontroller is wireless. 
+For this interface two transport methods were considered: User Datagram Protocol (UDP) and google Remote Procedure Protocol.
+UDP is a communications protocol that is primarily used to establish low-latency and loss-tolerating connections.
+ GRPC on the hand is built on HTTP/2 and it utilizes protocol buffers as a means of serialization of messages.
+ Due to assurance of data integrity (no loss) and higher transfer speeds offered by grpc, it was chosen as the main protocol.
+  This allows for high speed low latency communication without need for a wired connection. It also allows for bidirectional transfer/streaming of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data acquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
 
 The decoupling of the microcontroller and the program to be hosted on the desktop allows for advanced data processing such as application of filters and resolving measurements into usable information. It also allows for the use of more powerful processor and high level programming languages to more effectively perform complex calculations without taking a toll the sensor sampling rate that would occur with on board processing in the microcontroller.
+
+A user interface was also required to record user input and display incoming data.
 \subsection{Control Algorithm}
 \begin{center}
 	\begin{figure}[H]
