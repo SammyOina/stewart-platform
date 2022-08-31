@@ -765,11 +765,12 @@ The general layout is as shown in the figure \ref{fig:hmi}:
 \end{center}
 
 The primary interface between the microcontroller is wireless. 
-For this interface two transport methods were considered: User Datagram Protocol (UDP) and google Remote Procedure Protocol.
+For this interface two transport methods were considered: User Datagram Protocol (UDP) and Transmission Control protocol (TCP).
 UDP is a communications protocol that is primarily used to establish low-latency and loss-tolerating connections.
- GRPC on the hand is built on HTTP/2 and it utilizes protocol buffers as a means of serialization of messages.
- Due to assurance of data integrity (no loss) and higher transfer speeds offered by grpc, it was chosen as the main protocol.
-  This allows for high speed low latency communication without need for a wired connection. It also allows for bidirectional transfer/streaming of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data acquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
+ TCP on the hand does not experience data loss and in our case the use of protocol buffers as a means of serialization of messages to binary saving on bandwidth. 
+ TCP requires only one initial handshake between the server and client, after which messages can be transmitted continuously (streaming).
+ Due to assurance of data integrity (no loss) and lower bandwidth use thus higher data transfer rates, TCP was chosen as the main protocol.
+  This allows for high speed low latency communication without need for a wired connection. It also allows for bidirectional streaming of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data acquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
 
 The decoupling of the microcontroller and the program to be hosted on the desktop allows for advanced data processing such as application of filters and resolving measurements into usable information. It also allows for the use of more powerful processor and high level programming languages to more effectively perform complex calculations without taking a toll the sensor sampling rate that would occur with on board processing in the microcontroller.
 
