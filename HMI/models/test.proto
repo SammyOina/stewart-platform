@@ -1,6 +1,0 @@
-syntax = "proto3";
-option go_package = "/models";
-
-message TestMessage {
-    int32 test_number = 1;
-}
