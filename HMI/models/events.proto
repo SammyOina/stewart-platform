@@ -1,0 +1,40 @@
+syntax = "proto3";
+option go_package = "/models";
+
+message IMUEvent {
+    float yaw = 1;
+    float pitch = 2;
+    float roll = 3;
+}
+
+message PitotEvent {
+    float intakePitot = 1;
+    float testSectionPitot = 2;
+    float diffuserPitot = 3;
+}
+
+message StrainEvent {
+    float strain1 = 1;
+    float strain2 = 2;
+    float strain3 = 3;
+    float strain4 = 4;
+    float strain5 = 5;
+    float strain6 = 6;
+}
+
+message ServoPositionEvent {
+    float servo1 = 1;
+    float servo2 = 2;
+    float servo3 = 3;
+    float servo4 = 4;
+    float servo5 = 5;
+    float servo6 = 6;
+}
+
+message SensorEvent {
+    oneof event{
+        IMUEvent iMUEvent = 1;
+        StrainEvent strainEvent = 2;
+        PitotEvent pitotEvent = 3;
+    }
+}

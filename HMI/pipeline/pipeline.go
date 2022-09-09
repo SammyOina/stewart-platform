@@ -3,6 +3,7 @@ package pipeline
 import (
 	"sync"
 
+	"github.com/sammyoina/stewart-platform-ui/api"
 	"github.com/sammyoina/stewart-platform-ui/queue"
 )
 
@@ -33,14 +34,15 @@ func (p *Processor) Start() {
 }
 
 func InitPipeline() {
-	i := NewTcpListener(10101)
+	r := api.GetRouter()
 
-	q := queue.NewChannelQueue()
+	i3 := NewWebsocketListener(r, "/imu")
+	q3 := queue.NewChannelQueue()
+	o3 := &STDSync{}
+	p3 := NewProcessor(i3, q3, o3)
+	go p3.Start()
 
-	o := &StdoutOutputter{}
-
-	p := NewProcessor(i, q, o)
-	p.Start()
+	r.Run()
 }
 
 func NewProcessor(i inputter, q queue.Queue, o outputter) *Processor {
