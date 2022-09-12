@@ -12,10 +12,13 @@ type MessageHandler struct {
 	MessageQueue queue.Queue
 }
 
+var WebsocketConn *websocket.Conn
+
 var upgrader = websocket.Upgrader{}
 
 func (m *MessageHandler) DefaultHandler(c *gin.Context) {
 	conn, err := upgrader.Upgrade(c.Writer, c.Request, nil)
+	WebsocketConn = conn
 	if err != nil {
 		return
 	}
@@ -24,7 +27,7 @@ func (m *MessageHandler) DefaultHandler(c *gin.Context) {
 
 	for {
 		_, message, err := conn.ReadMessage()
-		conn.WriteMessage(websocket.TextMessage, []byte("heyaa"))
+		//conn.WriteMessage(websocket.TextMessage, []byte("heyaa"))
 		/*var e models.MessMan
 		if err := proto.Unmarshal(message, &e); err != nil {
 			log.Println("failed to unmarshal:", err)

@@ -4,8 +4,12 @@ import (
 	"sync"
 
 	"github.com/sammyoina/stewart-platform-ui/api"
+	"github.com/sammyoina/stewart-platform-ui/models"
 	"github.com/sammyoina/stewart-platform-ui/queue"
 )
+
+var ServoPositionChannel = make(chan models.ServoPositionEvent, 0)
+var Wg sync.WaitGroup
 
 type Queue interface {
 	Enqueue(data []byte)
@@ -36,11 +40,21 @@ func (p *Processor) Start() {
 func InitPipeline() {
 	r := api.GetRouter()
 
-	i3 := NewWebsocketListener(r, "/imu")
-	q3 := queue.NewChannelQueue()
-	o3 := &STDSync{}
-	p3 := NewProcessor(i3, q3, o3)
-	go p3.Start()
+	i := NewWebsocketListener(r, "/imu")
+	q := queue.NewChannelQueue()
+	o := &STDSync{}
+	p := NewProcessor(i, q, o)
+	go p.Start()
+
+	i2 := &StewartPositionListener{
+		Pos: ServoPositionChannel,
+	}
+	q2 := queue.NewChannelQueue()
+	o2 := &STDSender{
+		Conn: api.WebsocketConn,
+	}
+	p2 := NewProcessor(i2, q2, o2)
+	go p2.Start()
 
 	r.Run()
 }

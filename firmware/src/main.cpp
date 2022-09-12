@@ -16,6 +16,10 @@ WebSocketsClient webSocket;
 
 uint8_t buffer[128];
 
+QueueHandle_t servoPositionQueue;
+
+void TaskServoWriter(void * pvParameters);
+
 void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
 
 	switch(type) {
@@ -31,6 +35,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
 			break;
 		case WStype_TEXT:
 			Serial.printf("[WSc] get text: %s\n", payload);
+			xQueueSend(servoPositionQueue, &payload, portMAX_DELAY);
 
 			// send message to server
 			// webSocket.sendTXT("message here");
@@ -74,6 +79,14 @@ void setup()
 
 	// try ever 5000 again if connection has failed
 	webSocket.setReconnectInterval(5000);
+
+	servoPositionQueue = xQueueCreate(2, sizeof(buffer));
+
+	if (servoPositionQueue == NULL) {
+		Serial.println("Failed to create queue");
+	}
+
+	xTaskCreate(TaskServoWriter, "Write_servo_task", 128, NULL, 1, NULL);
 }
 
 void loop()
@@ -96,5 +109,25 @@ void loop()
 		Serial.println("sending message...");
 		webSocket.sendBIN(buffer, stream.bytes_written);
 		delay(1000);
+	}
+}
+
+void TaskServoWriter(void * pvParameters){
+	uint8_t buf[128];
+	bool status;
+	while (true) {
+		if (xQueueReceive(servoPositionQueue, &buffer, portMAX_DELAY) == pdPASS) {
+			ServoPositionEvent message = ServoPositionEvent_init_zero;
+        
+        	pb_istream_t stream = pb_istream_from_buffer(buf, sizeof(buf));
+        
+        	status = pb_decode(&stream, ServoPositionEvent_fields, &message);
+        
+	        if (!status)
+    	    {
+        	    printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
+            	continue;
+        	}
+		}
 	}
 }

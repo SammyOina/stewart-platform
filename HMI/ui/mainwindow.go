@@ -5,6 +5,8 @@ import (
 	"time"
 
 	g "github.com/AllenDang/giu"
+
+	"github.com/sammyoina/stewart-platform-ui/kinematics"
 )
 
 var (
@@ -59,7 +61,7 @@ func Loop() {
 					},
 					g.Layout{
 						g.Row(
-							g.Button("Home Platform").Size(120, 100),
+							g.Button("Home Platform").Size(120, 100).OnClick(kinematics.SetOrientation),
 							g.Button("Write Position").Size(120, 100),
 							g.Button("Record Data").Size(120, 100),
 						),
