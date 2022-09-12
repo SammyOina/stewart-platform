@@ -6,6 +6,7 @@
 #include <pb_common.h>
 #include <pb_decode.h>
 #include <pb_encode.h>
+#include "servos.h"
 
 const char *ssid = "sammy2";
 const char *password = "12345678";
@@ -62,6 +63,9 @@ void setup()
     WiFi.mode(WIFI_STA); // Make this the client (the server is WIFI_AP)
 
     delay(100);
+
+	//servo init
+	AttachServos();
 
     WiFi.begin(ssid, password);
 
@@ -128,6 +132,28 @@ void TaskServoWriter(void * pvParameters){
         	    printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
             	continue;
         	}
+			for (int i=0; i < 6; i++){
+				float angle;
+				switch (i){
+					case 0:
+						angle = message.servo1;
+					case 1:
+						angle = message.servo2;
+					case 2:
+						angle = message.servo3;
+					case 3:
+						angle = message.servo4;
+					case 4:
+						angle = message.servo5;
+					case 5:
+						angle = message.servo6;
+				}
+ 				if (i != 0 && i != 4 && i != 5) {
+ 					WriteServoPosition(i, angle, false);
+ 				}else{
+ 					WriteServoPosition(i, angle, true);
+ 				}
+ 			}
 		}
 	}
 }
