@@ -9,7 +9,9 @@ import (
 )
 
 var ServoPositionChannel = make(chan models.ServoPositionEvent, 0)
-var Wg sync.WaitGroup
+var ServoPositionQueue queue.Queue
+
+//var Wg *sync.WaitGroup
 
 type Queue interface {
 	Enqueue(data []byte)
@@ -46,15 +48,15 @@ func InitPipeline() {
 	p := NewProcessor(i, q, o)
 	go p.Start()
 
-	i2 := &StewartPositionListener{
+	/*i2 := &StewartPositionListener{
 		Pos: ServoPositionChannel,
 	}
 	q2 := queue.NewChannelQueue()
-	o2 := &STDSender{
-		Conn: api.WebsocketConn,
-	}
-	p2 := NewProcessor(i2, q2, o2)
-	go p2.Start()
+	ServoPositionQueue = q2
+	o2 := &STDSender{}
+	go o2.StartOutputting()*/
+	//p2 := NewProcessor(i2, q2, o2)
+	//go p2.Start()
 
 	r.Run()
 }

@@ -18,10 +18,12 @@ var upgrader = websocket.Upgrader{}
 
 func (m *MessageHandler) DefaultHandler(c *gin.Context) {
 	conn, err := upgrader.Upgrade(c.Writer, c.Request, nil)
-	WebsocketConn = conn
 	if err != nil {
 		return
 	}
+	//fmt.Println(conn)
+	WebsocketConn = conn
+	//fmt.Println(WebsocketConn)
 
 	defer conn.Close()
 

@@ -1,11 +1,9 @@
 package ui
 
 import (
-	"fmt"
 	"time"
 
 	g "github.com/AllenDang/giu"
-
 	"github.com/sammyoina/stewart-platform-ui/kinematics"
 )
 
@@ -45,7 +43,7 @@ func Loop() {
 				g.Layout{
 					g.Label("Rotation Angles"),
 					g.Row(
-						g.VSliderInt(&yaw, -5, 5).Label("Yaw").Size(40, 110).OnChange(func() { fmt.Println(yaw) }),
+						g.VSliderInt(&yaw, -5, 5).Label("Yaw").Size(40, 110),
 						g.VSliderInt(&pitch, -5, 5).Label("Pitch").Size(40, 110),
 						g.VSliderInt(&roll, -5, 5).Label("Roll").Size(40, 110),
 					),
@@ -54,15 +52,19 @@ func Loop() {
 					g.Layout{
 						g.Label("Translations (mm)"),
 						g.Row(
-							g.VSliderInt(&transx, -5, 5).Label("X").Size(40, 110).OnChange(func() { fmt.Println(yaw) }),
+							g.VSliderInt(&transx, -5, 5).Label("X").Size(40, 110),
 							g.VSliderInt(&transy, -5, 5).Label("Y").Size(40, 110),
 							g.VSliderInt(&transz, -5, 5).Label("Z").Size(40, 110),
 						),
 					},
 					g.Layout{
 						g.Row(
-							g.Button("Home Platform").Size(120, 100).OnClick(kinematics.SetOrientation),
-							g.Button("Write Position").Size(120, 100),
+							g.Button("Home Platform").Size(120, 100).OnClick(func() {
+								kinematics.SetOrientation(0, 0, 0, 0, 0, 0)
+							}),
+							g.Button("Write Position").Size(120, 100).OnClick(func() {
+								kinematics.SetOrientation(float64(yaw), float64(pitch), float64(roll), float64(transx), float64(transy), float64(transz))
+							}),
 							g.Button("Record Data").Size(120, 100),
 						),
 					},

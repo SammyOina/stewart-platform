@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"math"
 
 	g "github.com/AllenDang/giu"
 	"github.com/AllenDang/imgui-go"
-	"github.com/sammyoina/stewart-platform-ui/kinematics"
+	"github.com/sammyoina/stewart-platform-ui/pipeline"
 	"github.com/sammyoina/stewart-platform-ui/ui"
 )
 
@@ -26,9 +25,6 @@ func main() {
 	//w.SetBgColor(color.White)
 	imgui.StyleColorsLight()
 	go ui.Rotate()
-	//go pipeline.InitPipeline()
-	plat := kinematics.NewStewartPlatform(11, 9.4, 0.226893, 0.226893, 2.8, 21, 0)
-	pos := plat.Calculate(0, 0.0523599, 0, 0, 0, 0)
-	fmt.Println(pos.Servo1, pos.Servo2, pos.Servo3, pos.Servo4, pos.Servo5, pos.Servo6)
+	go pipeline.InitPipeline()
 	w.Run(ui.Loop)
 }

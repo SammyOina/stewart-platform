@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/gorilla/websocket"
+	"github.com/sammyoina/stewart-platform-ui/api"
 	"github.com/sammyoina/stewart-platform-ui/models"
 	"github.com/sammyoina/stewart-platform-ui/queue"
 	"google.golang.org/protobuf/proto"
@@ -22,7 +23,7 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 				log.Println("failed to unmarshal:", err)
 				return
 			}
-			fmt.Println("raw ", e.String())
+			//fmt.Println("raw ", e.String())
 			iMUev := e.GetIMUEvent()
 			pitotev := e.GetPitotEvent()
 			strainev := e.GetStrainEvent()
@@ -40,23 +41,25 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 }
 
 type STDSender struct {
-	Conn *websocket.Conn
+	conn *websocket.Conn
 }
 
 func (h *STDSender) StartOutputting(q queue.Queue) {
 	fmt.Println("Start sending")
-	for {
-		for message, ok := q.Dequeue(); ok == true; message, ok = q.Dequeue() {
-			if h.Conn == nil {
-				fmt.Println("Conn not established yet")
-				continue
-			}
-			err := h.Conn.WriteMessage(websocket.TextMessage, message)
-			if err != nil {
-				fmt.Println(err)
-				continue
-			}
-			fmt.Println("Message sent")
+	//for {
+	for message, ok := q.Dequeue(); ok == true; message, ok = q.Dequeue() {
+
+		h.conn = api.WebsocketConn
+		if h.conn == nil {
+			fmt.Println("Conn not established yet")
+			break
 		}
+		err := h.conn.WriteMessage(websocket.BinaryMessage, message)
+		if err != nil {
+			fmt.Println("err: ", err)
+			break
+		}
+		fmt.Println("Message sent: ", string(message), len(message))
 	}
+	//}
 }

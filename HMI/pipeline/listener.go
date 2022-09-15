@@ -35,7 +35,8 @@ type StewartPositionListener struct {
 }
 
 func (s *StewartPositionListener) StartAccepting(q queue.Queue) {
-	defer Wg.Done()
+	//defer Wg.Done()
+	fmt.Println("start pos")
 	var event models.ServoPositionEvent
 	event = <-s.Pos
 	message, err := proto.Marshal(&event)
@@ -44,5 +45,6 @@ func (s *StewartPositionListener) StartAccepting(q queue.Queue) {
 		return
 	}
 	q.Enqueue(message)
+	fmt.Println("end pos")
 	return
 }

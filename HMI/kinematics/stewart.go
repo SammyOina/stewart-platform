@@ -8,6 +8,15 @@ import (
 	"gonum.org/v1/gonum/mat"
 )
 
+const (
+	ROD_LENGTH                  float64 = 21
+	BASE_RADIUS                 float64 = 11
+	PLATFORM_RADIUS             float64 = 9.4
+	SERVO_HORN_LENGTH           float64 = 2.8
+	HALF_ANGLE_BETWEEN_BASE     float64 = 13
+	HALF_ANGLE_BETWEEN_PLATFORM float64 = 13
+)
+
 type stewartPlatform struct {
 	Beta               *mat.Dense
 	PsiBase            *mat.Dense
@@ -185,7 +194,7 @@ func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, tr
 	for i := 0; i < 6; i++ {
 		fk := 2 * p.ServoHornLength * (math.Cos(p.Beta.At(0, i)*lx.At(0, i) + math.Sin(p.Beta.At(0, i)*ly.At(0, i))))
 		angles[i] = math.Asin(g.At(0, i)/math.Sqrt(math.Pow(e.At(0, i), 2)+math.Pow(fk, 2))) - math.Atan2(fk, e.At(0, i))
-		angles[i] = angles[i] * 180 / math.Pi
+		angles[i] = r2d(angles[i])
 	}
 	var angs models.ServoPositionEvent
 	angs.Servo1 = float32(angles[0])

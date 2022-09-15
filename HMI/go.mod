@@ -6,6 +6,7 @@ require (
 	github.com/AllenDang/giu v0.6.2
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.8.1
+	github.com/golang/protobuf v1.5.0
 	github.com/gorilla/websocket v1.5.0
 	gonum.org/v1/gonum v0.12.0
 )

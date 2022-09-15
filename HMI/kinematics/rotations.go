@@ -43,3 +43,11 @@ func rotX(phi float64) *mat.Dense {
 
 	return rotRes
 }
+
+func d2r(angle float64) float64 {
+	return angle * math.Pi / 180
+}
+
+func r2d(angle float64) float64 {
+	return angle * 180 / math.Pi
+}
