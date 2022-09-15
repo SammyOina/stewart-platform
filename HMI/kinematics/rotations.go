@@ -8,7 +8,7 @@ import (
 
 func rotZ(psi float64) *mat.Dense {
 
-	psi = psi * math.Pi / 180
+	//psi = psi * math.Pi / 180
 
 	rotRes := mat.NewDense(3, 3, nil)
 	rotRes.Set(0, 0, math.Cos(psi))
@@ -25,7 +25,7 @@ func rotZ(psi float64) *mat.Dense {
 }
 
 func rotY(theta float64) *mat.Dense {
-	theta = theta * math.Pi / 180
+	//theta = theta * math.Pi / 180
 	rotRes := mat.NewDense(3, 3, nil)
 	rotRes.SetRow(0, []float64{math.Cos(theta), 0, -1 * math.Sin(theta)})
 	rotRes.SetRow(1, []float64{0, 1, 0})
@@ -34,7 +34,7 @@ func rotY(theta float64) *mat.Dense {
 }
 
 func rotX(phi float64) *mat.Dense {
-	phi = phi * math.Pi / 180
+	//phi = phi * math.Pi / 180
 
 	rotRes := mat.NewDense(3, 3, nil)
 	rotRes.SetRow(0, []float64{1, 0, 0})

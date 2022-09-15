@@ -1,6 +1,7 @@
 package kinematics
 
 import (
+	"fmt"
 	"math"
 
 	"github.com/sammyoina/stewart-platform-ui/models"
@@ -76,7 +77,9 @@ func NewStewartPlatform(baseRadius float64, PlatformRadius float64, GammaBase fl
 		math.Cos(Platform.PsiBase.At(0, 5)),
 		math.Sin(Platform.PsiBase.At(0, 5)), 0,
 	})
-	baseAttachment.Scale(baseRadius, Platform.BaseAttachment)
+	baseAttachment.Apply(func(i, j int, v float64) float64 {
+		return v * baseRadius
+	}, baseAttachment)
 	Platform.BaseAttachment = baseAttachment.T()
 
 	platformAttachment := mat.NewDense(6, 3, nil)
@@ -117,15 +120,15 @@ func NewStewartPlatform(baseRadius float64, PlatformRadius float64, GammaBase fl
 	sub1 := math.Pow(RodLength, 2) + math.Pow(ServoHornLength, 2)
 	attachmentDiff1 := mat.NewDense(1, 6, nil)
 	attachmentDiff2 := mat.NewDense(1, 6, nil)
-	attachmentDiff1.Sub(platformAttachment.ColView(0), baseAttachment.ColView(0))
-	attachmentDiff2.Sub(platformAttachment.ColView(1), baseAttachment.ColView(1))
+	attachmentDiff1.Sub(platformAttachment.ColView(0).T(), baseAttachment.ColView(0).T())
+	attachmentDiff2.Sub(platformAttachment.ColView(1).T(), baseAttachment.ColView(1).T())
 	attachmentDiff1.Apply(elementWiseSquare, attachmentDiff1)
 	attachmentDiff2.Apply(elementWiseSquare, attachmentDiff2)
 	summedAttachDiff := mat.NewDense(1, 6, nil)
 	summedAttachDiff.Add(attachmentDiff1, attachmentDiff2)
 	z := mat.NewDense(1, 6, nil)
 	z.Apply(func(i, j int, v float64) float64 {
-		return sub1 - v
+		return math.Sqrt(sub1 - v)
 	}, summedAttachDiff)
 	Platform.HomePosition = mat.NewDense(1, 3, nil)
 	Platform.HomePosition.SetRow(0, []float64{0, 0, z.At(0, 0)})
@@ -138,7 +141,7 @@ func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, tr
 	transl := mat.NewDense(3, 1, nil)
 	transl.SetCol(0, []float64{transx, transy, transz})
 	R := mat.NewDense(3, 3, nil)
-	R.Mul(rotZ(rots.At(0, 2)), rotY(rots.At(0, 1)))
+	R.Mul(rotZ(rots.At(2, 0)), rotY(rots.At(1, 0)))
 	R.Mul(R, rotX(rots.At(0, 0)))
 	translRep := mat.NewDense(3, 6, nil)
 	homePosRep := mat.NewDense(3, 6, nil)
@@ -165,9 +168,9 @@ func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, tr
 	}
 	L := mat.NewDense(3, 6, nil)
 	L.Add(l, p.BaseAttachment)
-	lx := l.RowView(0)
-	ly := l.RowView(1)
-	lz := l.RowView(2)
+	lx := l.RowView(0).T()
+	ly := l.RowView(1).T()
+	lz := l.RowView(2).T()
 	g := mat.NewDense(1, 6, nil)
 	g.Apply(elementWiseSquare, lll)
 	g.Apply(func(i, j int, v float64) float64 {
@@ -182,6 +185,7 @@ func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, tr
 	for i := 0; i < 6; i++ {
 		fk := 2 * p.ServoHornLength * (math.Cos(p.Beta.At(0, i)*lx.At(0, i) + math.Sin(p.Beta.At(0, i)*ly.At(0, i))))
 		angles[i] = math.Asin(g.At(0, i)/math.Sqrt(math.Pow(e.At(0, i), 2)+math.Pow(fk, 2))) - math.Atan2(fk, e.At(0, i))
+		angles[i] = angles[i] * 180 / math.Pi
 	}
 	var angs models.ServoPositionEvent
 	angs.Servo1 = float32(angles[0])
@@ -195,4 +199,8 @@ func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, tr
 
 func elementWiseSquare(i, j int, v float64) float64 {
 	return math.Pow(v, 2)
+}
+func matPrint(X mat.Matrix) {
+	fa := mat.Formatted(X, mat.Prefix(""), mat.Squeeze())
+	fmt.Printf("%v\n", fa)
 }
