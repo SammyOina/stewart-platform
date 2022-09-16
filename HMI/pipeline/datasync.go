@@ -1,6 +1,7 @@
 package pipeline
 
 import (
+	"encoding/hex"
 	"fmt"
 	"log"
 
@@ -24,18 +25,18 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 				return
 			}
 			//fmt.Println("raw ", e.String())
-			iMUev := e.GetIMUEvent()
-			pitotev := e.GetPitotEvent()
-			strainev := e.GetStrainEvent()
-			if iMUev != nil {
-				fmt.Println("got data: ", iMUev.Pitch, iMUev.Yaw, iMUev.Roll)
+			switch event := e.Event.(type) {
+			case *models.SensorEvent_IMUEvent:
+				fmt.Println("got data: ", event.IMUEvent.Pitch, event.IMUEvent.Yaw, event.IMUEvent.Roll)
+			case *models.SensorEvent_PitotEvent:
+				fmt.Println("got data: ", event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
+			case *models.SensorEvent_StrainEvent:
+				fmt.Println("got data: ", event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
+			default:
+				fmt.Println("no sensor event found")
+				fmt.Println(hex.EncodeToString(message))
 			}
-			if pitotev != nil {
-				fmt.Println("got data: ", pitotev.DiffuserPitot, pitotev.IntakePitot, pitotev.TestSectionPitot)
-			}
-			if strainev != nil {
-				fmt.Println("got data: ", strainev.Strain1, strainev.Strain2, strainev.Strain3, strainev.Strain4, strainev.Strain5, strainev.Strain6)
-			}
+			//fmt.Println(e.GetEvent().(*models.SensorEvent_IMUEvent))
 		}
 	}
 }

@@ -142,12 +142,12 @@ void setup()
 void loop()
 {
 	SensorEvent test = SensorEvent_init_zero;
-	test.event.iMUEvent.pitch = 1.1;
+	test.which_event = SensorEvent_iMUEvent_tag;
+	test.event.iMUEvent.pitch = 5.1;
 	test.event.iMUEvent.roll = 2.2;
 	test.event.iMUEvent.yaw = 3.3;
-	test.which_event = SensorEvent_iMUEvent_tag;
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-    if (!pb_encode(&stream, IMUEvent_fields, &test))
+    if (!pb_encode(&stream, SensorEvent_fields, &test))
     {
         Serial.println("failed to encode temp proto");
         Serial.println(PB_GET_ERROR(&stream));
