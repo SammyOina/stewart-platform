@@ -4,7 +4,7 @@
 
 Servo myservo[SERVOS];
 
-int servo_pins[SERVOS] = {32,33,23,19,18,4};
+int servo_pins[SERVOS] = {33,32,19,4,23,18};
 
 void AttachServos(void) {
     for(int i = 0; i < SERVOS; i++) {
