@@ -9,10 +9,10 @@ import (
 )
 
 const (
-	ROD_LENGTH                  float64 = 21
-	BASE_RADIUS                 float64 = 11
-	PLATFORM_RADIUS             float64 = 9.4
-	SERVO_HORN_LENGTH           float64 = 2.8
+	ROD_LENGTH                  float64 = 14.0
+	BASE_RADIUS                 float64 = 15.0
+	PLATFORM_RADIUS             float64 = 10.0
+	SERVO_HORN_LENGTH           float64 = 4.5
 	HALF_ANGLE_BETWEEN_BASE     float64 = 13
 	HALF_ANGLE_BETWEEN_PLATFORM float64 = 13
 )
@@ -140,11 +140,12 @@ func NewStewartPlatform(baseRadius float64, PlatformRadius float64, GammaBase fl
 		return math.Sqrt(sub1 - v)
 	}, summedAttachDiff)
 	Platform.HomePosition = mat.NewDense(1, 3, nil)
+	fmt.Println("Home: ", z.At(0, 0))
 	Platform.HomePosition.SetRow(0, []float64{0, 0, z.At(0, 0)})
 	return Platform
 }
 
-func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, transx float64, transy float64, transz float64) models.ServoPositionEvent {
+func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, transx float64, transy float64, transz float64) (*models.ServoPositionEvent, error) {
 	rots := mat.NewDense(3, 1, nil)
 	rots.SetCol(0, []float64{yaw, pitch, roll})
 	transl := mat.NewDense(3, 1, nil)
@@ -195,15 +196,23 @@ func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, tr
 		fk := 2 * p.ServoHornLength * (math.Cos(p.Beta.At(0, i)*lx.At(0, i) + math.Sin(p.Beta.At(0, i)*ly.At(0, i))))
 		angles[i] = math.Asin(g.At(0, i)/math.Sqrt(math.Pow(e.At(0, i), 2)+math.Pow(fk, 2))) - math.Atan2(fk, e.At(0, i))
 		angles[i] = r2d(angles[i])
+		if math.IsInf(angles[i], 0) || math.IsNaN(angles[i]) {
+			return nil, fmt.Errorf("nan or inf angle on servo %d", i)
+		}
+		if angles[i]+90 < 0 || angles[i] > 180 {
+			return nil, fmt.Errorf("out of range angle on servo %d", i)
+		}
 	}
+
 	var angs models.ServoPositionEvent
-	angs.Servo1 = float32(angles[0])
-	angs.Servo2 = float32(angles[1])
-	angs.Servo3 = float32(angles[2])
-	angs.Servo4 = float32(angles[3])
-	angs.Servo5 = float32(angles[4])
-	angs.Servo6 = float32(angles[5])
-	return angs
+	angs.Servo1 = float32(angles[0]) + 90
+	angs.Servo2 = float32(angles[1]) + 90
+	angs.Servo3 = float32(angles[2]) + 90
+	angs.Servo4 = float32(angles[3]) + 90
+	angs.Servo5 = float32(angles[4]) + 90
+	angs.Servo6 = float32(angles[5]) + 90
+
+	return &angs, nil
 }
 
 func elementWiseSquare(i, j int, v float64) float64 {

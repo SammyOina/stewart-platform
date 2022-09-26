@@ -39,18 +39,25 @@ void printRes(uint8_t *payload, size_t len) {
 				switch (i){
 					case 0:
 						angle = message.servo1;
+						break;
 					case 1:
 						angle = message.servo2;
+						break;
 					case 2:
 						angle = message.servo3;
+						break;
 					case 3:
 						angle = message.servo4;
+						break;
 					case 4:
 						angle = message.servo5;
+						break;
 					case 5:
 						angle = message.servo6;
+						break;
 				}
- 				if (i != 0 && i != 4 && i != 5) {
+				Serial.println(angle);
+ 				if (i != 0 && i != 1 && i != 5) {
  					WriteServoPosition(i, angle, false);
  				}else{
  					WriteServoPosition(i, angle, true);
@@ -121,6 +128,8 @@ void setup()
         delay(500);
     }
     
+
+	//webSocket.setExtraHeaders(0);
     	// server address, port and URL
 	webSocket.begin("192.168.137.1", port, "/imu", "");
 
@@ -156,7 +165,7 @@ void loop()
 	
 	webSocket.loop();
 	if (webSocket.isConnected()){
-		Serial.println("sending message...");
+		//Serial.println("sending message...");
 		webSocket.sendBIN(buffer, stream.bytes_written);
 		delay(1000);
 	}

@@ -43,9 +43,9 @@ func Loop() {
 				g.Layout{
 					g.Label("Rotation Angles"),
 					g.Row(
-						g.VSliderInt(&yaw, -5, 5).Label("Yaw").Size(40, 110),
-						g.VSliderInt(&pitch, -5, 5).Label("Pitch").Size(40, 110),
-						g.VSliderInt(&roll, -5, 5).Label("Roll").Size(40, 110),
+						g.VSliderInt(&yaw, -20, 20).Label("Yaw").Size(40, 110),
+						g.VSliderInt(&pitch, -22, 24).Label("Pitch").Size(40, 110),
+						g.VSliderInt(&roll, -34, 34).Label("Roll").Size(40, 110),
 					),
 				},
 				g.SplitLayout(g.DirectionHorizontal, tabwidth,

@@ -24,7 +24,6 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 				log.Println("failed to unmarshal:", err)
 				return
 			}
-			//fmt.Println("raw ", e.String())
 			switch event := e.Event.(type) {
 			case *models.SensorEvent_IMUEvent:
 				fmt.Println("got data: ", event.IMUEvent.Pitch, event.IMUEvent.Yaw, event.IMUEvent.Roll)
@@ -36,7 +35,6 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 				fmt.Println("no sensor event found")
 				fmt.Println(hex.EncodeToString(message))
 			}
-			//fmt.Println(e.GetEvent().(*models.SensorEvent_IMUEvent))
 		}
 	}
 }
