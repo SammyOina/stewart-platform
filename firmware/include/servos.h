@@ -11,6 +11,7 @@ void AttachServos(void) {
         // Attach the servo to the servo object
         myservo[i].attach(servo_pins[i]);
         delay(500);
+        myservo[i].write(90);
     }
 }
 

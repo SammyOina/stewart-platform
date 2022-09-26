@@ -57,7 +57,7 @@ void printRes(uint8_t *payload, size_t len) {
 						break;
 				}
 				Serial.println(angle);
- 				if (i != 0 && i != 4 && i != 5) {
+ 				if (i != 0 && i != 1 && i != 5) {
  					WriteServoPosition(i, angle, false);
  				}else{
  					WriteServoPosition(i, angle, true);
@@ -128,6 +128,8 @@ void setup()
         delay(500);
     }
     
+
+	//webSocket.setExtraHeaders(0);
     	// server address, port and URL
 	webSocket.begin("192.168.137.1", port, "/imu", "");
 
