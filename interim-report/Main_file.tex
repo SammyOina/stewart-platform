@@ -1,4 +1,4 @@
-\documentclass[12pt,fleqn]{report}
+\documentclass[12pt,fleqn]{article}
 \usepackage{a4}
 \usepackage{graphicx}
 \usepackage{psfrag}
@@ -64,11 +64,11 @@
 
 %-----Equations / Figures / Tables numbering according to \ sections
 \makeatletter
-\renewcommand\theequation{\arabic{chapter}.\arabic{equation}}
-\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
-\renewcommand\thetable{\arabic{chapter}.\arabic{table}}
-\@addtoreset{equation}{chapter} \@addtoreset{figure}{chapter}
-\@addtoreset{table}{chapter} \makeatother
+\renewcommand\theequation{\arabic{section}.\arabic{equation}}
+\renewcommand\thefigure{\arabic{section}.\arabic{figure}}
+\renewcommand\thetable{\arabic{section}.\arabic{table}}
+\@addtoreset{equation}{section} \@addtoreset{figure}{section}
+\@addtoreset{table}{section} \makeatother
 
 %-----Useful abbreviations----------------------
 \newcommand{\mr}{\mathrm}

@@ -1,5 +1,5 @@
-\chapter{Results}
-\section{Six DOF Stewart Platform}
+\section{Results}
+\subsection{Six DOF Stewart Platform}
 As earlier mentioned, the Stewart platform has already been designed and fabricated and our part in this work was to do an evaluation of the same to verify its mechanical feasibility. As such, the various parts of the platform were obtained and assembled. For further analysis, a 3D model of the same platform was done using Autodesk Inventor.
 
 The assembled Stewart platform is as shown in figure \ref{fig}. Figure \ref{fig1} shows the Stewart platform configuration setup with the Wind tunnel's test section.
@@ -28,11 +28,11 @@ Assembling the Stewart platform legs as shown in \ref{fig} makes it easier to ac
 \label{fig2}
 \end{figure}
 \end{center}
-\subsection{Stability}
+\subsubsection{Stability}
 The base of the Stewart platform has a bigger diameter (300mm) than that of the moving platform (200mm) hence the center of gravity will always fall within the base during operation. The Stewart platform is therefore stable.
-\subsection{Mechanical Feasibility}
+\subsubsection{Mechanical Feasibility}
 Based on the base and platform diameters, distance between the base and platform (i.e. height), an angle of attack of 0.25, and side slip angle of 0.16667, the quality index ($\lambda$) of the Stewart platform was found to be 0.86. This presents a design with few singularities. It is therefore mechanically feasible.
-\subsection{Weight}
+\subsubsection{Weight}
 3D models of the Stewart platform were modeled on Autodesk Inventor using the three materials described earlier. Use of aluminum was verified to offer the most light-weight design.
 \begin{table}[H]
 \caption{Weight Comparisons}
@@ -50,7 +50,7 @@ Stainless steel & 5.0 \\
 \hline
 \end{tabular}
 \end{center}
-\subsection{Finite Element Analysis on Stewart Platform}
+\subsubsection{Finite Element Analysis on Stewart Platform}
 Finite Element Analysis was done on FEA environment in Autodesk inventor. A static analysis test was performed and the following results were obtained:
 \begin{table}[H]
 \caption{FEA Results}
@@ -82,7 +82,7 @@ Application of loads on the platform translates to induced strain in the Stewart
 	\end{figure}
 \end{center}
 These strains are small thus they will need amplification in order provide substantial input for the strain gauges used for force measurements. 
-\subsection{Stewart Platform Simulation}
+\subsubsection{Stewart Platform Simulation}
 Stewart Platform simulation was done on MatLab using the Inverse kinematic equations. Different servo angles for different platform movements can be obtained from the simulation. The angles for yaw, pitch and roll could be adjusted during simulations to predict the maximum allowable angle values. Value of displacement in the x-, y- and z-directions could also be adjusted enabling us to predict the maximum allowable displacement in the respective directions. A summary of these angles is given in table \ref{roll}.
 \begin{center}
 	\begin{figure}[H]
@@ -134,7 +134,7 @@ Stewart Platform simulation was done on MatLab using the Inverse kinematic equat
 \end{table}
 \end{center}
 
-\section{Human Machine Interface}
+\subsection{Human Machine Interface}
 The user interface of the platform was programmed using golang and this resulted in the view below with the use of sliders for platform positioning and buttons to set model orientations and start data collection.
 \begin{center}
 	\begin{figure}[H]
@@ -148,7 +148,7 @@ This includes slider buttons to control platform position and orientation. It al
 
 The transport via TCP to the microcontroller was also tested, it showed bidirectional streaming of data to and from the microcontroller making it suitable for communication.
 
-\section{PCB}
+\subsection{PCB}
 The schematics from the electrical designs as seen in the appendix were routed to generate a PCB ready for manufacture. This is shown in the 3D render below:
 \begin{center}
 	\begin{figure}[H]

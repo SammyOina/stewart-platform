@@ -1,5 +1,5 @@
-\chapter{Literature Review}
-\section{Wind Tunnel}
+\section{Literature Review}
+\subsection{Wind Tunnel}
 A wind tunnel is a large tube with air moving inside. This movement of air is usually done by powerful fans.
 \begin{center}
 	\begin{figure}[H]
@@ -80,13 +80,13 @@ controller design
 \cite{iqbal2006direct}.
 \end{enumerate}
 
-\section{Force Balances}
+\subsection{Force Balances}
 For wind tunnel applications, the wind axes is used as the reference frame. Where, X axis points to the accelerated air; Z axis points downward and; Y axis points to the right in the direction of the wind. In the reference frame above, lift is in the negative z-direction, drag in the negative x-direction and, side force in the negative y-direction \cite{bueno2018design}.
 
 Moment components on the x,y,z axes are rolling moment, pitching moment and yawing moment respectively. A three-component force balance can be considered to measure the lift, drag and pitch (angle of attack).
 
 Force balances can be external or internal. In external force balances the test section lies outside of the wind tunnel test section, whereas in internal force balances the balance is inside the model itself connecting the model to the support structure.
-\subsection{External Force Balances}
+\subsubsection{External Force Balances}
 Several different types of external force balances are available for wind tunnel use
 \cite{morris_force_2010}:
 \begin{enumerate}
@@ -138,7 +138,7 @@ Platform & Easy consruction and instrumentation & Force and torques coupled\\
  \hline 
 \end{tabular}
 \end{center}
-\subsection{Internal Force Balances}
+\subsubsection{Internal Force Balances}
 The different kinds of internal balances can be made based on \cite{ferreira2015design}:
 \begin{enumerate}
 \item The type of transducer i.e. strain gauge or piezoelectric balance.
@@ -154,8 +154,8 @@ The different kinds of internal balances can be made based on \cite{ferreira2015
 The box balance presents a cubic shape and can either be made of a solid piece of material or from assembled parts. In this configuration, the loads are transferred from the top to the bottom. The sting balance presents a cylindrical shape and the loads are transferred from one end to the other in the longitudinal direction. It can be used to measure forces or torques.
 
 The advantage of internal force balances is that they minimize the interference caused by the supporting bars in the flow.
-\section{Sensors}
-\subsection{Load Sensors}
+\subsection{Sensors}
+\subsubsection{Load Sensors}
 Several methods can be used to measure forces and torques in a force balance. These methods can be generally grouped into two\cite{ferreira2015design}:
 \begin{enumerate}
 \item Hydraulic measuring techniques.
@@ -172,7 +172,7 @@ Metal foil strain gauges are widely used. This type of strain gauges provide mor
 		\end{figure}
 \end{center}
 Load cells can also be used to measure the drag and lift forces\cite{ferreira2015design}.
-\subsection{Attitude Sensor}
+\subsubsection{Attitude Sensor}
 It is important to define the desired aerodynamic angles and to guarantee that they are measured accurately in relation to the air stream. One such angle is the angle of attack (\textalpha) shown in Figure \ref{att}. For this reason, specific devices that provide the attitude measurement should be implemented in order to improve the precision of the results.
 
 Angle of attack (\textalpha)is the angle measured between the longitudinal axis of the model and the direction of the flow on a vertical (Figure \ref{att})
@@ -184,7 +184,7 @@ Angle of attack (\textalpha)is the angle measured between the longitudinal axis 
 	\label{att}
 	\end{figure}
 \end{center}
-\section{State of the Art}
+\subsection{State of the Art}
 Force balance design for educational wind tunnels is an area of great interest. This is especially important
 for aerodynamics studies of airplane and airfoil models, as well as ground vehicles such as trucks
 and cars \cite{morris_force_2010}.
@@ -192,7 +192,7 @@ and cars \cite{morris_force_2010}.
 Force balances can be used in conjunction with a linear actuator where the
 actuator is mounted inside the force balance apparatus, using a parallel four-bar linkage so that
 the angle of attack is linearly related to the actuator position. Alternatively, manipulators such as the Stewart platform can serve as force balances. This section presents some of the work that has been done in this area.
-\subsection{Bradley University (USA)}
+\subsubsection{Bradley University (USA)}
 The Mechanical Engineering department of Bradley University has a force balance installed in the test-section of a subsonic wind tunnel. The force balance comprises of two load cells to measure lift and drag forces. A linear actuator is used in conjunction with the force balance to change the angle of attack of models during testing.
 \begin{center}
 	\begin{figure}[H]
@@ -224,10 +224,10 @@ The overall cost of coming up with this force balance is given as 1000 dollars w
 	%\caption[Inertial Measurement Unit]{IMU (MPU 6050) \cite{ferreira2015design}}
 	%\end{figure}
 %\end{center}
-\subsection{East Africa School of Aviation (EASA)}
+\subsubsection{East Africa School of Aviation (EASA)}
 The EASA Aerodynamics lab has a subsonic wind tunnel 300mm (AF1300) and a flight demonstration wind tunnel(AF41) supplied by TECQUIPMENT. The Subsonic wind tunnel is equipped with a three-component force balance, smoke generator, multi-tube manometer and a range of aerofoil drag, boundary layer low and high wing models. The Flight demonstration wind tunnel has a data acquisition module for classroom demonstrations and investigations into the behavior of fixed-wing aircraft and wing-performance during take-off, flight and landing \cite{TEC}.
 
-\subsection{Tecnico Lisboa}
+\subsubsection{Tecnico Lisboa}
 In 2018, Joao Fernandes of Tecnico Lisboa developed a force balance system to
 be used with the aerospace engineering laboratory wind tunnel. The project was to
 design a force balance measuring the six components. A Stewart platform was used as the
@@ -241,9 +241,9 @@ Further developments were made two years later to this design which are enumerat
 \item Use of an Arduino DAQ system for temperature and humidity monitoring to help in
 compensation of switching to a half bridge configuration for the strain gauges.
 \end{enumerate}
-\subsection{Stewart Platform at JKUAT}
+\subsubsection{Stewart Platform at JKUAT}
 Six-DOF Stewart platforms have been designed and fabricated by students in the Mechatronic Engineering department as part of their final year projects. The Stewart platforms by the first two groups of students were for different applications and the one from FYP-17 was to be used as a force balance for Wind tunnel testing \cite{caleb}. 
-\section{Summary of Gaps}
+\subsection{Summary of Gaps}
 Whereas the Force balance by the Mechanical Engineering department in Bradley University is relatively simple to construct, it still poses a challenge in terms of cost. Cost can be minimized based on load cell and actuator selection but this does not guarantee that the level of accuracy will not be compromised. Also, only two or three force components can be obtained. The force balace setup doesn't allow dynamic positioning of models in the wind tunnel during testing.
 
 Institutions such as EASA have procured their force balances. The force balances guarantee high accuracy but this may not be a cost-effective solution.

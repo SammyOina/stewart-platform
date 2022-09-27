@@ -1,10 +1,10 @@
-\chapter{Methodology}
-\section{Outline}
+\section{Methodology}
+\subsection{Outline}
 This section will look into analysis of the six DOF Stewart platform, considerations for the force sensor and the velocity measurement within the wind tunnel. It will finally look into the design of a human machine interface that will be used to control the Stewart platform, obtain measurements and display results.
 
-\section{Mechanical Design}
+\subsection{Mechanical Design}
 Since a Stewart platform has already been designed and fabricated, this section will look at: design considerations and analysis and evaluation of the Stewart platform to verify whether it will be feasible to work with.
-\subsection{Design Considerations for the Stewart Platform}
+\subsubsection{Design Considerations for the Stewart Platform}
 \begin{enumerate}
 \item When the controllable axes are active, the platform must be controlled in six degrees of motion.
 \item When the controllable members are stationary, the
@@ -122,9 +122,9 @@ platform must have a corresponding fixed position.
 %u_{6}^{T} & (R_{P}^{B}q_{6}^{B} * u_{6})^T
 %\end{bmatrix}
 %\]
-\subsection{Base and Moving Platform}
+\subsubsection{Base and Moving Platform}
  The Stewart platform should be stable. Thus the base should have a larger diameter than that of the moving platform. The Center of Gravity (COG) shouldn't fall outside the base during any of the platform movements.
- \subsection{Stewart Platform Configurations}
+ \subsubsection{Stewart Platform Configurations}
 Stewart platforms can take three primary configurations i.e. 3-3 type, 3-6 type or 6-6 type.
 \begin{center}
 	\begin{figure}[H]
@@ -139,7 +139,7 @@ The base and the platform (for the 3-3 type), and the platform (for the 3-6 type
 
 The platform is a a 6-6 type. The base and platform are hexagon in shape.
 
-\subsection{Quality Index $(\lambda)$ of Stewart Platform Design}
+\subsubsection{Quality Index $(\lambda)$ of Stewart Platform Design}
 Quality index $(\lambda)$ varies from 0 to 1.\\
 Where,\\
 0 - design with singularities and\\
@@ -222,7 +222,7 @@ Quality index for this Stewart Platform design is therefore,
 $$\lambda = \frac{|J|}{|J|_{m}} = 0.86$$
 %\label{eq:myeqn}
 %A quality index of 0.86 presents a design of high quality and mechanical feasibility.
-\subsection{Sheet Metal Thickness and Material}
+\subsubsection{Sheet Metal Thickness and Material}
 Metal used to manufacture the base should be of significant thickness to provide more support to the whole structure.
 
 Metal used to manufacture the moving platform should be lightweight and of enough thickness to enable it to withstand significant loads.
@@ -276,7 +276,7 @@ Due to cost constraints and for the Stewart platform's overall weight (and witho
 	\end{figure}
 \end{center}
 Aluminium, unlike mild steel, would not require post-processing methods (e.g. powder coating) which would add on the cost.
-\subsection{Sensing Bars/Rods}
+\subsubsection{Sensing Bars/Rods}
 Two options can be considered:
 \begin{itemize}
 \item Bars with square cross-section
@@ -321,7 +321,7 @@ Aluminium rods have the capability of bearing higher loads before their deformat
 %	\end{figure}
 %\end{center}
 
-\subsection{Sensing Rods Design - Shape}
+\subsubsection{Sensing Rods Design - Shape}
 Two options can be considered:
 \begin{itemize}
 \item Solid cylindrical rods
@@ -338,7 +338,7 @@ If solid rods are used, strain gauges of high sensitivity should be used.
 	\end{figure}
 \end{center}
 
-\subsection{Test Flange and Strut}
+\subsubsection{Test Flange and Strut}
 The test flange will be used to hold the strut during wind tunnel testing. For optimum results, the reference axis is taken to be in the middle of the middle platform \cite {fernandes_design_nodate}. The flange will be fastened to the moving platform by use of bolts and nuts. Fasteners are more economical and easy to achieve as compared to welding. M6 or M8 nuts can be used for this purpose.
 
 The test flange should hold the strut for a considerable length in order to keep the rotation of the strut below certain predefined values and thus limiting torsion and bending behaviour of the strut during Wind Tunnel testing.
@@ -358,7 +358,7 @@ The strut will go into the test section of the Wind tunnel at the Fluids lab in 
 	\end{figure}
 \end{center}
 
-\subsection{Spherical Joints}
+\subsubsection{Spherical Joints}
 For the 6-6 type, both platforms have six vertices and
 the connections between the sensing bars and the platforms is made by simple spherical joints. Single spherical joints are preferable because they are easy to manufacture and they eliminate the issues of interference between sensing bars when double spherical joints are used \cite{fernandes_design_nodate}.  
 
@@ -408,7 +408,7 @@ The Spherical joint was done on Autodesk Inventor and included in the Stewart Pl
 	\caption[Spherical Joint CAD]{Spherical Joint as designed on Autodesk Inventor}
 	\end{figure}
 \end{center}
-\subsection{Finite Element Analysis}
+\subsubsection{Finite Element Analysis}
 A Finite Element Analysis was done on the Stewart platform design to determine its performance under given loads. The platform is going to be subjected to a force during wind tunnel testing. A maximum load of 50N is selected for the Finite Element Analysis. This could be more or less since models vary in size. The z-component of the force is considered. 
 The mesh generated is shown in the figure \ref{fig:feamesh}.
 \begin{center}
@@ -462,7 +462,7 @@ Mesh& Avg element size: 0.1mm\\
 \hline
 \end{tabular}
 \end{center}
-\subsection{Inverse Kinematics of a Stewart Platform}
+\subsubsection{Inverse Kinematics of a Stewart Platform}
 This is the calculation of each leg length based on the desired position of the Stewart platform. 
 For the Stewart platform, the translation $^{p}T_{b}$ from the base origin to the platform origin can be described with a single vector T = $(t_{x} t_{y} t_{z})^{T} $. The rotation of the platform can be denoted as $^{p}R_{b}$. Thus the following relationship for the frame of reference can be stated \cite{Eisele_2019}:
 $$^{p}T_{b} = T$$
@@ -485,7 +485,7 @@ The leg length $l_{k}$ can therefore be found with:
 Where,\\
 $P_{k}$ - leg attachment on platform \\
 $B_{k}$- leg attachment on base 
-\subsection{Inverse Kinematics Using Rotational Servo Motors}
+\subsubsection{Inverse Kinematics Using Rotational Servo Motors}
 For a rod of fixed length d between servo horn anchor $H_{k}$ and platform anchor $P_{k}$.  $H_{k}$ has a distance h between the original base anchor and servo shaft $B_{k}$. The vector h is perpendicular to the servo shaft and is rotated by angle $\alpha_{k}$ when lifted from the horizontal line.
 \begin{center}
 	\begin{figure}[!h]
@@ -567,7 +567,7 @@ $$e_{k} = 2hl_{k}^{(z)} $$
 $$e_{k} = 2h(cos(\beta_{k})I_{k}^{(x)}+sin({\beta_{k}})I_{k}^(y))$$
 $$g_{k} = l_{k}^2 - (d^2 - h^2)   $$
 
-\section{Electromechanical Design}
+\subsection{Electromechanical Design}
 Two methods of actuation are popular with Stewart platforms:
 \begin{itemize}
 \item Linear actuators
@@ -584,7 +584,7 @@ Whereas linear actuators are relatively easy to control, they are very expensive
 %	\end{figure}
 %\end{center}
 
-\subsection{Motor Selection}
+\subsubsection{Motor Selection}
 One parameter was considered in our motor selection i.e. torque required. From the Autodesk Inventor design environment, the mass of the moving platform and mechanical couplings was 2.6kg. Each motor is supposed to move a minimum mass of 0.177kg. Using a servo horn of distance 45mm centre-to-centre, and Distance = $ \pi $ D, then:
 \begin{ceqn}
 \begin{align}
@@ -617,7 +617,7 @@ The Servo motor \textbf{TowerPro SG5010} is suitable for this project. The speci
 \end{center}
 Prices range between \textbf{Ksh.700} and \textbf{Ksh.1400}
 
-\subsection{Design of the Force Sensor}
+\subsubsection{Design of the Force Sensor}
 The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
 \begin{itemize}
 \item External force sensor
@@ -718,7 +718,7 @@ where $(M_e)_x$, $(M_e)_y$ and $(M_e)_z$ are the external moments on the platfor
 \end{ceqn}
 
  
-\subsection{Velocity Measurement}
+\subsubsection{Velocity Measurement}
 An important part in wind tunnel measurements is the measure of pressure at specific points in the wind tunnel and computing the corresponding air speed. This is achieved by the use of a pitot probe. 
 \begin{center}
 \begin{figure}[H]
@@ -750,9 +750,9 @@ Three pitot probes are to be used in the wind tunnel i.e. in the test section, i
 Module communicates to the microcontroller using a TTL to RS485. Each module is individually addressable further simplifying the interface as shown in figure \ref{fig:rs485}. 
 The protocol allows for long distance serial communication and interface with multiple devices on the same bus.
 
-\section{Control system}
+\subsection{Control system}
 This section deals with the control of the stewart platform. It involves allowing input and obtaining output form the platform force balance.
-\subsection{Human Machine Interface}
+\subsubsection{Human Machine Interface}
 The purpose of the interface is to enable control of the platform position as well as to obtain measured data from the strain gauges and pitot tubes. 
 The general layout is as shown in the figure \ref{fig:hmi}:
 \begin{center}
@@ -775,7 +775,7 @@ UDP is a communications protocol that is primarily used to establish low-latency
 The decoupling of the microcontroller and the program to be hosted on the desktop allows for advanced data processing such as application of filters and resolving measurements into usable information. It also allows for the use of more powerful processor and high level programming languages to more effectively perform complex calculations without taking a toll the sensor sampling rate that would occur with on board processing in the microcontroller.
 
 A user interface was also required to record user input and display incoming data.
-\subsection{Control Algorithm}
+\subsubsection{Control Algorithm}
 \begin{center}
 	\begin{figure}[H]
 	\centering
@@ -783,12 +783,12 @@ A user interface was also required to record user input and display incoming dat
 	\caption[Control Algorithm]{Control Algorithm for the Stewart Platform with Force Measurement}
 	\end{figure}
 \end{center}
-\section{Electrical Design}
+\subsection{Electrical Design}
 This section looks at the required electrical connections to make the system functional and interface with the control unit.
-\subsection{Printed Circuit Board Design}
+\subsubsection{Printed Circuit Board Design}
 This section looks at the design of the circuits used to power and get readings from the sensors and control the actuators.
 
-\subsection{Microcontroller}
+\subsubsection{Microcontroller}
 The main requirement for this is the need for wireless communication via WIFI and large number of I/O interface at cost effective rate. This brings down the options to the ESP32 and Raspberry Pi RP2040. Both are dual core devices which are feature rich however the raspberry rp2040 only has 28 I/O pins while the ESP32 has 34 pins and due to this the ESP32 was chosen. 
 \begin{center}
 	\begin{figure}[H]
@@ -797,7 +797,7 @@ The main requirement for this is the need for wireless communication via WIFI an
 	\caption[Microcontroller]{Microcontroller}
 	\end{figure}
 \end{center}
-\subsection{Power Supply}
+\subsubsection{Power Supply}
 The power supply chosen is an AC/DC power converter since the highest voltage required is 12 volts. This is also used as the highest power supply to the PCB.
 
 Both 5 and 3.3 volts are required in the PCB for other peripherals. To this end, a buck converter and linear converter are used for 5 ad 3.3 volts respectively.
@@ -819,7 +819,7 @@ Both 5 and 3.3 volts are required in the PCB for other peripherals. To this end,
 \end{center}
 The linear converter dissipates the energy loss though heat while buck converter is through switching.
 
-\subsection{Servo Control}
+\subsubsection{Servo Control}
 Since the microcontroller used (ESP32) is based on 3.3V logic. There is a need for 5V logic to control the servos and thus a bidirectional logic level converter is utilized which leverages an internal drain N-channel MOSFET. 
 \begin{center}
 	\begin{figure}[H]
