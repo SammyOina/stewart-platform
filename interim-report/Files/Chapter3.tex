@@ -147,54 +147,8 @@ Where,\\
 
 \textbf{Singularities} - uncontrollable states.
 
-The Jacobian matrix relates the axial forces in the $i^{th}$ bar with the applied
-forces and torques and is given in equation \eqref{eq:myeqn1} \cite{fernandes_design_nodate}:
+Derivation of the formula to compute the quality index has been done and is presented in the literature review.
 
-\begin{ceqn}
-	\begin{align}
-		J =
-		\begin{pmatrix}
-		\hat{\boldsymbol{S_{1}}} & \hat{\boldsymbol{S_{2}}} & \hat{\boldsymbol{S_{3}}} & ... & \hat{\boldsymbol{S_{n}}}
-		\end{pmatrix}
-		\label{eq:myeqn1}
-	\end{align}
-\end{ceqn}
-
-Where n - number of bars and $ \hat{\boldsymbol{S_{i}}}$ - unit vector of the Plucker coordinates along the line of the
-$i_{th}$ bar.
-
-Quality index can be obtained as shown:
-\begin{ceqn}
-	\begin{align}
-		\lambda = \frac{|J|}{|J|_{m}}
-		\label{eq:myeqn}			
-	\end{align}
-\end{ceqn}
-Where, $|J|$ is the determinant of the Jacobian matrix of a given Stewart platform configuration, and $ |J|_{m} $ - determinant of Jacobian Matrix of the optimal configuration.
-
-Applying equation \eqref{eq:myeqn1} to the general configuration of a 6-6 platform, it is
-possible to obtain the Jacobian matrix and thus its determinant which can be obtained as follows:
-\begin{ceqn}
-	\begin{align}
-		|J| =
-\frac{81 \sqrt{3} a^3 b^3 h^3 (3 \alpha \beta - 2 \alpha - 2 \beta +1)^3}{4(a^2(3 \alpha^2 - 3 \alpha + 1)+ ab(\alpha \beta - 1 )+ b^2(3 \beta^2 - 3 \beta + 1)+ 3h^2)^3}
-\label{eq:myeqn02}
-	\end{align}
-\end{ceqn}
-Where:\\
-a - diameter of moving platform\\
-b - diameter of base\\
-$\alpha$ - angle of attack\\
-$ \beta $ - Side slip angle\\
-h - distance between the base and the moving platform\\
-
-$|J|_{m}$ is found by differentiating equation \eqref{eq:myeqn02} with respect to h and equating to 0 resulting in \cite{fernandes_design_nodate}:
-\begin{ceqn}
-\begin{align}
-	h = \sqrt{\frac{1}{3}(a^2 (3 \alpha^2 - 3 \alpha + 1)+ ab (3\alpha\beta - 1)+b^2(3 \beta^2 - 3 \beta + 1))}
-	\label{eq:myeqn}
-\end{align}
-\end{ceqn}
 Taking the Stewart Platform base diameter of 300mm, platform diameter of 200mm and height of 190mm i.e.: 
 
 a = 200mm, b = 300mm, h = 190mm , $\alpha = 0.25$, $ \beta = 0.1667$,
@@ -670,44 +624,7 @@ The HX711 however allows for the I2C like communication via two wires (serial cl
 \subsubsection*{Force transformation matrix} 
 In such a case the forces experienced at the top of the platform are distributed between the 6 legs and as result, a force transformation matrix is required to resolve the forces applied on each axis as measured by each load cell on each leg. 
 
-If the platform is acted upon by an external wrench {$\vec{F}_e, \vec{M}_e$}, for static equilibrium of the body, the external wrench is statically balanced by the six leg forces of the Stewart platform. Representing the unit vector $\hat{I}_i$ along the i-th leg with respect to B, the leg force is given  by $\hat{I}_if_i$. Considering the force equilibrium of the platform along  three mutually perpendicular directions in B(XYZ), the following force equations can be obtained as in \cite{dwarakanath_design_2001}:
-
-\begin{ceqn}
-	\begin{align}
-	(F_e)_x = f_1I_{1x} + f_2I_{2x} + f_3I_{3x} + f_4I_{4x} + f_5I_{5x} + f_6I_{6x}
-\end{align}
-\end{ceqn}
-\begin{ceqn}
-	\begin{align}
-	(F_e)_y = f_1I_{1y} + f_2I_{2y} + f_3I_{3y} + f_4I_{4y} + f_5I_{5y} + f_6I_{6y}
-\end{align}
-\end{ceqn}
-\begin{ceqn}
-	\begin{align}
-	(F_e)_z = f_1I_{1z} + f_2I_{2z} + f_3I_{3z} + f_4I_{4z} + f_5I_{5z} + f_6I_{6z}
-\end{align}
-\end{ceqn}
-where $(F_e)_x$, $(F_e)_y$ and $(F_e)_z$ are the external forces on the platform along three mutually perpendicular directions x, y and z of the frame B, respectively.
-
-The moment due to the forces $\hat{I}_if_i$ about the origin of B is $(\vec{b}_i x \hat{I}_i)f_i$. Considering the moment equilibrium about x, y and z axes of B, the following moment equations can be obtained as in \cite{dwarakanath_design_2001}:
-
-\begin{ceqn}
-	\begin{align}
-	(M_e)_x = f_1(\vec{b}_1 x \hat{I}_1)_x + f_2(\vec{b}_2 x \hat{I}_2)_x + f_3(\vec{b}_3 x \hat{I}_3)_x + f_4(\vec{b}_4 x \hat{I}_4)_x + f_5(\vec{b}_5 x \hat{I}_5)_x + f_6(\vec{b}_6 x \hat{I}_6)_x
-\end{align}
-\end{ceqn}
-\begin{ceqn}
-	\begin{align}
-	(M_e)_y = f_1(\vec{b}_1 x \hat{I}_1)_y + f_2(\vec{b}_2 x \hat{I}_2)_y + f_3(\vec{b}_3 x \hat{I}_3)_y + f_4(\vec{b}_4 x \hat{I}_4)_y + f_5(\vec{b}_5 x \hat{I}_5)_y + f_6(\vec{b}_6 x \hat{I}_6)_y
-	\end{align}
-\end{ceqn}
-\begin{ceqn}
-	\begin{align}
-	(M_e)_z = f_1(\vec{b}_1 x \hat{I}_1)_z + f_2(\vec{b}_2 x \hat{I}_2)_z + f_3(\vec{b}_3 x \hat{I}_3)_z + f_4(\vec{b}_4 x \hat{I}_4)_z + f_5(\vec{b}_5 x \hat{I}_5)_z + f_6(\vec{b}_6 x \hat{I}_6)_z
-	\end{align}
-\end{ceqn}
-
-where $(M_e)_x$, $(M_e)_y$ and $(M_e)_z$ are the external moments on the platform  about the three coordinate axes of B. Combining the equations the relationship between the external wrench and the forces experienced by the legs can be expressed as follows:
+The forces experienced by the legs can be expressed as:
 \begin{ceqn}
 \begin{align}
 	\begin{Bmatrix}
@@ -717,8 +634,17 @@ where $(M_e)_x$, $(M_e)_y$ and $(M_e)_z$ are the external moments on the platfor
 \end{align}
 \end{ceqn}
 
- 
-\subsubsection{Velocity Measurement}
+Where 
+\begin{itemize}
+\item $\vec{F}_e $ - external force applied to the platform
+\item $\vec{M}_e$ - external moment applied to the platform
+\item H - transformation matrix which relates measured forces and applied forces
+\item F - axial force
+\end{itemize}  
+The derivation has been done and is presented in the appendix.
+
+
+\subsection{Velocity Measurement}
 An important part in wind tunnel measurements is the measure of pressure at specific points in the wind tunnel and computing the corresponding air speed. This is achieved by the use of a pitot probe. 
 \begin{center}
 \begin{figure}[H]
@@ -727,7 +653,7 @@ An important part in wind tunnel measurements is the measure of pressure at spec
 \caption[Pitot-static tube]{Pitot-static tube \cite{viquerat_continuous_2006}}
 \end{figure}
 \end{center}
-For steady flow of an incompressible fluid for which viscosity can be neglected, the fundamental equation has the form:
+For steady flow of an incompressible fluid for which viscosity can be neglected, the fundamental equation has the form\cite{viquerat_continuous_2006}:
 
 \begin{ceqn}
 	\begin{align}
