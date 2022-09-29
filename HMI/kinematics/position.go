@@ -4,10 +4,13 @@ import (
 	"fmt"
 	"log"
 
+	g "github.com/AllenDang/giu"
 	"github.com/golang/protobuf/proto"
 	"github.com/sammyoina/stewart-platform-ui/pipeline"
 	"github.com/sammyoina/stewart-platform-ui/queue"
 )
+
+var ErrorMessage string
 
 func SetOrientation(yaw float64, pitch float64, roll float64, x float64, y float64, z float64) {
 	yaw = d2r(yaw)
@@ -17,6 +20,7 @@ func SetOrientation(yaw float64, pitch float64, roll float64, x float64, y float
 	pos, err := plat.Calculate(yaw, roll, pitch, x, y, z)
 	if err != nil {
 		log.Println(err)
+		g.Msgbox("Error", err.Error())
 		return
 	}
 	fmt.Println("pos", pos.Servo1, pos.Servo2, pos.Servo3, pos.Servo4, pos.Servo5, pos.Servo6)
@@ -29,6 +33,7 @@ func SetOrientation(yaw float64, pitch float64, roll float64, x float64, y float
 	message, err := proto.Marshal(pos)
 	if err != nil {
 		log.Println(err)
+		g.Msgbox("Error", err.Error())
 		return
 	}
 	q.Enqueue(message)

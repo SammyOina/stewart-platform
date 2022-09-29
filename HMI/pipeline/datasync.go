@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	g "github.com/AllenDang/giu"
 	"github.com/gorilla/websocket"
 	"github.com/sammyoina/stewart-platform-ui/api"
 	"github.com/sammyoina/stewart-platform-ui/models"
@@ -45,20 +46,20 @@ type STDSender struct {
 
 func (h *STDSender) StartOutputting(q queue.Queue) {
 	fmt.Println("Start sending")
-	//for {
 	for message, ok := q.Dequeue(); ok == true; message, ok = q.Dequeue() {
 
 		h.conn = api.WebsocketConn
 		if h.conn == nil {
-			fmt.Println("Conn not established yet")
+			err := fmt.Errorf("Connection not established yet")
+			g.Msgbox("Error", err.Error())
 			break
 		}
 		err := h.conn.WriteMessage(websocket.BinaryMessage, message)
 		if err != nil {
 			fmt.Println("err: ", err)
+			g.Msgbox("Error", err.Error())
 			break
 		}
 		fmt.Println("Message sent: ", string(message), len(message))
 	}
-	//}
 }

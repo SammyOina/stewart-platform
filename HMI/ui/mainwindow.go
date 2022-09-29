@@ -37,7 +37,23 @@ func Rotate() {
 }
 
 func Loop() {
-	g.SingleWindowWithMenuBar().Layout(
+	mainWindow()
+}
+
+func mainWindow() *g.WindowWidget {
+	w := g.SingleWindowWithMenuBar()
+	w.Layout(
+		g.MenuBar().Layout(
+			g.Menu("Run Tests").Layout(
+				g.MenuItem("Roll Test").OnClick(kinematics.TestPlatformRoll),
+				g.MenuItem("Yaw Test").OnClick(kinematics.TestPlatformYaw),
+				g.MenuItem("Pitch Test").OnClick(kinematics.TestPlatformPitch),
+				g.MenuItem("X Translation Test").OnClick(kinematics.TestPlatformXTrans),
+				g.MenuItem("Y Translation Test").OnClick(kinematics.TestPlatformYTrans),
+				g.MenuItem("Z Translation Test").OnClick(kinematics.TestPlatformZTrans),
+			),
+		),
+		g.PrepareMsgbox(),
 		g.SplitLayout(g.DirectionVertical, tabheight,
 			g.SplitLayout(g.DirectionHorizontal, tabwidth,
 				g.Layout{
@@ -85,4 +101,5 @@ func Loop() {
 			},
 		),
 	)
+	return w
 }
