@@ -18,18 +18,22 @@ const (
 )
 
 type stewartPlatform struct {
-	Beta               *mat.Dense
-	PsiBase            *mat.Dense
-	PsiPlatform        *mat.Dense
-	BaseAttachment     mat.Matrix
-	PlatformAttachment mat.Matrix
-	PlatformRadius     float64
-	BaseRadius         float64
-	GammaBase          float64
-	GammaPlatform      float64
-	ServoHornLength    float64
-	RodLength          float64
-	HomePosition       *mat.Dense
+	Beta                      *mat.Dense
+	PsiBase                   *mat.Dense
+	PsiPlatform               *mat.Dense
+	BaseAttachment            mat.Matrix
+	PlatformAttachment        mat.Matrix
+	PlatformRadius            float64
+	BaseRadius                float64
+	GammaBase                 float64
+	GammaPlatform             float64
+	ServoHornLength           float64
+	RodLength                 float64
+	HomePosition              *mat.Dense
+	LegUnitVector             *mat.Dense
+	LegVector                 mat.Matrix
+	Bvector                   *mat.Dense
+	ForceTransformationMatrix *mat.Dense
 }
 
 func NewStewartPlatform(baseRadius float64, PlatformRadius float64, GammaBase float64, GammaPlatform float64, ServoHornLength float64, RodLength float64, offset float64) stewartPlatform {
@@ -178,6 +182,12 @@ func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, tr
 	}
 	L := mat.NewDense(3, 6, nil)
 	L.Add(l, p.BaseAttachment)
+	p.LegVector = L
+
+	for column := 0; column < 6; column++ {
+		li := GetUnitVector([]float64{p.LegVector.At(0, column), p.LegVector.At(1, column), p.LegVector.At(2, column)})
+		p.LegUnitVector.SetCol(column, li)
+	}
 	lx := l.RowView(0).T()
 	ly := l.RowView(1).T()
 	lz := l.RowView(2).T()
@@ -195,6 +205,11 @@ func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, tr
 	for i := 0; i < 6; i++ {
 		fk := 2 * p.ServoHornLength * (math.Cos(p.Beta.At(0, i)*lx.At(0, i) + math.Sin(p.Beta.At(0, i)*ly.At(0, i))))
 		angles[i] = math.Asin(g.At(0, i)/math.Sqrt(math.Pow(e.At(0, i), 2)+math.Pow(fk, 2))) - math.Atan2(fk, e.At(0, i))
+		p.Bvector.SetCol(i, []float64{
+			p.ServoHornLength*math.Cos(angles[i])*math.Cos(p.Beta.At(0, i)) + p.BaseAttachment.At(0, i),
+			p.ServoHornLength*math.Cos(angles[i])*math.Sin(p.Beta.At(0, i)) + p.BaseAttachment.At(1, i),
+			p.ServoHornLength * math.Sin(angles[i]),
+		})
 		angles[i] = r2d(angles[i])
 		if math.IsInf(angles[i], 0) || math.IsNaN(angles[i]) {
 			return nil, fmt.Errorf("nan or inf angle on servo %d", i)
@@ -221,4 +236,9 @@ func elementWiseSquare(i, j int, v float64) float64 {
 func matPrint(X mat.Matrix) {
 	fa := mat.Formatted(X, mat.Prefix(""), mat.Squeeze())
 	fmt.Printf("%v\n", fa)
+}
+
+func GetUnitVector(vector []float64) []float64 {
+	magnitude := math.Sqrt(math.Pow(vector[0], 2) + math.Pow(vector[1], 2) + math.Pow(vector[2], 2))
+	return []float64{vector[0] / magnitude, vector[1] / magnitude, vector[2] / magnitude}
 }

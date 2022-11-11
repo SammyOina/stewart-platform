@@ -12,12 +12,14 @@ import (
 
 var ErrorMessage string
 
+var Platform stewartPlatform = NewStewartPlatform(BASE_RADIUS, PLATFORM_RADIUS, d2r(HALF_ANGLE_BETWEEN_BASE), d2r(HALF_ANGLE_BETWEEN_PLATFORM), SERVO_HORN_LENGTH, ROD_LENGTH, 0)
+
 func SetOrientation(yaw float64, pitch float64, roll float64, x float64, y float64, z float64) {
 	yaw = d2r(yaw)
 	pitch = d2r(pitch)
 	roll = d2r(roll)
-	plat := NewStewartPlatform(BASE_RADIUS, PLATFORM_RADIUS, d2r(HALF_ANGLE_BETWEEN_BASE), d2r(HALF_ANGLE_BETWEEN_PLATFORM), SERVO_HORN_LENGTH, ROD_LENGTH, 0)
-	pos, err := plat.Calculate(yaw, roll, pitch, x, y, z)
+	//plat := NewStewartPlatform(BASE_RADIUS, PLATFORM_RADIUS, d2r(HALF_ANGLE_BETWEEN_BASE), d2r(HALF_ANGLE_BETWEEN_PLATFORM), SERVO_HORN_LENGTH, ROD_LENGTH, 0)
+	pos, err := Platform.Calculate(yaw, roll, pitch, x, y, z)
 	if err != nil {
 		log.Println(err)
 		g.Msgbox("Error", err.Error())

@@ -57,7 +57,7 @@ void printRes(uint8_t *payload, size_t len) {
 						break;
 				}
 				Serial.println(angle);
- 				if (i != 0 && i != 1 && i != 5) {
+ 				if (i != 0 && i != 2 && i != 4) {
  					WriteServoPosition(i, angle, false);
  				}else{
  					WriteServoPosition(i, angle, true);
