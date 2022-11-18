@@ -10,10 +10,29 @@ import (
 	"github.com/sammyoina/stewart-platform-ui/api"
 	"github.com/sammyoina/stewart-platform-ui/models"
 	"github.com/sammyoina/stewart-platform-ui/queue"
+	"github.com/sammyoina/stewart-platform-ui/state"
 	"google.golang.org/protobuf/proto"
 )
 
+var (
+	Fx                  []float64
+	Fy                  []float64
+	Fz                  []float64
+	Mx                  []float64
+	My                  []float64
+	Mz                  []float64
+	IntakeVelocity      []float64
+	TestSectionVelocity []float64
+	DiffuserVelocity    []float64
+)
+
 type STDSync struct {
+}
+
+var currentState state.SystemState
+
+func init() {
+	currentState = *state.NewState()
 }
 
 func (o *STDSync) StartOutputting(q queue.Queue) {
@@ -38,6 +57,16 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 			}
 		}
 	}
+}
+
+func PitotToUi(diffuser float32, intake float32, testSection float32) {
+	var k int = 1
+	IntakeVelocity = append(IntakeVelocity[k:], IntakeVelocity[0:k]...)
+	IntakeVelocity[len(IntakeVelocity)-1] = float64(intake)
+	DiffuserVelocity = append(DiffuserVelocity[k:], DiffuserVelocity[0:k]...)
+	DiffuserVelocity[len(DiffuserVelocity)-1] = float64(diffuser)
+	TestSectionVelocity = append(TestSectionVelocity[k:], TestSectionVelocity[0:k]...)
+	TestSectionVelocity[len(TestSectionVelocity)-1] = float64(testSection)
 }
 
 type STDSender struct {
