@@ -56,11 +56,13 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 			}
 			switch event := e.Event.(type) {
 			case *models.SensorEvent_IMUEvent:
+				imuToUi(event.IMUEvent.Yaw, event.IMUEvent.Pitch, event.IMUEvent.Roll)
 				fmt.Println("got data: ", event.IMUEvent.Pitch, event.IMUEvent.Yaw, event.IMUEvent.Roll)
 			case *models.SensorEvent_PitotEvent:
-				PitotToUi(event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
+				pitotToUi(event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
 				fmt.Println("got data: ", event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
 			case *models.SensorEvent_StrainEvent:
+				forcesToUi(event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
 				fmt.Println("got data: ", event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
 			default:
 				fmt.Println("no sensor event found")
@@ -70,7 +72,7 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 	}
 }
 
-func PitotToUi(diffuser float32, intake float32, testSection float32) {
+func pitotToUi(diffuser float32, intake float32, testSection float32) {
 	var k int = 1
 	IntakeVelocity = append(IntakeVelocity[k:], IntakeVelocity[0:k]...)
 	IntakeVelocity[len(IntakeVelocity)-1] = float64(intake)
@@ -80,7 +82,7 @@ func PitotToUi(diffuser float32, intake float32, testSection float32) {
 	TestSectionVelocity[len(TestSectionVelocity)-1] = float64(testSection)
 }
 
-func ForcesToUi(f1 float32, f2 float32, f3 float32, f4 float32, f5 float32, f6 float32) {
+func forcesToUi(f1 float32, f2 float32, f3 float32, f4 float32, f5 float32, f6 float32) {
 	var k int = 1
 	f1 = f1 / float32(calibration.CalibrationFactor)
 	f2 = f2 / float32(calibration.CalibrationFactor)
@@ -124,6 +126,16 @@ func ForcesToUi(f1 float32, f2 float32, f3 float32, f4 float32, f5 float32, f6 f
 	Mz = append(Mz[k:], Mz[0:k]...)
 	Mz[len(Mz)-1] = FandM[5]
 	calibration.CalibrationLoads = Fz
+}
+
+func imuToUi(yaw float32, pitch float32, roll float32) {
+	var k int = 1
+	Yaw = append(Yaw[k:], Yaw[0:k]...)
+	Pitch = append(Pitch[k:], Pitch[0:k]...)
+	Roll = append(Roll[k:], Roll[0:k]...)
+	Yaw[len(Yaw)-1] = float64(yaw)
+	Roll[len(Roll)-1] = float64(roll)
+	Pitch[len(Pitch)-1] = float64(pitch)
 }
 
 type STDSender struct {

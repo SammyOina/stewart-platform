@@ -41,6 +41,7 @@ unsigned long timer = 0;
 WebSocketsClient webSocket;
 
 uint8_t buffer[128];
+float angRec[6];
 bool status;
 
 HardwareSerial modbusSerial = Serial2;
@@ -51,9 +52,9 @@ modbusMaster diffuserPitot;
 byte AddressIntake = 0x02;
 byte AddressDiffuser = 0x01;
 
-//QueueHandle_t servoPositionQueue;
+QueueHandle_t servoPositionQueue;
 
-//void TaskServoWriter(void * pvParameters);
+void TaskServoWriter(void * pvParameters);
 
 void tare() {
   bool tareSuccessful = false;
@@ -98,13 +99,16 @@ void printRes(uint8_t *payload, size_t len) {
 						angle = message.servo6;
 						break;
 				}
-				Serial.println(angle);
+				angRec[i] = angle;
+				/*Serial.println(angle);
  				if (i != 0 && i != 2 && i != 4) {
  					WriteServoPosition(i, angle, false);
  				}else{
  					WriteServoPosition(i, angle, true);
- 				}
+ 				}*/
  			}
+		xQueueSend(servoPositionQueue, &angRec, portMAX_DELAY);
+
 	}
 }
 
@@ -182,13 +186,13 @@ void setup()
 	// try ever 5000 again if connection has failed
 	webSocket.setReconnectInterval(5000);
 
-	//servoPositionQueue = xQueueCreate(2, sizeof(buffer));
+	servoPositionQueue = xQueueCreate(2, sizeof(angRec));
 
-	//if (servoPositionQueue == NULL) {
-	//	Serial.println("Failed to create queue");
-	//}
+	if (servoPositionQueue == NULL) {
+		Serial.println("Failed to create queue");
+	}
 
-	//xTaskCreate(TaskServoWriter, "Write_servo_task", 128, NULL, 1, NULL);
+	xTaskCreate(TaskServoWriter, "Write_servo_task", 1000, NULL, 1, NULL);
 	modbusSerial.begin(9600);
 	intakePitot.begin(AddressIntake, modbusSerial);
 	diffuserPitot.begin(AddressDiffuser, modbusSerial);
@@ -320,45 +324,18 @@ void loop()
 	webSocket.loop();
 }
 
-/*void TaskServoWriter(void * pvParameters){
-	uint8_t buf[128];
-	bool status;
+void TaskServoWriter(void * pvParameters){
+	float angTargets[6];
 	while (true) {
-		if (xQueueReceive(servoPositionQueue, &buffer, portMAX_DELAY) == pdPASS) {
-			ServoPositionEvent message = ServoPositionEvent_init_zero;
-        
-        	pb_istream_t stream = pb_istream_from_buffer(buf, sizeof(buf));
-        
-        	status = pb_decode(&stream, ServoPositionEvent_fields, &message);
-			Serial.println(message.servo1);
-        
-	        if (!status)
-    	    {
-        	    printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
-            	continue;
-        	}
-			for (int i=0; i < 6; i++){
-				float angle;
-				switch (i){
-					case 0:
-						angle = message.servo1;
-					case 1:
-						angle = message.servo2;
-					case 2:
-						angle = message.servo3;
-					case 3:
-						angle = message.servo4;
-					case 4:
-						angle = message.servo5;
-					case 5:
-						angle = message.servo6;
-				}
- 				if (i != 0 && i != 4 && i != 5) {
- 					WriteServoPosition(i, angle, false);
+		if (xQueueReceive(servoPositionQueue, &angTargets, portMAX_DELAY) == pdPASS) {
+			Serial.print("new position");
+			for (int i = 0; i < 6; i++){
+				if (i != 0 && i != 2 && i != 4) {
+ 					WriteServoPosition(i, angTargets[i], false);
  				}else{
- 					WriteServoPosition(i, angle, true);
+ 					WriteServoPosition(i, angTargets[i], true);
  				}
- 			}
+			}
 		}
 	}
-}*/
+}

@@ -14,7 +14,7 @@ func (p *StewartPlatform) GetForceTransformationMatrix() {
 			ftm.SetRow(i, row)
 		}
 		for i := 3; i < 6; i++ {
-			row := bi.RawRowView(i)
+			row := bi.RawRowView(i - 3)
 			ftm.SetRow(i, row)
 		}
 		p.ForceTransformationMatrix = ftm
