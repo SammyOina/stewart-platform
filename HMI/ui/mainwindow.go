@@ -49,7 +49,7 @@ func mainWindow() *g.WindowWidget {
 		g.SplitLayout(g.DirectionVertical, tabheight,
 			g.SplitLayout(g.DirectionHorizontal, tabwidth,
 				g.Layout{
-					g.Label("Rotation Angles"),
+					g.Label("Rotation Angles (deg)"),
 					g.Row(
 						g.VSliderInt(&Yaw, -20, 20).Label("Yaw").Size(40, 110),
 						g.VSliderInt(&Pitch, -22, 24).Label("Pitch").Size(40, 110),
@@ -92,7 +92,7 @@ func mainWindow() *g.WindowWidget {
 				),
 			),
 			g.Layout{
-				g.Plot("Strain Data").AxisLimits(0, 100, -1.2, 1.2, g.ConditionOnce).XTicks(lineTicks, false).Plots(
+				g.Plot("Aerodynamic Loads (N)").AxisLimits(0, 100, -1.2, 1.2, g.ConditionOnce).XTicks(lineTicks, false).Plots(
 					g.PlotLine("Force X", pipeline.Fx),
 					g.PlotLine("Force Y", pipeline.Fy),
 					g.PlotLine("Force Z", pipeline.Fz),
@@ -100,15 +100,26 @@ func mainWindow() *g.WindowWidget {
 					g.PlotLine("Moment Y", pipeline.My),
 					g.PlotLine("Moment Z", pipeline.Mz),
 				),
-				g.Plot("Air velocity").AxisLimits(0, 100, -2, 2, g.ConditionOnce).XTicks(lineTicks, false).Plots(
-					g.PlotScatter("velocity(m/s)", pipeline.IntakeVelocity),
+				g.Plot("Air velocity (m/s)").AxisLimits(0, 100, -2, 10, g.ConditionOnce).XTicks(lineTicks, false).Plots(
+					g.PlotScatter("Intake", pipeline.IntakeVelocity),
+					g.PlotScatter("Test Section", pipeline.TestSectionVelocity),
+					g.PlotScatter("Diffuser", pipeline.DiffuserVelocity),
+				),
+				g.Plot("Raw Strain Loads (g)").AxisLimits(0, 100, -1000, 1000, g.ConditionOnce).XTicks(lineTicks, false).Plots(
+					g.PlotLine("Strain 1", pipeline.Strain1),
+					g.PlotLine("Strain 2", pipeline.Strain2),
+					g.PlotLine("Strain 3", pipeline.Strain3),
+					g.PlotLine("Strain 4", pipeline.Strain4),
+					g.PlotLine("Strain 5", pipeline.Strain5),
+					g.PlotLine("Strain 6", pipeline.Strain6),
+				),
+				g.Plot("IMU Orientation (Deg)").AxisLimits(0, 100, -50, 50, g.ConditionOnce).XTicks(lineTicks, false).Plots(
+					g.PlotLine("yaw", pipeline.Yaw),
+					g.PlotLine("pitch", pipeline.Pitch),
+					g.PlotLine("roll", pipeline.Roll),
 				),
 			},
 		),
 	)
 	return w
-}
-
-func CalibrationPopUp() {
-	g.OpenPopup("CalibrationPop")
 }

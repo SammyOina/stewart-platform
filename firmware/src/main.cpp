@@ -193,6 +193,7 @@ void setup()
 	intakePitot.begin(AddressIntake, modbusSerial);
 	diffuserPitot.begin(AddressDiffuser, modbusSerial);
 
+	Wire.begin();
 	byte status = mpu.begin();
   	Serial.print(F("MPU6050 status: "));
   	Serial.println(status);
@@ -229,8 +230,49 @@ void loop()
 		}
 		timer = millis();
 	}
+	delay(100);
+	SensorEvent pitotReading = SensorEvent_init_zero;
+		pitotReading.which_event = SensorEvent_pitotEvent_tag;
+		pitotReading.event.pitotEvent.intakePitot = 5;
+		pitotReading.event.pitotEvent.diffuserPitot = 3;
+		pitotReading.event.pitotEvent.testSectionPitot = 2;
+
+		pb_ostream_t stream2 = pb_ostream_from_buffer(buffer, sizeof(buffer));
+    	if (!pb_encode(&stream2, SensorEvent_fields, &pitotReading))
+    	{
+        	Serial.println("failed to encode temp proto");
+        	Serial.println(PB_GET_ERROR(&stream2));
+        	return;
+    	}
+		if (webSocket.isConnected()){
+			//Serial.println("sending message...");
+			webSocket.sendBIN(buffer, stream2.bytes_written);
+			//delay(1000);
+		}
+		delay(100);
+		SensorEvent strains = SensorEvent_init_zero;
+		strains.which_event = SensorEvent_strainEvent_tag;
+		strains.event.strainEvent.strain1 = 0.5;
+		strains.event.strainEvent.strain2 = 1.5;
+		strains.event.strainEvent.strain3 = 2.5;
+		strains.event.strainEvent.strain4 = 3.5;
+		strains.event.strainEvent.strain5 = 6.5;
+		strains.event.strainEvent.strain6 = 7.5;
+		pb_ostream_t stream1 = pb_ostream_from_buffer(buffer, sizeof(buffer));
+    	if (!pb_encode(&stream1, SensorEvent_fields, &strains))
+    	{
+    		Serial.println("failed to encode temp proto");
+    		Serial.println(PB_GET_ERROR(&stream1));
+    		return;
+    	}
+		if (webSocket.isConnected()){
+			//Serial.println("sending message...");
+			webSocket.sendBIN(buffer, stream1.bytes_written);
+			//delay(1000);
+		}
+		delay(100);
 	
-	bool gotReadingIntake = intakePitot.getRegisters(0x03, 0x00, 3);
+	/*bool gotReadingIntake = intakePitot.getRegisters(0x03, 0x00, 3);
 	bool gotReadingDiffuser = diffuserPitot.getRegisters(0x03, 0x00,3);
 	if (gotReadingIntake && gotReadingDiffuser) {
 		SensorEvent pitotReading = SensorEvent_init_zero;
@@ -273,7 +315,7 @@ void loop()
 			webSocket.sendBIN(buffer, stream.bytes_written);
 			//delay(1000);
 		}
-		}
+		}*/
 	
 	webSocket.loop();
 }

@@ -7,7 +7,7 @@ import (
 )
 
 var CalibrationFactor float64
-var CalibrationLoads [100]float64
+var CalibrationLoads []float64
 var CalibrationRef float32
 
 func init() {
@@ -21,7 +21,7 @@ func CalibratePlatform() {
 		sum += val
 	}
 	average := sum / float64(len(CalibrationLoads))
-	CalibrationFactor = average / float64(CalibrationRef)
+	CalibrationFactor = average / (float64(CalibrationRef) * 0.00981)
 	fmt.Println("New Calibration Factor: ", CalibrationFactor)
 	g.CloseCurrentPopup()
 }

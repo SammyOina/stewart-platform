@@ -137,6 +137,8 @@ func NewStewartPlatform(baseRadius float64, PlatformRadius float64, GammaBase fl
 	Platform.HomePosition = mat.NewDense(1, 3, nil)
 	fmt.Println("Home: ", z.At(0, 0))
 	Platform.HomePosition.SetRow(0, []float64{0, 0, z.At(0, 0)})
+	Platform.Bvector = mat.NewDense(3, 6, nil)
+	Platform.LegUnitVector = mat.NewDense(3, 6, nil)
 	return Platform
 }
 
