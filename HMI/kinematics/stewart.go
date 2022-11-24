@@ -8,16 +8,7 @@ import (
 	"gonum.org/v1/gonum/mat"
 )
 
-const (
-	ROD_LENGTH                  float64 = 14.0
-	BASE_RADIUS                 float64 = 15.0
-	PLATFORM_RADIUS             float64 = 10.0
-	SERVO_HORN_LENGTH           float64 = 4.5
-	HALF_ANGLE_BETWEEN_BASE     float64 = 13
-	HALF_ANGLE_BETWEEN_PLATFORM float64 = 13
-)
-
-type stewartPlatform struct {
+type StewartPlatform struct {
 	Beta                      *mat.Dense
 	PsiBase                   *mat.Dense
 	PsiPlatform               *mat.Dense
@@ -36,8 +27,8 @@ type stewartPlatform struct {
 	ForceTransformationMatrix *mat.Dense
 }
 
-func NewStewartPlatform(baseRadius float64, PlatformRadius float64, GammaBase float64, GammaPlatform float64, ServoHornLength float64, RodLength float64, offset float64) stewartPlatform {
-	var Platform stewartPlatform
+func NewStewartPlatform(baseRadius float64, PlatformRadius float64, GammaBase float64, GammaPlatform float64, ServoHornLength float64, RodLength float64, offset float64) StewartPlatform {
+	var Platform StewartPlatform
 	Platform.Beta = mat.NewDense(1, 6, nil)
 	Platform.Beta.SetRow(0, []float64{
 		math.Pi/2 + math.Pi,
@@ -146,10 +137,13 @@ func NewStewartPlatform(baseRadius float64, PlatformRadius float64, GammaBase fl
 	Platform.HomePosition = mat.NewDense(1, 3, nil)
 	fmt.Println("Home: ", z.At(0, 0))
 	Platform.HomePosition.SetRow(0, []float64{0, 0, z.At(0, 0)})
+	Platform.Bvector = mat.NewDense(3, 6, nil)
+	Platform.LegUnitVector = mat.NewDense(3, 6, nil)
+	Platform.LegVector = mat.NewDense(3, 6, nil)
 	return Platform
 }
 
-func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, transx float64, transy float64, transz float64) (*models.ServoPositionEvent, error) {
+func (p *StewartPlatform) Calculate(yaw float64, roll float64, pitch float64, transx float64, transy float64, transz float64) (*models.ServoPositionEvent, error) {
 	rots := mat.NewDense(3, 1, nil)
 	rots.SetCol(0, []float64{yaw, pitch, roll})
 	transl := mat.NewDense(3, 1, nil)
@@ -210,7 +204,7 @@ func (p *stewartPlatform) Calculate(yaw float64, roll float64, pitch float64, tr
 			p.ServoHornLength*math.Cos(angles[i])*math.Sin(p.Beta.At(0, i)) + p.BaseAttachment.At(1, i),
 			p.ServoHornLength * math.Sin(angles[i]),
 		})
-		angles[i] = r2d(angles[i])
+		angles[i] = R2d(angles[i])
 		if math.IsInf(angles[i], 0) || math.IsNaN(angles[i]) {
 			return nil, fmt.Errorf("nan or inf angle on servo %d", i)
 		}
