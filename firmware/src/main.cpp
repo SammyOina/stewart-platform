@@ -6,11 +6,12 @@
 #include <pb_common.h>
 #include <pb_decode.h>
 #include <pb_encode.h>
-#include "servos.h"
+//#include "servos.h"
 #include <SensorModbusMaster.h>
 #include "Wire.h"
 #include <MPU6050_light.h>
 #include <HX711-multi.h>
+#include <stewart_servo.h>
 
 #define STRAIN_CLK 5
 #define STRAIN_1 26
@@ -165,7 +166,7 @@ void setup()
     delay(100);
 
 	//servo init
-	AttachServos();
+	//AttachServos();
 
     WiFi.begin(ssid, password);
 
@@ -192,7 +193,7 @@ void setup()
 		Serial.println("Failed to create queue");
 	}
 
-	xTaskCreate(TaskServoWriter, "Write_servo_task", 1000, NULL, 1, NULL);
+	xTaskCreate(TaskServoWriter, "Write_servo_task", 2000, NULL, 1, NULL);
 	modbusSerial.begin(9600);
 	intakePitot.begin(AddressIntake, modbusSerial);
 	diffuserPitot.begin(AddressDiffuser, modbusSerial);
@@ -326,16 +327,29 @@ void loop()
 
 void TaskServoWriter(void * pvParameters){
 	float angTargets[6];
+	int servo_pins[6] = {33,32,19,4,23,18};
+	stewart_servo stewartServo(servo_pins, 20,1);
+	stewartServo.invert_servo(0);
+	stewartServo.invert_servo(2);
+	stewartServo.invert_servo(4);
+	stewartServo.init();
+
 	while (true) {
-		if (xQueueReceive(servoPositionQueue, &angTargets, portMAX_DELAY) == pdPASS) {
-			Serial.print("new position");
-			for (int i = 0; i < 6; i++){
+		if (xQueueReceive(servoPositionQueue, &angTargets, 1000) == pdPASS) {
+			stewartServo.set_target_angles(angTargets);
+			Serial.println("new position");
+			/*for (int i = 0; i < 6; i++){
 				if (i != 0 && i != 2 && i != 4) {
  					WriteServoPosition(i, angTargets[i], false);
  				}else{
  					WriteServoPosition(i, angTargets[i], true);
  				}
-			}
+			}*/
+		}
+		if (stewartServo.drive() != true){
+			Serial.println("moving to position");
+		}else{
+			Serial.println("in position");
 		}
 	}
 }
