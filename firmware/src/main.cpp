@@ -170,11 +170,11 @@ void setup()
 
     WiFi.begin(ssid, password);
 
-    while (WiFi.status() != WL_CONNECTED)
-    {
+    /*while (WiFi.status() != WL_CONNECTED)
+    {*/
         Serial.println("WIFI connection failed, reconnecting...");
         delay(500);
-    }
+    //}
     
 
 	//webSocket.setExtraHeaders(0);
@@ -255,7 +255,7 @@ void loop()
 			//delay(1000);
 		}
 		delay(100);
-		SensorEvent strains = SensorEvent_init_zero;
+		/*SensorEvent strains = SensorEvent_init_zero;
 		strains.which_event = SensorEvent_strainEvent_tag;
 		strains.event.strainEvent.strain1 = 0.5;
 		strains.event.strainEvent.strain2 = 1.5;
@@ -275,7 +275,7 @@ void loop()
 			webSocket.sendBIN(buffer, stream1.bytes_written);
 			//delay(1000);
 		}
-		delay(100);
+		delay(100);*/
 	
 	/*bool gotReadingIntake = intakePitot.getRegisters(0x03, 0x00, 3);
 	bool gotReadingDiffuser = diffuserPitot.getRegisters(0x03, 0x00,3);
@@ -297,9 +297,16 @@ void loop()
 			webSocket.sendBIN(buffer, stream.bytes_written);
 			//delay(1000);
 		}
-	}
+	}*/
 	if (scales.is_ready()){
 		scales.read(strain_results);
+		for (int i = 0; i <6; i++){
+			Serial.print("strain");
+			Serial.print(i);
+			Serial.print(" ");
+			Serial.println(strain_results[i]);
+			delay(100);
+		}
 		SensorEvent strains = SensorEvent_init_zero;
 		strains.which_event = SensorEvent_strainEvent_tag;
 		strains.event.strainEvent.strain1 = strain_results[0];
@@ -320,7 +327,7 @@ void loop()
 			webSocket.sendBIN(buffer, stream.bytes_written);
 			//delay(1000);
 		}
-		}*/
+		}
 	
 	webSocket.loop();
 }
@@ -348,6 +355,7 @@ void TaskServoWriter(void * pvParameters){
 		}
 		if (stewartServo.drive() != true){
 			Serial.println("moving to position");
+			tare();
 		}else{
 			Serial.println("in position");
 		}
