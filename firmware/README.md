@@ -1,5 +1,9 @@
 ## Library Modifications
-comment out `_client.extraHeaders = WEBSOCKETS_STRING("Origin: file://");` line 32 from the `WebSocketsClient.cpp` located in the `.pio/libdeps` dir 
+comment out 
+```
+ _client.extraHeaders = WEBSOCKETS_STRING("Origin: file://");
+ ``` 
+line 32 from the `WebSocketsClient.cpp` located in the `.pio/libdeps` dir 
 
 UNCOMMENT OUT 
 ```
