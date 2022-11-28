@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "WiFi.h"
+//#include "WiFi.h"
 #include <WebSocketsClient.h>
 #include <events.pb.h>
 #include <pb.h>
@@ -12,6 +12,7 @@
 #include <MPU6050_light.h>
 #include <HX711-multi.h>
 #include <stewart_servo.h>
+#include <WiFiManager.h>
 
 #define STRAIN_CLK 5
 #define STRAIN_1 26
@@ -20,6 +21,8 @@
 #define STRAIN_4 25
 #define STRAIN_5 12
 #define STRAIN_6 14
+
+WiFiManager wm;
 
 #define TARE_TIMEOUT 4
 
@@ -160,20 +163,28 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
 void setup()
 {
     Serial.begin(115200);
-	tare();
+	//tare();
     WiFi.mode(WIFI_STA); // Make this the client (the server is WIFI_AP)
 
     delay(100);
 
+	wm.setConfigPortalBlocking(false);
+	if(wm.autoConnect("AutoConnectAP")){
+        Serial.println("connected...yeey :)");
+    }
+    else {
+        Serial.println("Configportal running");
+    }
+
 	//servo init
 	//AttachServos();
 
-    WiFi.begin(ssid, password);
+    //WiFi.begin(ssid, password);
 
     /*while (WiFi.status() != WL_CONNECTED)
     {*/
-        Serial.println("WIFI connection failed, reconnecting...");
-        delay(500);
+        //Serial.println("WIFI connection failed, reconnecting...");
+        //delay(500);
     //}
     
 
@@ -193,7 +204,7 @@ void setup()
 		Serial.println("Failed to create queue");
 	}
 
-	xTaskCreate(TaskServoWriter, "Write_servo_task", 2000, NULL, 1, NULL);
+	xTaskCreatePinnedToCore(TaskServoWriter, "Write_servo_task", 2048, NULL, 1, NULL, 1);
 	modbusSerial.begin(9600);
 	intakePitot.begin(AddressIntake, modbusSerial);
 	diffuserPitot.begin(AddressDiffuser, modbusSerial);
@@ -209,6 +220,7 @@ void setup()
   	// mpu.upsideDownMounting = true; // uncomment this line if the MPU6050 is mounted upside-down
   	mpu.calcOffsets(); // gyro and accelero
   	Serial.println("Done!\n");
+	tare();
 }
 
 void loop()
@@ -330,6 +342,7 @@ void loop()
 		}
 	
 	webSocket.loop();
+	wm.process();
 }
 
 void TaskServoWriter(void * pvParameters){
