@@ -13,7 +13,7 @@ void stewart_servo::init(){
     for(int i = 0; i < 6; i++){
         this->servos[i].attach(this->servo_pins[i]);
         //this->currentAngles[i] = this->servos[i].read();
-        this->currentAngles[i] = 90;
+        this->currentAngles[i] = this->servos[i].read();
         this->targetAngles[i] = 90;
     }
 }
