@@ -1,12 +1,10 @@
 #include <Arduino.h>
-//#include "WiFi.h"
 #include <WebSocketsClient.h>
 #include <events.pb.h>
 #include <pb.h>
 #include <pb_common.h>
 #include <pb_decode.h>
 #include <pb_encode.h>
-//#include "servos.h"
 #include <SensorModbusMaster.h>
 #include "Wire.h"
 #include <MPU6050_light.h>
@@ -25,8 +23,11 @@
 WiFiManager wm;
 
 #define TARE_TIMEOUT 4
+bool mpuActive;
+bool intakePitotActive;
+bool diffuserPitotActive;
 
-byte DOUTS[1] = {STRAIN_1/*, STRAIN_2, STRAIN_3, STRAIN_4, STRAIN_5, STRAIN_6*/};
+byte DOUTS[6] = {STRAIN_1, STRAIN_2, STRAIN_3, STRAIN_4, STRAIN_5, STRAIN_6};
 
 #define CHANNEL_COUNT sizeof(DOUTS) / sizeof(byte)
 
@@ -58,12 +59,13 @@ QueueHandle_t servoPositionQueue;
 
 void TaskServoWriter(void *pvParameters);
 
-void configModeCallback (WiFiManager *myWiFiManager) {
-  Serial.println("Entered config mode");
-  Serial.println(WiFi.softAPIP());
-  //if you used auto generated SSID, print it
-  Serial.println(myWiFiManager->getConfigPortalSSID());
-  //entered config mode, make led toggle faster
+void configModeCallback(WiFiManager *myWiFiManager)
+{
+	Serial.println("Entered config mode");
+	Serial.println(WiFi.softAPIP());
+	// if you used auto generated SSID, print it
+	Serial.println(myWiFiManager->getConfigPortalSSID());
+	// entered config mode, make led toggle faster
 }
 
 void tare()
@@ -84,9 +86,6 @@ void printRes(uint8_t *payload, size_t len)
 	ServoPositionEvent message = ServoPositionEvent_init_zero;
 	pb_istream_t stream = pb_istream_from_buffer(payload, len);
 	status = pb_decode(&stream, ServoPositionEvent_fields, &message);
-	/*for(int i = 0; i<len; i++){
-		Serial.printf("%02X",payload[i]);
-	}*/
 	if (!status)
 	{
 		printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
@@ -119,12 +118,6 @@ void printRes(uint8_t *payload, size_t len)
 				break;
 			}
 			angRec[i] = angle;
-			/*Serial.println(angle);
-			if (i != 0 && i != 2 && i != 4) {
-				WriteServoPosition(i, angle, false);
-			}else{
-				WriteServoPosition(i, angle, true);
-			}*/
 		}
 		xQueueSend(servoPositionQueue, &angRec, portMAX_DELAY);
 	}
@@ -141,29 +134,14 @@ void webSocketEvent(WStype_t type, uint8_t *payload, size_t length)
 	case WStype_CONNECTED:
 		Serial.printf("[WSc] Connected to url: %s\n", payload);
 
-		// send message to server when Connected
-		// webSocket.sendTXT("Connected");
-		// webSocket.sendTXT("hey");
 		break;
 	case WStype_TEXT:
 		Serial.printf("[WSc] get text: %s\n", payload);
-		// xQueueSend(servoPositionQueue, &payload, portMAX_DELAY);
-
-		// ServoPositionEvent message = ServoPositionEvent_init_zero;
-		// uint8_t buf[128];
-		// pb_istream_t stream = pb_istream_from_buffer(payload, sizeof(payload));
-
-		// status = pb_decode(&stream, ServoPositionEvent_fields, &message);
-		// Serial.println(message.servo1);
-		//  send message to server
-		//  webSocket.sendTXT("message here");
 
 		break;
 	case WStype_BIN:
 		Serial.printf("[WSc] get binary length: %u\n", length);
 
-		// send data to server
-		// webSocket.sendBIN(payload, length);
 		printRes(payload, length);
 		break;
 	case WStype_ERROR:
@@ -178,34 +156,22 @@ void webSocketEvent(WStype_t type, uint8_t *payload, size_t length)
 void setup()
 {
 	Serial.begin(115200);
-	scales.setDebugEnable();
-	tare();
+
 	Serial.println("done here");
 	WiFi.mode(WIFI_STA); // Make this the client (the server is WIFI_AP)
 
 	delay(100);
 
 	wm.setAPCallback(configModeCallback);
-	if (!wm.autoConnect()) {
-    	Serial.println("failed to connect and hit timeout");
-    	//reset and try again, or maybe put it to deep sleep
-    	ESP.restart();
-    	delay(1000);
-  	}
+	if (!wm.autoConnect())
+	{
+		Serial.println("failed to connect and hit timeout");
+		// reset and try again, or maybe put it to deep sleep
+		ESP.restart();
+		delay(1000);
+	}
 	Serial.println("connected...yeey :)");
 
-	// servo init
-	// AttachServos();
-
-	// WiFi.begin(ssid, password);
-
-	/*while (WiFi.status() != WL_CONNECTED)
-	{*/
-	// Serial.println("WIFI connection failed, reconnecting...");
-	// delay(500);
-	//}
-
-	// webSocket.setExtraHeaders(0);
 	//  server address, port and URL
 	webSocket.begin("192.168.137.1", port, "/imu", "");
 
@@ -221,116 +187,87 @@ void setup()
 	{
 		Serial.println("Failed to create queue");
 	}
-	
+
 	modbusSerial.begin(9600);
-	intakePitot.begin(AddressIntake, modbusSerial);
-	diffuserPitot.begin(AddressDiffuser, modbusSerial);
+	intakePitotActive = intakePitot.begin(AddressIntake, modbusSerial);
+	diffuserPitotActive = diffuserPitot.begin(AddressDiffuser, modbusSerial);
 
 	Wire.begin();
 	byte status = mpu.begin();
 	Serial.print(F("MPU6050 status: "));
 	Serial.println(status);
+	if (status == 0)
+	{
+		mpuActive = true;
+	}
 	/*while (status != 0)
 	{
-	} // stop everything if could not connect to MPU6050
+	} // stop everything if could not connect to MPU6050*/
 
 	Serial.println(F("Calculating offsets, do not move MPU6050"));
 	delay(1000);
 	// mpu.upsideDownMounting = true; // uncomment this line if the MPU6050 is mounted upside-down
 	mpu.calcOffsets(); // gyro and accelero
-	Serial.println("Done!\n");*/
+	Serial.println("Done!\n");
+	scales.setDebugEnable();
 	tare();
 	xTaskCreatePinnedToCore(TaskServoWriter, "Write_servo_task", 2048, NULL, 1, NULL, 1);
 }
 
 void loop()
 {
-	/*mpu.update();
-	if ((millis() - timer) > 10)
+	webSocket.loop();
+	if (mpuActive)
 	{
-		SensorEvent orientation = SensorEvent_init_zero;
-		orientation.which_event = SensorEvent_iMUEvent_tag;
-		orientation.event.iMUEvent.pitch = mpu.getAngleX();
-		orientation.event.iMUEvent.roll = mpu.getAngleZ();
-		orientation.event.iMUEvent.yaw = mpu.getAngleY();
-		pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-		if (!pb_encode(&stream, SensorEvent_fields, &orientation))
+		mpu.update();
+		if ((millis() - timer) > 10)
 		{
-			Serial.println("failed to encode temp proto");
-			Serial.println(PB_GET_ERROR(&stream));
-			return;
-		}
+			SensorEvent orientation = SensorEvent_init_zero;
+			orientation.which_event = SensorEvent_iMUEvent_tag;
+			orientation.event.iMUEvent.pitch = mpu.getAngleX();
+			orientation.event.iMUEvent.roll = mpu.getAngleZ();
+			orientation.event.iMUEvent.yaw = mpu.getAngleY();
+			pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+			if (!pb_encode(&stream, SensorEvent_fields, &orientation))
+			{
+				Serial.println("failed to encode temp proto");
+				Serial.println(PB_GET_ERROR(&stream));
+				return;
+			}
 
-		if (webSocket.isConnected())
+			if (webSocket.isConnected())
+			{
+				// Serial.println("sending message...");
+				webSocket.sendBIN(buffer, stream.bytes_written);
+				// delay(1000);
+			}
+			timer = millis();
+		}
+	}
+	/*if (intakePitotActive && diffuserPitotActive)// will cause disconnection if not connected
+	{
+		bool gotReadingIntake = intakePitot.getRegisters(0x03, 0x00, 3);
+		bool gotReadingDiffuser = diffuserPitot.getRegisters(0x03, 0x00, 3);
+		if (gotReadingIntake && gotReadingDiffuser)
 		{
-			// Serial.println("sending message...");
-			webSocket.sendBIN(buffer, stream.bytes_written);
-			// delay(1000);
-		}
-		timer = millis();
-	}*/
-	delay(100);
-	SensorEvent pitotReading = SensorEvent_init_zero;
-	pitotReading.which_event = SensorEvent_pitotEvent_tag;
-	pitotReading.event.pitotEvent.intakePitot = 5;
-	pitotReading.event.pitotEvent.diffuserPitot = 3;
-	pitotReading.event.pitotEvent.testSectionPitot = 2;
+			SensorEvent pitotReading = SensorEvent_init_zero;
+			pitotReading.which_event = SensorEvent_pitotEvent_tag;
+			pitotReading.event.pitotEvent.intakePitot = intakePitot.int16FromFrame(bigEndian, 3);
+			pitotReading.event.pitotEvent.diffuserPitot = diffuserPitot.int16FromFrame(bigEndian, 3);
 
-	pb_ostream_t stream2 = pb_ostream_from_buffer(buffer, sizeof(buffer));
-	if (!pb_encode(&stream2, SensorEvent_fields, &pitotReading))
-	{
-		Serial.println("failed to encode temp proto");
-		Serial.println(PB_GET_ERROR(&stream2));
-		return;
-	}
-	if (webSocket.isConnected())
-	{
-		// Serial.println("sending message...");
-		webSocket.sendBIN(buffer, stream2.bytes_written);
-		// delay(1000);
-	}
-	delay(100);
-	/*SensorEvent strains = SensorEvent_init_zero;
-	strains.which_event = SensorEvent_strainEvent_tag;
-	strains.event.strainEvent.strain1 = 0.5;
-	strains.event.strainEvent.strain2 = 1.5;
-	strains.event.strainEvent.strain3 = 2.5;
-	strains.event.strainEvent.strain4 = 3.5;
-	strains.event.strainEvent.strain5 = 6.5;
-	strains.event.strainEvent.strain6 = 7.5;
-	pb_ostream_t stream1 = pb_ostream_from_buffer(buffer, sizeof(buffer));
-	if (!pb_encode(&stream1, SensorEvent_fields, &strains))
-	{
-		Serial.println("failed to encode temp proto");
-		Serial.println(PB_GET_ERROR(&stream1));
-		return;
-	}
-	if (webSocket.isConnected()){
-		//Serial.println("sending message...");
-		webSocket.sendBIN(buffer, stream1.bytes_written);
-		//delay(1000);
-	}
-	delay(100);*/
-
-	/*bool gotReadingIntake = intakePitot.getRegisters(0x03, 0x00, 3);
-	bool gotReadingDiffuser = diffuserPitot.getRegisters(0x03, 0x00,3);
-	if (gotReadingIntake && gotReadingDiffuser) {
-		SensorEvent pitotReading = SensorEvent_init_zero;
-		pitotReading.which_event = SensorEvent_pitotEvent_tag;
-		pitotReading.event.pitotEvent.intakePitot = intakePitot.int16FromFrame(bigEndian, 3);
-		pitotReading.event.pitotEvent.diffuserPitot = diffuserPitot.int16FromFrame(bigEndian, 3);
-
-		pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-		if (!pb_encode(&stream, SensorEvent_fields, &pitotReading))
-		{
-			Serial.println("failed to encode temp proto");
-			Serial.println(PB_GET_ERROR(&stream));
-			return;
-		}
-		if (webSocket.isConnected()){
-			//Serial.println("sending message...");
-			webSocket.sendBIN(buffer, stream.bytes_written);
-			//delay(1000);
+			pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+			if (!pb_encode(&stream, SensorEvent_fields, &pitotReading))
+			{
+				Serial.println("failed to encode temp proto");
+				Serial.println(PB_GET_ERROR(&stream));
+				return;
+			}
+			if (webSocket.isConnected())
+			{
+				// Serial.println("sending message...");
+				webSocket.sendBIN(buffer, stream.bytes_written);
+				// delay(1000);
+			}
 		}
 	}*/
 	if (scales.is_ready())
@@ -366,10 +303,7 @@ void loop()
 			// delay(1000);
 		}
 	}
-	Serial.println("here");
-
-	webSocket.loop();
-	}
+}
 
 void TaskServoWriter(void *pvParameters)
 {
@@ -387,22 +321,16 @@ void TaskServoWriter(void *pvParameters)
 		{
 			stewartServo.set_target_angles(angTargets);
 			Serial.println("new position");
-			/*for (int i = 0; i < 6; i++){
-				if (i != 0 && i != 2 && i != 4) {
-					WriteServoPosition(i, angTargets[i], false);
-				}else{
-					WriteServoPosition(i, angTargets[i], true);
-				}
-			}*/
 		}
 		if (stewartServo.drive() != true)
 		{
 			Serial.println("moving to position");
-			//tare();
+			tare();
 		}
 		else
 		{
 			Serial.println("in position");
+			delay(1000);
 		}
 	}
 }
