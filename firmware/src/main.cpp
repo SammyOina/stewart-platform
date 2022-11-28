@@ -332,5 +332,31 @@ void TaskServoWriter(void *pvParameters)
 			Serial.println("in position");
 			delay(1000);
 		}
+		if (intakePitotActive && diffuserPitotActive)// will cause disconnection if not connected
+	{
+		bool gotReadingIntake = intakePitot.getRegisters(0x03, 0x00, 3);
+		bool gotReadingDiffuser = diffuserPitot.getRegisters(0x03, 0x00, 3);
+		if (gotReadingIntake && gotReadingDiffuser)
+		{
+			SensorEvent pitotReading = SensorEvent_init_zero;
+			pitotReading.which_event = SensorEvent_pitotEvent_tag;
+			pitotReading.event.pitotEvent.intakePitot = intakePitot.int16FromFrame(bigEndian, 3);
+			pitotReading.event.pitotEvent.diffuserPitot = diffuserPitot.int16FromFrame(bigEndian, 3);
+
+			pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+			if (!pb_encode(&stream, SensorEvent_fields, &pitotReading))
+			{
+				Serial.println("failed to encode temp proto");
+				Serial.println(PB_GET_ERROR(&stream));
+				return;
+			}
+			if (webSocket.isConnected())
+			{
+				// Serial.println("sending message...");
+				webSocket.sendBIN(buffer, stream.bytes_written);
+				// delay(1000);
+			}
+		}
+	}
 	}
 }
