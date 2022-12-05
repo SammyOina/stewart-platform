@@ -22,5 +22,4 @@ public:
     void invert_servo(int number);
 };
 
-
 #endif
