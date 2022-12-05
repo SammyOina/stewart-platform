@@ -1,6 +1,6 @@
 #include <WiFi.h>
-const char* ssid = "sammy"
-const char* password = "12345678"
+const char* ssid = "sammy";
+const char* password = "12345678";
 
 
 int pressure;
@@ -17,12 +17,12 @@ Serial.println("\n Connecting");
 
 while (WiFi.status() != WL_CONNECTED)
 {
-  Serial.print(".")
+  Serial.print(".");
   delay(100);
 }
-Serial.println("\nConnected to the WiFi network")
+Serial.println("\nConnected to the WiFi network");
 {
-  Seial.print("Local ESP32 IP: ");
+  Serial.print("Local ESP32 IP: ");
   Serial.println(WiFi.localIP());
 }
 }
