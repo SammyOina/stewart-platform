@@ -1,0 +1,189 @@
+\documentclass[12pt,fleqn]{article}
+\usepackage{a4}
+\usepackage{graphicx}
+\usepackage{psfrag}
+\usepackage{amsmath}                     % \boldsymbol{#1}
+\usepackage{amssymb}
+
+%\usepackage{hangcaption}
+%\usepackage{Styles/pstricks}
+%\usepackage{Styles/pst-node}
+\usepackage{Styles/fancyheadings}
+\usepackage{tocloft}
+\usepackage[euler]{textgreek}
+%\usepackage{mathtools}
+%\usepackage{unicode-math}
+%\setmathfont{XITS Math}
+%\newcommand*{\matr}[1]{\mathbfit{#1}}
+%\newcommand*{\tran}{^\mkern-1.5mu\mathsf{T}}}
+%\newcommand*{\conj}[1]{\overline{#1}}
+%\newcommand*{\hermconj}{^{mathsf{H}}}
+\usepackage{MnSymbol}
+\usepackage{pdfpages}
+%\usepackage{breqn}
+\usepackage{float}
+\usepackage{nccmath}
+%\usepackage{chngcntr}
+%-----Tex width---------------------------------
+\textwidth 16cm
+
+%\counterwithout{figure}{chapter}
+
+%-----Line spacing-------------------------------
+\renewcommand{\baselinestretch}{1.5}     % 1,1-zeilig
+
+%---------Add dots in TOC-----------------------
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+%------Paragraph indention-------------------------------
+\setlength{\parskip}{1.5ex plus0.5ex minus0.5ex}
+
+%-----Prevent indent----------------------
+\setlength{\parindent}{0em}
+
+%-----Richtiger Abstand fur Einheiten-------------
+\def\Unit{\hspace{0.25em}}
+
+%-----Definition of the header--------------------
+\pagestyle{fancyplain}
+\renewcommand{\sectionmark}[1]{\markboth{Chapter~\thesection.~#1}{#1}}
+\renewcommand{\subsectionmark}[1]{\markright{\thesubsection\ #1}}
+\rhead[\fancyplain{}{\leftmark}]%
+{\fancyplain{\thepage}{\thepage}} \cfoot{} \plainheadrulewidth
+0.4pt
+%% Otherwise: Overfull \vbox-Warning against fancyheadings-pacakage
+%%  idea of: nic@minster.york.ac.uk (Nick Cropper)
+\makeatletter
+\ifcase \@ptsize \relax % 10pt
+  \addtolength{\headheight}{1\p@}
+\or % 11pt
+  \addtolength{\headheight}{2\p@}
+\or % 12pt
+  \addtolength{\headheight}{3\p@}
+\fi \makeatother
+
+%-----Equations / Figures / Tables numbering according to \ sections
+\makeatletter
+\renewcommand\theequation{\arabic{section}.\arabic{equation}}
+\renewcommand\thefigure{\arabic{section}.\arabic{figure}}
+\renewcommand\thetable{\arabic{section}.\arabic{table}}
+\@addtoreset{equation}{section} \@addtoreset{figure}{section}
+\@addtoreset{table}{section} \makeatother
+
+%-----Useful abbreviations----------------------
+\newcommand{\mr}{\mathrm}
+%%\newcommand{\bs}[1]{\mbox{$\boldsymbol{#1}$}}
+\newcommand{\degree}[1]{\mbox{$#1^\circ$}}
+
+%\renewcommand{\figurename}{Bild}
+
+%------Bibliography style-----------------------
+\bibliographystyle{IEEEtran}
+
+%-----Aufzaehlunstiefe im Literaturverzeichnis---------------
+\setcounter{tocdepth}{3}
+
+\begin{document}
+\pagenumbering{Roman}
+\begin{titlepage}
+  \begin{center}
+      \vspace*{-4.0cm}
+    \begin{figure}[!h]
+\centering
+\includegraphics[width=0.3\linewidth]{Figures/JKUAT_logo}
+%\caption{}
+\label{fig:jomologo}
+\end{figure}
+   \large{Jomo Kenyatta University of Agriculture and Technology}\\
+    \large{College of Engineering and Technology}\\
+    \large{School of Mechanical, Materials, and Manufacturing Engineering}\\
+   \large{Department of Mechatronic Engineering}\\
+
+    ------------------------------------------------------------------------------------------------\\[1.0cm]
+    \vspace{0.1cm}
+    \LARGE{\textbf{Development of a 6 DOF Stewart platform
+        Force Balance for a Low Speed Wind Tunnel}}\\
+    \vspace{0.3cm}
+    \LARGE{\textbf{FYP 18-9
+            }}\\
+    {\textbf{INTERIM REPORT
+                }}\\[0.4cm]
+    %\large{by}\\[0.6cm
+
+    \vspace{0.4cm}
+    \large{\textbf{Sammy Kerata Oina (ENM221-0089/2017)
+            }}\\
+     \large{\textbf{Earl Spencer Mogire~(ENM221-0074/2017)
+            }}\\[0.6cm]
+    \large{\textbf{Supervisors}}\\
+    \large{Dr. Anthony K. Muchiri
+                }\\
+    \large{Ms. Maurine N. Andanje
+                    }\\
+     %Submitted in partial fulfillment of the requirements for the degree of Bachelor of Science in Mechatronic Engineering in Jomo Kenyatta University of Agriculture and Technology, 2022.
+%     \large{\textbf{Supervisors}}\\
+%    \large{Dr.-Ing.~Jackson G. Njiri}\\
+%    \large{Prof. George N. Nyakoe}\\
+%    \large{\ldots}    \\[0.2cm]\vfill
+    \large{\small{\today}}\\
+    \small{Submitted in partial fulfillment of the requirements for the degree of Bachelor of Science in Mechatronic Engineering in Jomo Kenyatta University of Agriculture and Technology, 2022.}
+    ------------------------------------------------------------------------------------------------\\[1.5cm]
+  \end{center}
+\end{titlepage}
+%
+%\pagenumbering{gobble}% Remove page numbers (and reset to 1)
+
+\input{Files/Declaration}
+\clearpage
+\input{Files/Abstract}
+\clearpage
+\addcontentsline{toc}{section}{Table of Contents}
+\tableofcontents
+\clearpage
+\addcontentsline{toc}{section}{List of Figures}
+{
+%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\figurename~\oldnumberline}%
+\listoffigures
+\clearpage
+\addcontentsline{toc}{section}{List of Tables}
+\renewcommand{\numberline}{\tablename~\oldnumberline}%
+\listoftables 
+\newpage
+\clearpage
+%\addcontentsline{toc}{section}{List of Abbreviations}
+\input{Files/Nomenclature}
+\clearpage
+\newpage
+%\addcontentsline{toc}{section}{List of Symbols}
+\input{Files/Symbols}
+\clearpage
+\newpage
+
+\newpage
+\pagenumbering{arabic}
+  \input{Files/Introduction}
+  \clearpage
+  \input{Files/Chapter2}
+  \clearpage
+    \input{Files/Chapter3}
+  \clearpage
+    \input{Files/Chapter4}
+  \clearpage
+    \input{Files/Chapter5}
+%  \clearpage
+ %\input{Files/Summary}
+  \clearpage
+%----  Bibliography  ----------------------------------------
+\markright{References}                               % Erzeugt Kopfzeile
+\addcontentsline{toc}{section}{References}            % Literaturverzeichnis ins Inhaltsverzeichnis
+%\bibliographystyle{Bib/IEEEtran}
+\bibliography{Bib/References}                         % BIBTeX
+\nocite{Lun01} 
+
+                                     % Falls etwas in die Literaturliste soll, was nicht Referenziert wird
+\newpage
+\clearpage
+\input{Files/Appendices}
+\end{document}
