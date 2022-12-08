@@ -30,55 +30,91 @@ NASA uses wind tunnels to test scale models of aircraft and spacecraft. The wind
 \end{center}
 NASA has wind tunnels of different types and sizes. Some are low-speed wind tunnels, others are hypersonic i.e. they are made to carry out tests at 4,000 mph (6437 kph) \cite{NASA}.
 \subsection{Stewart Platform}
-Parallel link manipulators have become an important area of research due to their: precision, rigidity and high-load-to-weight ratio. These manipulators find practical applications in flight simulators, precise machining and applications that require disturbance isolation \cite{iqbal_dynamic_2008}. The Stewart platform is an example of a parallel manipulator.
+The Stewart platform is an example of a parallel manipulator.
+Parallel link manipulators have become an important area of research due to their: precision, rigidity and high-load-to-weight ratio. 
+These manipulators find practical applications in flight simulators, precise machining and applications that require disturbance isolation \cite{iqbal_dynamic_2008}. 
 
-A Stewart platform is a parallel manipulator that provides six-degree-of-freedom (DOF) i.e. roll, pitch, yaw, surge, sway and heave, and can be controlled in all these freedoms simultaneously. The platform consists six variable-length electro-mechanical actuators connecting a top plate to a base plate with spherical joints.
+A Stewart platform is a parallel manipulator that provides six-degree-of-freedom (DOF) i.e. roll, pitch, yaw, surge, sway and heave (displacement in the z-direction), and can be controlled in all these freedoms simultaneously. 
+The platform consists six legs connecting a top plate to a base plate with spherical joints as the connection points.
 
 The platform is able to move in three angular directions and in three linear directions, singly or in any combination \cite{stewart1965platform}. Angular and translational motion of the top plate with
-respect to the base plate is achieved by reducing or extending the actuator lengths. For the top plate to follow the desired trajectory with high frequency, there has to be proper coordination of the actuator lengths \cite{iqbal_dynamic_2008}.
+respect to the base plate is achieved by reducing or extending the actuator lengths (for Stewart platforms with linear actuators for legs) or by writing various servo angles to the servo motors
+ (for Stewart platforms that use servo motors to actuate leg movements) \cite{iqbal_dynamic_2008}.
 
-Each leg of the mechanism is connected to the ground by a two-axis joint where: One of these axes is
-normal to the leg and is provided with a means for control whereas, the other axis is normal to the first and is not provided with a means for control.
-Each leg also has controllable means for extending its length. These control means include \cite{stewart1965platform}:
-\begin{enumerate}
-\item Use of hydraulic jacks.
-\item Screw jacks - This gives give the advantage of
-a longer stroke for a given size.
-\item Rotary actuator - a hydraulic rotary actuator or an electric motor. Whereas this would reduce the number of foundation fixings, the remaining jack would still be subjected to a greater bending moment.
-\item Levers - this increases the extending leg amplitude by using an articulated leg.
-\item Linear co-ordinate control - this arrangement provides rigidity due to the true triangulation of
-the whole system. There will be no bending moments in any of the members apart from the possibility of those due to strut eccentric loading. 
-\end{enumerate}
+ \subsubsection{Stewart Platform Configurations}
+Stewart platforms can take three primary configurations i.e. 3-3 type, 3-6 type or 6-6 type.
 \begin{center}
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\linewidth]{Figures/Fig11}
-	\caption[Linear co-ordinate control]{Linear co-ordinate control \cite{stewart1965platform}}
+	\includegraphics{Figures/stewart}
+	\caption[Configurations]{Type 3-3, 3-6 and 6-6 respectively
+	\cite{fernandes_design_nodate}}
 	\end{figure}
 \end{center}
+The base and the platform (for the 3-3 type), and the platform (for the 3-6 type) are triangular in shape. The triangular shape has a good load carrying capability only in theory and for certain dimensions. These configurations are, however,not possible in practice since double spherical joints will be needed where two bars have to be joined at the same vertex
+\cite{fernandes_design_nodate}.
 
-Stewart platforms that use screw jacks driven by electric motors as leg actuators have the advantage of being light and easy to control. Velocity and position control for these platforms can be done using shaft encoders and tachometers. A ball screw is used to minimize friction in a screw drive and backlash in the ball screw can be eliminated by use of double nuts preloaded with spring washers \cite{fichter1986stewart}.
+For a 6-6 type Stewart platform, the base and platform are hexagon in shape.
 
-The Stewart platform has drawn the interest of many researchers who have focused on solving kinematics, dynamics and control of the mechanism. Both inverse kinematic and forward kinematic methods for the Stewart platform are presented in literature
-\cite{csumnu2017simulation}.
+\subsubsection{Inverse Kinematics of a Stewart Platform}
+This is the calculation of each leg length based on the desired position of the Stewart platform. 
+For the Stewart platform, the translation $^{p}T_{b}$ from the base origin to the platform origin can be described with a single vector T = $(t_{x} t_{y} t_{z})^{T} $. The rotation of the platform can be denoted as $^{p}R_{b}$. Thus the following relationship for the frame of reference can be stated \cite{Eisele_2019}:
+	\begin{ceqn}
+	\begin{align}
+	^{p}T_{b} = T
+	\end{align}
+	\end{ceqn}
+	\begin{ceqn}
+	\begin{align}
+	^{p}R_{b} = R
+	\end{align}
+	\end{ceqn}
+	\begin{ceqn}
+	\begin{align}
+	^{b}T_{p} =(^{p}T_{b})^{-1} =T^{-1}
+	\end{align}
+	\end{ceqn}
+	\begin{ceqn}
+	\begin{align}
+	^{b}R_{p} = (^{p}R_{b})^{-1}
+	\end{align}
+	\end{ceqn} 
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.4\linewidth]{Figures/servo2}
+	\caption[Leg length]{Leg Length \cite{Eisele_2019}}
+	\end{figure}
+\end{center}
+The leg length $l_{k}$ can therefore be found with:
+\begin{ceqn}
+\begin{align}
+	l_{k} = P_{k} - B_{k} = T + R \times p \times R^{-1} - b_{k}
+\end{align}
+\end{ceqn}
+Where,\\
+$P_{k}$ - leg attachment on platform \\
+$B_{k}$- leg attachment on base 
+\subsubsection{Inverse Kinematics Using Rotational Servo Motors}
+For a rod of fixed length d between servo horn anchor $H_{k}$ and platform anchor $P_{k}$,  $H_{k}$ has a distance h between the original base anchor and servo shaft $B_{k}$. The vector h is perpendicular to the servo shaft and is rotated by angle $\alpha_{k}$ when lifted from the horizontal line.
+\begin{center}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.4\linewidth]{Figures/servo}
+	\caption[Servo angle]{Servo angle \cite{Eisele_2019}}
+	\end{figure}
+\end{center}
+Derivation relationships of inverse kinematics are used to calculate each servo angle and is given as \cite{Eisele_2019}:
+\begin{ceqn}
+\begin{align}
+	\alpha_{k} = sin^{-1}(\frac{g_{k}}{\sqrt{e_{k}^2+f_{k}^2}})-arctan2(f_{k}, e_{k})
+\end{align}
+\end{ceqn}
+Where,
+$$e_{k} = 2hl_{k}^{(z)} $$
+$$e_{k} = 2h(cos(\beta_{k})I_{k}^{(x)}+sin({\beta_{k}})I_{k}^(y))$$
+$$g_{k} = l_{k}^2 - (d^2 - h^2)   $$
 
-In order to control the platform in the required direction, a program involving linear or angular accelerations or a combination of both is necessary so that signals can be given to the various legs in accordance with the input requirements. The six inputs to the Stewart platform in terms of torque are calculated by the controller and the outputs of the Stewart platform are the upper plate's angular and translational positions sensed by highly precise sensors or estimated by the motor's encoders \cite{iqbal_dynamic_2008}.
-
-Further, as concerns the control aspect, in recent years many researchers have worked on robust controllers for the Stewart platform. Some of these works include:
-\begin{enumerate}
-\item A Lyapunov based approach for designing robust PD controller was proposed in presence of uncertainties 
-\cite{kang1996robust}.
-\item The model based sliding mode control with perturbation 
-\cite{kang1996robust}.
-\item Robust tracking control design in the presence of time varying
-uncertainties 
-\cite{kim1998high}.
-\item Tracking errors drive to zero asymptotically with help of sliding mode
-controller design 
-\cite{huang2004sliding}.
-\item A simple way to calculate control law using sliding-mode technique 
-\cite{iqbal2006direct}.
-\end{enumerate}
 \subsubsection{Quality Index ($\lambda$) of the Stewart Platform}
 Quality index $(\lambda)$ varies from 0 to 1.\\
  Where,\\
@@ -257,6 +293,48 @@ Angle of attack (\textalpha)is the angle measured between the longitudinal axis 
 	\label{att}
 	\end{figure}
 \end{center}
+
+\subsection{Smoke visualization System for Wind Tunnel}
+The ability to visualise the airflow over solid objects in a wind tunnel crucial in understanding the fundamental principles of both fluid dynamics and aerodynamics. To achieve this a uniform row of smoke lines are required. These smoke lines should be sufficiently long to maintain their integrity throughout 
+the test section \cite{trinder2013development}.
+
+Smoke visualization methods including smoke-generating materials and techniques for generating smoke lines have been summarized in the tables below.
+\begin{center}
+	\begin{table}[H]
+		\caption[Smoke Generating Materials]{Comparison of Smoke Generating Materials}
+		\end{table}
+	\begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}
+	\hline
+	\textbf{Material} & \textbf{Advantages} & \textbf{Disadvantages}\\
+	\hline
+	Tobacco, kerosene and titanium-tetrachloride & Produces high quality smoke & Hazardous/toxic; tobbacco is difficult to control\\
+	\hline
+	Carbon dioxide & Produces dense smoke & Potentially harmful in large volumes; needs to be exhausted\\
+	\hline
+	Water-based liquids & Non-hazardous; produce dense vapour & Vapour can condense back to liquid\\
+	\hline
+	\end{tabular}
+	\end{center}
+
+	\begin{center}
+		\begin{table}[H]
+			\caption[Smoke Generating Techniques]{Comparison of Smoke Generating Techniques}
+			\end{table}
+		\begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}
+			\hline
+			\textbf{Technique} & \textbf{Advantages} & \textbf{Disadvantages}\\
+			\hline
+			Smoke wire & Produces the most effective smoke lines & Complex set-up to achieve resistive heating\\
+			\hline
+			Smoke rake & Can be utilised with non-hazardous smoke materials & Prone to wind tunnel blockage effects\\
+			\hline
+		\end{tabular}
+	\end{center}
+	For smoke rake, an aerodynamically shaped
+	body (typically elliptical) featuring a row of tubes through which the smoke exits is used. Smoke to the rake can be introduced from a non-hazardous source, 
+	such as a water-based liquid heated by a 
+	smoke machine, rather than using combustion of hydrocarbons as in the smoke wire technique, which is hazardous and produces toxic materials \cite{trinder2013development}.
+
 \subsection{Previous Work}
 Force balance design for educational wind tunnels is an area of great interest. This is especially important
 for aerodynamics studies of airplane and airfoil models, as well as ground vehicles such as trucks
