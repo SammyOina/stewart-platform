@@ -36,3 +36,6 @@ Can be utilised with non-hazardous smoke materials
 
 For smoke rake, an aerodynamically shaped
 body (typically elliptical) featuring a row of tubes through which the smoke exits is used. Smoke to the rake can be introduced from a non-hazardous source, such as a water-based liquid heated by a smoke machine, rather than using combustion of hydrocarbons as in the smoke wire technique, which is hazardous and produces toxic materials.
+
+## Methodology
+
