@@ -1,10 +1,12 @@
 package ui
 
 import (
+	"fmt"
 	"time"
 
 	g "github.com/AllenDang/giu"
 	"github.com/sammyoina/stewart-platform-ui/calibration"
+	"github.com/sammyoina/stewart-platform-ui/fileWriter"
 	"github.com/sammyoina/stewart-platform-ui/pipeline"
 )
 
@@ -73,7 +75,42 @@ func mainWindow() *g.WindowWidget {
 							g.Button("Write Position").Size(120, 100).OnClick(func() {
 								pipeline.SetOrientation(float64(Yaw), float64(Pitch), float64(Roll), float64(Transx), float64(Transy), float64(Transz))
 							}),
-							g.Button("Record Data").Size(120, 100),
+							g.Condition(pipeline.RecordData,
+								g.Layout{
+									g.Button("Stop Recording").Size(120, 100).OnClick(func() {
+										pipeline.RecordData = false
+										if pipeline.PitotWriter != nil {
+											pipeline.PitotWriter.QuitChannel <- true
+										}
+										pipeline.PitotWriter = nil
+										if pipeline.IMUWriter != nil {
+											pipeline.IMUWriter.QuitChannel <- true
+										}
+										pipeline.IMUWriter = nil
+										if pipeline.StrainWriter != nil {
+											pipeline.StrainWriter.QuitChannel <- true
+										}
+										pipeline.StrainWriter = nil
+										if pipeline.ForceMomentsWriter != nil {
+											pipeline.ForceMomentsWriter.QuitChannel <- true
+										}
+										pipeline.ForceMomentsWriter = nil
+									}),
+								}, g.Layout{
+									g.Button("Record Data").Size(120, 100).OnClick(func() {
+										pipeline.RecordData = true
+										currTime := time.Now()
+										timeS := fmt.Sprintf("%d-%d-%d_%d-%d", currTime.Day(), currTime.Month(), currTime.Year(), currTime.Hour(), currTime.Minute())
+										pipeline.PitotWriter, _ = fileWriter.NewWriter(timeS + "/" + "pitot.csv")
+										pipeline.IMUWriter, _ = fileWriter.NewWriter(timeS + "/" + "imu.csv")
+										pipeline.StrainWriter, _ = fileWriter.NewWriter(timeS + "/" + "strain_raw.csv")
+										pipeline.ForceMomentsWriter, _ = fileWriter.NewWriter(timeS + "/" + "forces-moments.csv")
+										go pipeline.PitotWriter.Record()
+										go pipeline.IMUWriter.Record()
+										go pipeline.StrainWriter.Record()
+										go pipeline.ForceMomentsWriter.Record()
+									}),
+								}),
 							g.Button("Calibrate").OnClick(func() {
 								g.OpenPopup("Calibration")
 							}).Size(120, 100),

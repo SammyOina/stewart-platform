@@ -4,11 +4,13 @@ import (
 	"encoding/hex"
 	"fmt"
 	"log"
+	"time"
 
 	g "github.com/AllenDang/giu"
 	"github.com/gorilla/websocket"
 	"github.com/sammyoina/stewart-platform-ui/api"
 	"github.com/sammyoina/stewart-platform-ui/calibration"
+	"github.com/sammyoina/stewart-platform-ui/fileWriter"
 	"github.com/sammyoina/stewart-platform-ui/models"
 	"github.com/sammyoina/stewart-platform-ui/queue"
 	"github.com/sammyoina/stewart-platform-ui/state"
@@ -34,6 +36,11 @@ var (
 	Yaw                 []float64
 	Pitch               []float64
 	Roll                []float64
+	RecordData          bool = false
+	IMUWriter           *fileWriter.FileWriter
+	PitotWriter         *fileWriter.FileWriter
+	StrainWriter        *fileWriter.FileWriter
+	ForceMomentsWriter  *fileWriter.FileWriter
 )
 
 type STDSync struct {
@@ -56,14 +63,23 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 			}
 			switch event := e.Event.(type) {
 			case *models.SensorEvent_IMUEvent:
+				if RecordData && IMUWriter != nil {
+					RecordToFile(IMUWriter, event.IMUEvent.Yaw, event.IMUEvent.Pitch, event.IMUEvent.Roll)
+				}
 				imuToUi(event.IMUEvent.Yaw, event.IMUEvent.Pitch, event.IMUEvent.Roll)
-				fmt.Println("got data: ", event.IMUEvent.Pitch, event.IMUEvent.Yaw, event.IMUEvent.Roll)
+				//fmt.Println("got data: ", event.IMUEvent.Pitch, event.IMUEvent.Yaw, event.IMUEvent.Roll)
 			case *models.SensorEvent_PitotEvent:
+				if RecordData && PitotWriter != nil {
+					RecordToFile(PitotWriter, event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
+				}
 				pitotToUi(event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
-				fmt.Println("got data: ", event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
+				//fmt.Println("got data: ", event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
 			case *models.SensorEvent_StrainEvent:
+				if RecordData && StrainWriter != nil {
+					RecordToFile(StrainWriter, event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
+				}
 				forcesToUi(event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
-				fmt.Println("got data: ", event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
+				//fmt.Println("got data: ", event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
 			default:
 				fmt.Println("no sensor event found")
 				fmt.Println(hex.EncodeToString(message))
@@ -126,6 +142,9 @@ func forcesToUi(f1 float32, f2 float32, f3 float32, f4 float32, f5 float32, f6 f
 	Mz = append(Mz[k:], Mz[0:k]...)
 	Mz[len(Mz)-1] = FandM[5]
 	calibration.CalibrationLoads = Fz
+	if RecordData && ForceMomentsWriter != nil {
+		RecordToFile(ForceMomentsWriter, float32(FandM[0]), float32(FandM[1]), float32(FandM[2]), float32(FandM[3]), float32(FandM[4]), float32(FandM[5]))
+	}
 }
 
 func imuToUi(yaw float32, pitch float32, roll float32) {
@@ -160,4 +179,13 @@ func (h *STDSender) StartOutputting(q queue.Queue) {
 		}
 		fmt.Println("Message sent: ", string(message), len(message))
 	}
+}
+
+func RecordToFile(fw *fileWriter.FileWriter, vals ...float32) {
+	var record []string
+	record = append(record, time.Now().String())
+	for val := range vals {
+		record = append(record, fmt.Sprint(val))
+	}
+	fw.InputChannel <- record
 }
