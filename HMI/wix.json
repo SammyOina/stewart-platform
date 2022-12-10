@@ -1,0 +1,27 @@
+{
+  "product": "stewart-platform",
+  "company": "USER",
+  "license": "LICENSE",
+  "upgrade-code": "73e2152a-27ee-4868-8ad5-2e08aa0c3304",
+  "files": {
+    "guid": "3d366b0a-0acd-48d8-9a65-a6bbf89ef7ef",
+    "items": [
+      "stewart-platform-ui.exe"
+    ]
+  },
+  "env": {
+    "guid": "58b44e52-f37d-4ee5-8abd-cc4bc5068370",
+    "vars": [
+      {
+        "name": "PATH",
+        "value": "[INSTALLDIR]",
+        "permanent": "no",
+        "system": "no",
+        "action": "set",
+        "part": "last"
+      }
+    ]
+  },
+  "shortcuts": {},
+  "choco": {}
+}

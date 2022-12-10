@@ -67,19 +67,19 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 					RecordToFile(IMUWriter, event.IMUEvent.Yaw, event.IMUEvent.Pitch, event.IMUEvent.Roll)
 				}
 				imuToUi(event.IMUEvent.Yaw, event.IMUEvent.Pitch, event.IMUEvent.Roll)
-				fmt.Println("got data: ", event.IMUEvent.Pitch, event.IMUEvent.Yaw, event.IMUEvent.Roll)
+				//fmt.Println("got data: ", event.IMUEvent.Pitch, event.IMUEvent.Yaw, event.IMUEvent.Roll)
 			case *models.SensorEvent_PitotEvent:
 				if RecordData && PitotWriter != nil {
 					RecordToFile(PitotWriter, event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
 				}
 				pitotToUi(event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
-				fmt.Println("got data: ", event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
+				//fmt.Println("got data: ", event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
 			case *models.SensorEvent_StrainEvent:
 				if RecordData && StrainWriter != nil {
 					RecordToFile(StrainWriter, event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
 				}
 				forcesToUi(event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
-				fmt.Println("got data: ", event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
+				//fmt.Println("got data: ", event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
 			default:
 				fmt.Println("no sensor event found")
 				fmt.Println(hex.EncodeToString(message))
