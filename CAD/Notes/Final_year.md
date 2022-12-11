@@ -39,3 +39,8 @@ body (typically elliptical) featuring a row of tubes through which the smoke exi
 
 ## Methodology
 
+### Instrumentation of the Stewart Platform
+
+From FEA done on the Stewart platform, strain values were expected along the Stewart platform legs as shown in figure \ref{eq}.
+
+## Electromechanical Modifications
