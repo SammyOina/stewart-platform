@@ -228,6 +228,36 @@ Mesh& Avg element size: 0.1mm\\
 \hline
 \end{tabular}
 \end{center}
+\subsubsection{Smoke Visualization System}
+To implement streamline smoke lines in the wind tunnel, a smoke rake, which is an aerodynamically shaped
+body (typically elliptical) featuring a row of tubes through which the smoke exits was designed. 
+The CAD model was deigned using Autodesk Inventor and the rake was prepared for 3D printing at iPIC 
+in JKUAT. The rake design is shown in figure \ref{smoke}.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/smoke and rake.JPG}
+	\caption[Smoke Rake]{Smoke rake design}
+	\label{smoke}
+	\end{figure}
+\end{center}
+The smoke emitting holes are 6mm in diameter and the air inlet holes are 5mm in diameter.
+ 20mm diameter hole on the lid (color coded red) shown in the  plan view is for metal pipe connection.
+
+\subsubsection*{Smoke Rake and Pipe Assembly}
+A metal pipe is used to provide rigid support to the smoke rake in the wind tunnel as well as placing it at the center
+(vertically). A pipe of length 40mm and diameter 3/4"(19.05mm) is used. The pipe surface is roughed using a harcksaw in 
+order to minimize any turbulence in the flow since it will be placed in the intake section. A plate of 10mm by 10mm by 1.5mm 
+and two plumbing nuts are required to mount the pipe in the intake section. The smoke rake and pipe design is shown 
+in figure \ref{pipe and rake}
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.25\linewidth]{Figures/pipe and rake.JPG}
+	\caption[Pipe and rake]{Pipe and rake assembly design}
+	\label{pipe and rake}
+	\end{figure}
+\end{center}
 
 \subsection{Instrumentation}
 \subsubsection{Design of the Force Sensor}
@@ -303,7 +333,6 @@ The bonding of the strain gauges to the rods followed the following process:
 	\end{figure}
 \end{center}
 
-
 \subsection{Velocity Measurement}
 An important part in wind tunnel measurements is the measure of pressure at specific points in the wind tunnel and computing the corresponding air speed. This is achieved by the use of a pitot probe. 
 \begin{center}
@@ -345,6 +374,7 @@ Three pitot probes are to be used in the wind tunnel i.e. in the test section, i
 \end{center}
 Pitot location in the intake is exactly at the beginning of the test section and pitot location in the diffuser
 is exactly at the end of the test section as shown in figure \ref{pitot loc}.
+
 \subsection{Electrical Design}
 This section looks at the required electrical connections to make the system functional and interface with the control unit.
 \subsubsection{Printed Circuit Board Design}
@@ -440,35 +470,5 @@ A user interface was also required to record user input and display incoming dat
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/Flow}
 	\caption[Control Algorithm]{Control Algorithm for the Stewart Platform with Force Measurement}
-	\end{figure}
-\end{center}
-\subsection{Smoke Visualization System}
-To implement streamline smoke lines in the wind tunnel, a smoke rake, which is an aerodynamically shaped
-body (typically elliptical) featuring a row of tubes through which the smoke exits was designed. 
-The CAD model was deigned using Autodesk Inventor and the rake was prepared for 3D printing at iPIC 
-in JKUAT. The rake design is shown in figure \ref{smoke}.
-\begin{center}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/smoke and rake.JPG}
-	\caption[Smoke Rake]{Smoke rake design}
-	\label{smoke}
-	\end{figure}
-\end{center}
-The smoke emitting holes are 6mm in diameter and the air inlet holes are 5mm in diameter.
- 20mm diameter hole on the lid (color coded red) shown in the  plan view is for metal pipe connection.
-
-\subsubsection{Smoke Rake and Pipe Assembly}
-A metal pipe is used to provide rigid support to the smoke rake in the wind tunnel as well as placing it at the center
-(vertically). A pipe of length 40mm and diameter 3/4"(19.05mm) is used. The pipe surface is roughed using a harcksaw in 
-order to minimize any turbulence in the flow since it will be placed in the intake section. A plate of 10mm by 10mm by 1.5mm 
-and two plumbing nuts are required to mount the pipe in the intake section. The smoke rake and pipe design is shown 
-in figure \ref{pipe and rake}
-\begin{center}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.25\linewidth]{Figures/pipe and rake.JPG}
-	\caption[Pipe and rake]{Pipe and rake assembly design}
-	\label{pipe and rake}
 	\end{figure}
 \end{center}
