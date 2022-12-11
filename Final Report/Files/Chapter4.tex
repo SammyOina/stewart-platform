@@ -1,3 +1,4 @@
+
 \section{Results}
 \subsection{Six DOF Stewart Platform}
 As earlier mentioned, the Stewart platform has already been designed and fabricated and our part in this work was to do an evaluation of the same to verify its mechanical feasibility. As such, the various parts of the platform were obtained and assembled. For further analysis, a 3D model of the same platform was done using Autodesk Inventor.
@@ -5,18 +6,18 @@ As earlier mentioned, the Stewart platform has already been designed and fabrica
 The assembled Stewart platform is as shown in figure \ref{fig}. Figure \ref{fig1} shows the Stewart platform configuration setup with the Wind tunnel's test section.
 \begin{center}
 	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\linewidth]{Figures/stew_asm.jpg}
-	\caption[Assembled Platform]{Assembly of Stewart Platform}
-	\label{fig}
+		\centering
+		\includegraphics[width=0.6\linewidth]{Figures/stew_asm.jpg}
+		\caption[Assembled Platform]{Assembly of Stewart Platform}
+		\label{fig}
 	\end{figure}
 \end{center}
 \begin{center}
 	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/stew_wind1.png}
-	\caption[Model placement in Test Section]{Stewart platform and Test section configuration}
-	\label{fig1}
+		\centering
+		\includegraphics[width=0.7\linewidth]{Figures/stew_wind1.png}
+		\caption[Model placement in Test Section]{Stewart platform and Test section configuration}
+		\label{fig1}
 	\end{figure}
 \end{center}
 \subsubsection{Stability}
@@ -26,112 +27,112 @@ Based on the base and platform diameters, distance between the base and platform
 \subsubsection{Weight}
 3D models of the Stewart platform were modelled on Autodesk Inventor using the three materials described earlier. Use of aluminum was verified to offer the most light-weight design.
 \begin{table}[H]
-\caption{Weight Comparisons}
+	\caption{Weight Comparisons}
 \end{table}
 \begin{center}
-\begin{tabular}{|l|l|}
-\hline
-\textbf{Material} & \textbf{Mass(Kg)}\\
-\hline
-Aluminium & 2.8\\
-\hline
-Mild Steel & 4.6\\
-\hline
-Stainless steel & 5.0 \\
-\hline
-\end{tabular}
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Material} & \textbf{Mass(Kg)} \\
+		\hline
+		Aluminium         & 2.8               \\
+		\hline
+		Mild Steel        & 4.6               \\
+		\hline
+		Stainless steel   & 5.0               \\
+		\hline
+	\end{tabular}
 \end{center}
 \subsubsection{Finite Element Analysis on Stewart Platform}
 Finite Element Analysis was done on FEA environment in Autodesk inventor. A static analysis test was performed and the following results were obtained:
 \begin{table}[H]
-\caption{FEA Results}
+	\caption{FEA Results}
 \end{table}
 \begin{center}
-\begin{tabular}{|l|l|l|}
-\hline
-\textbf{Name} & \textbf{Minimum} & \textbf{Maximum}\\
-\hline
-Von Mise's & 0 MPa & 63.19 MPa\\
-\hline
-Displacement & 0 mm & 23.74 mm\\
-\hline
-Safety Factor & 10.3426 ul & 15 ul\\
-\hline
-Equivalent Strain & 0 ul & 0.052 ul\\
-\hline
-\end{tabular}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Name}     & \textbf{Minimum} & \textbf{Maximum} \\
+		\hline
+		Von Mise's        & 0 MPa            & 63.19 MPa        \\
+		\hline
+		Displacement      & 0 mm             & 23.74 mm         \\
+		\hline
+		Safety Factor     & 10.3426 ul       & 15 ul            \\
+		\hline
+		Equivalent Strain & 0 ul             & 0.052 ul         \\
+		\hline
+	\end{tabular}
 \end{center}
 Von Mise's stress does not exceed the Yield Stress of Aluminum (275 MPa) hence the platform will not yield under this applied load.
 
 Application of loads on the platform translates to induced strain in the Stewart platform legs. Such strains are shown in figure \ref{eq}.
 \begin{center}
 	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\linewidth]{Figures/Equivalent}
-	\caption[Equivalent strain]{Strain induced on each of the legs}
-	\label{eq}
+		\centering
+		\includegraphics[width=0.6\linewidth]{Figures/Equivalent}
+		\caption[Equivalent strain]{Strain induced on each of the legs}
+		\label{eq}
 	\end{figure}
 \end{center}
-These strains are small thus they will need amplification in order provide substantial input for the strain gauges used for force measurements. 
+These strains are small thus they will need amplification in order provide substantial input for the strain gauges used for force measurements.
 \subsubsection{Stewart Platform Simulation}
 Stewart Platform simulation was done on MatLab using the Inverse kinematic equations. Different servo angles for different platform movements can be obtained from the simulation. The angles for yaw, pitch and roll could be adjusted during simulations to predict the maximum allowable angle values. Value of displacement in the x-, y- and z-directions could also be adjusted enabling us to predict the maximum allowable displacement in the respective directions. A summary of these angles is given in table \ref{roll}.
 \begin{center}
 	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{Figures/Matlab}
-	\caption[Linear displacements]{Matlab simulation for x-y-z movements}
+		\centering
+		\includegraphics[width=0.75\linewidth]{Figures/Matlab}
+		\caption[Linear displacements]{Matlab simulation for x-y-z movements}
 	\end{figure}
 \end{center}
 \begin{center}
 	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{Figures/Matlab2}
-	\caption[Angular displacements]{Matlab simulation for yaw,pitch and roll movements}
+		\centering
+		\includegraphics[width=0.75\linewidth]{Figures/Matlab2}
+		\caption[Angular displacements]{Matlab simulation for yaw,pitch and roll movements}
 	\end{figure}
 \end{center}
 \begin{center}
 	\begin{table}[H]
-	\centering
-	\caption[Maximum Servo angles]{Maximum Servo angles for maximum yaw,pitch, roll angles and maximum x,y and z displacements}
-	\label{roll}
-	\centering
-	\begin{tabular}{|l|l|}
-	\hline
-	\textbf{Max. roll angle (deg)}& \textbf{Max. servo angle} \\
-	\hline
-	 $|15|$& 24.34\\
-	 \hline
-\textbf{Max. yaw angle (deg)}& \textbf{Max. servo angle(deg)}\\
-	\hline
-	$|15|$& 27.13\\
-	\hline
-	\textbf{Max. pitch angle (deg)}& \textbf{Max. servo angle(deg)}\\
-	\hline
-	$|15|$& 25.79 \\
-	\hline
-	\textbf{Max. x displacement(cm)} & \textbf{Max. servo angle(deg)}\\
-	\hline
-	4 & 71.58 \\
-	\hline
-	\textbf{Max. y displacement} & \textbf{Max. servo angle(deg)}\\
-	\hline
-	4	& 63.78\\
-	\hline
-	\textbf{Max. z displacement(cm)} & \textbf{Max. servo angle(deg)}\\
-	\hline
-	4	& 29.03\\
-	\hline
-	\end{tabular}
-\end{table}
+		\centering
+		\caption[Maximum Servo angles]{Maximum Servo angles for maximum yaw,pitch, roll angles and maximum x,y and z displacements}
+		\label{roll}
+		\centering
+		\begin{tabular}{|l|l|}
+			\hline
+			\textbf{Max. roll angle (deg)}   & \textbf{Max. servo angle}      \\
+			\hline
+			$|15|$                           & 24.34                          \\
+			\hline
+			\textbf{Max. yaw angle (deg)}    & \textbf{Max. servo angle(deg)} \\
+			\hline
+			$|15|$                           & 27.13                          \\
+			\hline
+			\textbf{Max. pitch angle (deg)}  & \textbf{Max. servo angle(deg)} \\
+			\hline
+			$|15|$                           & 25.79                          \\
+			\hline
+			\textbf{Max. x displacement(cm)} & \textbf{Max. servo angle(deg)} \\
+			\hline
+			4                                & 71.58                          \\
+			\hline
+			\textbf{Max. y displacement}     & \textbf{Max. servo angle(deg)} \\
+			\hline
+			4                                & 63.78                          \\
+			\hline
+			\textbf{Max. z displacement(cm)} & \textbf{Max. servo angle(deg)} \\
+			\hline
+			4                                & 29.03                          \\
+			\hline
+		\end{tabular}
+	\end{table}
 \end{center}
 
 \subsection{Human Machine Interface}
 The user interface of the platform was programmed using golang and this resulted in the view below with the use of sliders for platform positioning and buttons to set model orientations and start data collection.
 \begin{center}
 	\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\linewidth]{Figures/hmi}
-	\caption[HMI Dashboard]{HMI Dashboard}
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/hmi}
+		\caption[HMI Dashboard]{HMI Dashboard}
 	\end{figure}
 \end{center}
 
@@ -143,16 +144,16 @@ The transport via TCP to the microcontroller was also tested, it showed bidirect
 The schematics from the electrical designs as seen in the appendix were routed to generate a PCB ready for manufacture. This is shown in the 3D render below:
 \begin{center}
 	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/pcb}
-	\caption[Printed Circuit Board view]{Printed Circuit Board view}
-	\label{fig:pcb3d}
+		\centering
+		\includegraphics[width=0.7\linewidth]{Figures/pcb}
+		\caption[Printed Circuit Board view]{Printed Circuit Board view}
+		\label{fig:pcb3d}
 	\end{figure}
 \end{center}
-The PCB is meant to be compact as shown in the figure \ref{fig:pcb3d}. It is also integrates most of the components to minimize use of wires to make connections. 
+The PCB is meant to be compact as shown in the figure \ref{fig:pcb3d}. It is also integrates most of the components to minimize use of wires to make connections.
 
 \subsection{Smoke Visualization}
-The smoke emitting device was 3D printed and assembled into the wind tunnel as shown in \ref{fig:smoke_res}. 
+The smoke emitting device was 3D printed and assembled into the wind tunnel as shown in \ref{fig:smoke_res}.
 The device was able to create streamlines of smoke to improve visibility in the wind tunnel.
 \begin{center}
 	\begin{figure}
