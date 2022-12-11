@@ -125,7 +125,7 @@ servo motors i.e. \textbf{KES 1,100.}
 
 \subsection{Electrical}
 This section looks at the design of the circuits used to power and get readings from the sensors and control the actuators.
-\subsection{PCB Design}
+
 \subsubsection*{Microcontroller}
 The main requirement for this was the need for wireless communication via WIFI and large number of I/O 
 interface at cost effective rate. This brought down the options to the ESP32 and 
@@ -136,6 +136,59 @@ Raspberry Pi RP2040. Both are dual core devices which are feature rich however t
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/mcu}
 	\caption[Microcontroller]{Microcontroller}
+	\end{figure}
+\end{center}
+\subsubsection*{Power Supply}
+The power supply chosen is an AC/DC power converter since the highest voltage required is 12 volts. This is also used as the highest power supply to the PCB.
+
+Both 5 and 3.3 volts are required in the PCB for other peripherals. To this end, a buck converter and linear converter are used for 5 ad 3.3 volts respectively.
+
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics{Figures/buck}
+	\caption[Buck converter]{Buck Converter 12V to 5V}
+	\end{figure}
+\end{center}
+
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics{Figures/5233}
+	\caption[Linear Voltage Converter]{Linear level converter 5V to 3.3v}
+	\end{figure}
+\end{center}
+The linear converter dissipates the energy loss though heat while buck converter is through switching.
+\subsubsection*{Servo Control}
+Since the microcontroller used (ESP32) is based on 3.3V logic. There is a need for 5V logic to control the servos and thus a bidirectional logic level converter is utilized which leverages an internal drain N-channel MOSFET. 
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics{Figures/logik}
+	\caption[Bidirectional Logic Level converter]{Bidirectional Logic Level converter}
+	\label{fig:logik}
+	\end{figure}
+\end{center}
+The configuration designed is shown in figure \ref{fig:logik}.
+\subsubsection{Printed Circuit Board}
+The schematics from the electrical designs as seen in the appendix were routed to generate a PCB ready for manufacture. This is shown in the 3D render below:
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.45\linewidth]{Figures/pcb}
+	\caption[Printed Circuit Board view]{Printed Circuit Board view}
+	\label{fig:pcb3d}
+	\end{figure}
+\end{center}
+The PCB is meant to be compact as shown in the figure \ref{fig:pcb3d}. It is also integrates most of the components to minimize use of wires to make connections.
+\subsubsection{Manufactured PCB}
+The PCB was manufactured and delivered and is shown in figure \ref{final pcb}.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.45\linewidth]{Figures/pcb 1.JPG}
+	\caption[Final PCB]{Manufactured PCB pictured alongside an RS-485}
+	\label{final pcb}
 	\end{figure}
 \end{center}
 \subsubsection{Test Flange and Strut}
