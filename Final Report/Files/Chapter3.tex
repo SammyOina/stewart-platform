@@ -10,7 +10,7 @@ This section will look into:
 	 Interface for measurement readings and control of the Stewart platform load balance.
 	\item Pitot tubes setup in the wind tunnel and pitot tube programming.
 	\item The integeration of a smoke visualization system into the wind tunnel.
-	\item Comutational Fluid Dynamics to determine the effects of the strut to the flow and to obtained 
+	\item Computational Fluid Dynamics to determine the effects of the strut to the flow and to obtained 
 		force values.
 \end{itemize}
 
@@ -191,18 +191,106 @@ The PCB was manufactured and delivered and is shown in figure \ref{final pcb}.
 	\label{final pcb}
 	\end{figure}
 \end{center}
-\subsubsection{Test Flange and Strut}
-The test flange will be used to hold the strut during wind tunnel testing. For optimum results, the reference axis is taken to be in the middle of the middle platform \cite {fernandes_design_nodate}. The flange will be fastened to the moving platform by use of bolts and nuts. Fasteners are more economical and easy to achieve as compared to welding. M6 or M8 nuts can be used for this purpose.
 
-The test flange should hold the strut for a considerable length in order to keep the rotation of the strut below certain predefined values and thus limiting torsion and bending behaviour of the strut during Wind Tunnel testing.
+\subsection{Human Machine Interface Design and Development}
+\subsection{Velocity Measurement}
+Velocity measurement is to be acheieved in the wind tunnel by use of pitot tubes. Three pitot tubes are
+required - one at the test section and is attached on the strut, one at the inlet and the other at the diffuser as shown
+in figure \ref{pitot placement}.
 \begin{center}
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\linewidth]{Figures/Test}
-	\caption[Test flange]{Test flange design}
+	\includegraphics[width=0.45\linewidth]{Figures/wt and pitot.JPG}
+	\caption[Pitot tubes setup]{Pitot tubes setup in the wind tunnel}
+	\label{pitot placement}
 	\end{figure}
 \end{center}
-The strut will go into the test section of the Wind tunnel at the Fluids lab in JKUAT. The strut should be long enough to position the model under testing in the middle of the test section. The strut will also be subjected to the flow forces in the wind tunnel. It should therefore be made of as small diameter as possible. The strut dimensions of diameter 12.5mm and a length 400mm are practical, based on the Wind Tunnel set-up (Appendix).
+From left to right in figure \ref{pitot placement} above is the inlet, the test section (above the Stewart platform) and the diffuser.
+The pitot tube in the inlet section is placed exactly where the test section begins and the pitot tube at the
+diffuser section is placed exactly where the test section ends. The pitot probes are set at height that as close to the 
+middle (in terms of height) of flow as possible. Figure \ref{pitot height} shows shows the height of the pitot tube in the wind tunnel.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.25\linewidth]{Figures/Pitot in diffuser.jpg}
+	\caption[Pitot tubes setup in diffuser]{Pitot tube in the diffuser section of the wind tunnel}
+	\label{pitot height}
+	\end{figure}
+\end{center}
+Holes for inserting the pitot tubes were drilled using a hand drill and a 7mm diameter drill bit. Pitot tube has a diameter of 6mm.
+\subsection{Smoke Visualization System}
+To implement streamline smoke lines in the wind tunnel, a smoke rake, which is an aerodynamically shaped
+body (typically elliptical) featuring a row of tubes through which the smoke exits was designed. 
+The CAD model was deigned using Autodesk Inventor and the rake was prepared for 3D printing 
+at iPIC in JKUAT. The rake design is shown below.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.55\linewidth]{Figures/rake design.JPG}
+	\caption[Rake design]{Rake design used to produces smoke streamlines}
+	\label{pitot height}
+	\end{figure}
+\end{center}
+The printed rake is shown in figure \ref{rake printed}.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.25\linewidth]{Figures/smoke emitter.jpg}
+	\caption[3D Printed rake]{3D Printed rake}
+	\label{rake printed}
+	\end{figure}
+\end{center}
+To implement smoke visualisation in the wind tunnel, the rake is used in conjuction with:
+\begin{enumerate}
+	\item A fog generator
+	\item A metal pipe
+	\item A hose pipe and
+	\item A smoke connector
+\end{enumerate}
+The fog, produced by heating a water-based liquid, features good dispersal properties and has a density very similar to that of air when in 
+vapour form, so that the smoke lines are expected to follow the air in the test section with high fidelity and not disperse or sink too quickly. As the fog 
+liquid is water-based, the resulting fog cloud is non-hazardous and thus safe to use indoors \cite{trinder2013development}.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.25\linewidth]{Figures/smoke generator.jpg}
+	\caption[Fog generator]{Fog generator with funnel (smoke connector)}
+	\label{pitot height}
+	\end{figure}
+\end{center}
+
+The metal pipe is for rigid support of the rake in the wind tunnel. From wind tunnel dimensions, a pipe of 400mm length 
+was selected to place the rake exactly in the middle (vertically) of the intake section. A diameter of 3/4" (19.05mm) was chosen in order to 
+ensure sufficient smoke supply and also for ease of pipe threading. A sheet plate was also included in the setup for ease of setting up the pipe 
+on the wid tunnel floor. The design of the assembly is shown in figure \ref{pipe and rake}.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.35\linewidth]{Figures/pipe and rake.JPG}
+	\caption[Pipe and rake assembly]{Design assembly of the rake and pipe in the Wind tunnel}
+	\label{pipe and rake}
+	\end{figure}
+\end{center}
+Due to lack of drill cutters to drill a 20mm hole on the intake section floor, we had to improvise by trepanning a 20mm hole using a 7mm drill bit and hand drill.
+The pipe was threaded on one end for a length of 30mm at the plumbing workshop to enable it to be fastened onto the 
+wind tunnel floor using plumbing nuts (one on top and one on the bottom). Further, the pipe surface was made rough by use of a hacksaw
+in order to reduce any turbulence in the flow that will result from the pipe being in the intake section. The final set up is shown in 
+figure \ref{final pipe}.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.35\linewidth]{Figures/final pipe.jpg}
+	\caption[Pipe and rake final assembly]{Final assembly of pipe and rake in the wind tunnel}
+	\label{final pipe}
+	\end{figure}
+\end{center}
+A hose pipe is used to connect the fog generator to the matal pipe via a smoke connector. 
+\subsection{Strut}
+The strut will go into the test section of the Wind tunnel at the Fluids lab in JKUAT. 
+The strut should be long enough to position the model under testing in the middle of the test section.
+ The strut will also be subjected to the flow forces in the wind tunnel. 
+ Its design therefore considered as small diameter as possible. The strut dimensions of diameter 12.5mm 
+ and a length 400mm are practical, based on the Wind Tunnel set-up (Appendix) \cite{caleb}.
 \begin{center}
 	\begin{figure}[H]
 	\centering
@@ -210,7 +298,7 @@ The strut will go into the test section of the Wind tunnel at the Fluids lab in 
 	\caption[Strut]{Strut}
 	\end{figure}
 \end{center}
-
+\subsubsection{Computational Fluid Dynamics of the Strut}
 \subsubsection{Finite Element Analysis}
 A Finite Element Analysis was done on the Stewart platform design to determine its performance under given loads. The platform is going to be subjected to a force during wind tunnel testing. A maximum load of 50N is selected for the Finite Element Analysis. This could be more or less since models vary in size. The z-component of the force is considered. 
 The mesh generated is shown in the figure \ref{fig:feamesh}.

@@ -44,3 +44,8 @@ body (typically elliptical) featuring a row of tubes through which the smoke exi
 From FEA done on the Stewart platform, strain values were expected along the Stewart platform legs as shown in figure \ref{eq}.
 
 ## Electromechanical Modifications
+
+To implement streamline smoke lines in the wind tunnel, a smoke rake, which is an aerodynamically shaped
+body (typically elliptical) featuring a row of tubes through which the smoke exits was designed. The CAD model was deigned using Autodesk Inventor and the rake was prepared for 3D printing at iPIC in JKUAT. The rake design is shown below.
+
+To implement smoke visualisation in the wind tunnel, the rake is used in conjuction with:
