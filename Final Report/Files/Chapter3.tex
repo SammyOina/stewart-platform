@@ -228,6 +228,31 @@ Mesh& Avg element size: 0.1mm\\
 \hline
 \end{tabular}
 \end{center}
+
+\subsection{Strut}
+The strut will go into the test section of the Wind tunnel. Consequently, it will be 
+subjected to the flow forces in the wind tunnel. It has therefore been made of as small diameter as possible. 
+A computational fluid dynamics test was done to ascertain the magnitude of drag force experienced and the effect that the strut
+will have on the flow in the tunnel. The test was done using ANSYS.
+\begin{center}
+	\begin{table}[!h]
+	\caption[CFD Setup]{CFD setup parameters}
+	\centering
+	\end{table}
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{Parameter} & \textbf{Value/Type}\\
+	\hline
+	Type of test & Fluid flow\\
+	Type of fluid & air\\
+	\hline
+	Velocity & 10 - 50 m/s\\
+	\hline
+	\end{tabular}
+	\end{center}
+The speed of air flow in the wind tunnel is variable thus the simulation using speed between 10m/s and 50 m/s 
+in steps of 10 m/s.
+
 \subsubsection{Smoke Visualization System}
 To implement streamline smoke lines in the wind tunnel, a smoke rake, which is an aerodynamically shaped
 body (typically elliptical) featuring a row of tubes through which the smoke exits was designed. 
