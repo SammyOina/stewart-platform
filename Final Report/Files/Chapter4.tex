@@ -23,19 +23,18 @@ The assembled Stewart platform is as shown in figure \ref{fig}. Figure \ref{fig1
 
 \subsection{Force Measurement by the Stewart Platform}
 Finite Element Analysis done on FEA environment in Autodesk inventor showed expected strain values on each
-Stewart platform leg as shown in figure \ref{strain}.
+Stewart platform leg as shown in figure \ref{strain1}.
 
 \begin{center}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.6\linewidth]{Figures/Equivalent}
 		\caption[Equivalent strain]{Strain induced on each of the legs}
-		\label{strain}
+		\label{strain1}
 	\end{figure}
 \end{center}
-These strains are small thus they need amplification in order provide
- substantial input to be used for force measurements. Strain values detected on the legs and amplified by the
- HX711s were obtained and displayed on the HMI as force measurements when load is applied on the platform.
+These strains are small and undergo amplification in order provide substantial input for the strain gauges used for force measurements.
+
 \subsection{Human Machine Interface}
 The user interface of the platform was programmed using golang and this resulted in the view below with the use of sliders for platform positioning and buttons to set model orientations and start data collection.
 \begin{center}
@@ -46,21 +45,74 @@ The user interface of the platform was programmed using golang and this resulted
 	\end{figure}
 \end{center}
 
-This includes slider buttons to control platform position and orientation. It also includes buttons to allow for data capture  and platform control. The dashboard also has a live plot of incoming data to provide immediate user feedback.
-
-The transport via TCP to the microcontroller was also tested, it showed bidirectional streaming of data to and from the microcontroller making it suitable for communication.
-
-\subsection{PCB}
-The schematics from the electrical designs as seen in the appendix were routed to generate a PCB ready for manufacture. This is shown in the 3D render below:
+The top bar of the user interface includes slider buttons to control platform orientation and commands around recording data and calibration as shown in figure \ref{fig:hmi_top}.
 \begin{center}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{Figures/pcb}
-		\caption[Printed Circuit Board view]{Printed Circuit Board view}
-		\label{fig:pcb3d}
+		\includegraphics[width=1\linewidth]{Figures/Screenshot 2022-12-11 195125.png}
+		\caption[HMI Top Bar]{HMI Top Bar}
+		\label{fig:hmi_top}
 	\end{figure}
 \end{center}
-The PCB is meant to be compact as shown in the figure \ref{fig:pcb3d}. It is also integrates most of the components to minimize use of wires to make connections.
+
+The menu bar also provides options to test the six degrees of freedom for the whole platform as shown in figure \ref{fig:hmi_menu}.
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics{Figures/Screenshot 2022-12-11 195108.png}
+		\caption[HMI menubar]{HMI menubar}
+		\label{fig:hmi_menu}
+	\end{figure}
+\end{center}
+A calibration window is also included that is used to set the calibration factor for measurements taken as shown in figure \ref{fig:hmi_calib}
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/Screenshot 2022-12-11 195034.png}
+		\caption[HMI calibration]{HMI calibration}
+		\label{fig:hmi_calib}
+	\end{figure}
+\end{center}
+The incoming sensor data was also displayed on the screen as shown in the following figures:
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/Screenshot 2022-12-11 194656.png}
+		\caption[HMI Aerodynamic loads]{HMI Aerodynamic loads}
+	\end{figure}
+\end{center}
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/Screenshot 2022-12-11 194826.png}
+		\caption[HMI Air velocity]{HMI Air velocity}
+	\end{figure}
+\end{center}
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/Screenshot 2022-12-11 194952.png}
+		\caption[HMI IMU readings]{HMI IMU readings}
+	\end{figure}
+\end{center}
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/Screenshot 2022-12-11 194931.png}
+		\caption[HMI Raw Strain]{HMI Raw Strain}
+	\end{figure}
+\end{center}
+\subsection{PCB}
+The schematics from the electrical designs as seen in the appendix were routed to generate a PCB ready for manufacture. The fabricated PCB is shown in figure \ref{fig:pcb_fab}
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{Figures/pcb 1.JPG}
+		\caption[Printed Circuit Board view]{Printed Circuit Board}
+		\label{fig:pcb_fab}
+	\end{figure}
+\end{center}
+The PCB is compact as shown in the figure \ref{fig:pcb_fab}. It is also integrates most of the components to minimize use of wires to make connections.
 
 \subsection{Smoke Rake}
 The smoke emitting device was 3D printed at iPIC and assembled and is shown in figure \ref{result}.
