@@ -15,7 +15,129 @@ This section will look into:
 \end{itemize}
 
 \subsection{Instrumentation of the Stewart Platform}
+A 3D model of the Stewart plaform was done using Autodesk Inventor to aid in mechanical eveluations.
+Finite element analysis was done using the operating conditions in table \ref{tableop}.
 
+\begin{center}
+	\begin{table}[H]
+	\caption{Operating Conditions}
+	\centering
+	\label{tableop}
+	\end{table}
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{Load Type} & \textbf{Force}\\
+	\hline
+	Magnitude & 50.0N\\
+	\hline
+	Vector X & 7.794N\\
+	\hline
+	Vector Y & -48.206N\\
+	\hline
+	Vector Z & 10.745N\\
+	\hline
+	\end{tabular}
+	\end{center}
+A maximum load of 50N was selected for the Finite Element Analysis.
+This could be more or less since models vary in size. The z-component of the force was considered.
+From FEA done on the Stewart platform, 
+strain values were expected along the Stewart platform legs as shown in figure \ref{eq}.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{Figures/Equivalent}
+	\caption[Equivalent strain]{Strain induced on each of the legs}
+	\label{eq}
+	\end{figure}
+\end{center}
+In order to detect and convert this strains into electric signals, strain gauges in Whetastone Bridge configuration
+had to be attached to the Stewart platform legs. An adhesive was required for the operation with care being
+taken in first cleaning the metal surfaces before attachment. The strain gauges are delicate. Figure \ref{bon}
+shows straing gauge bondin using raisin.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{Figures/Strain gauge bonding.JPG}
+	\caption[Bonding]{Starin gauge bonding}
+	\label{bon}
+	\end{figure}
+\end{center}
+The strain gauge wires were then soldered and covered using heat shrinkable tubing as shown in figure 
+\ref{shrink}.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{Figures/shrinkable1.JPG}
+	\caption[Full assembly]{Strain gauge bonded to Stewart platform legs}
+	\label{shrink}
+	\end{figure}
+\end{center}
+\subsection{Electromechanical}
+\subsubsection{Electromechanical Design}
+Two methods of actuation are popular with Stewart platforms:
+\begin{itemize}
+\item Linear actuators
+\item Use of motors
+\end{itemize}
+Whereas linear actuators are relatively easy to control, they are very expensive. Thus the choice of motors.
+\subsubsection{Motor Selection}
+One parameter was considered in our motor selection i.e. torque required. From the Autodesk Inventor 
+design environment, the mass of the moving platform and mechanical couplings was 2.6kg. Each motor is 
+supposed to move a minimum mass of 0.177kg. Using a servo horn of distance 45mm centre-to-centre, and 
+Distance = $ \pi $ D, then:
+\begin{ceqn}
+\begin{align}
+	Torque = (0.1777 \times 9.81)\times \frac{141.37}{1000} = 0.246 N\cdot m
+\end{align}
+\end{ceqn}
+Motors of minimum torque of 0.2 N $\cdot m$ were considered. But for control considerations, only stepper 
+motors and servo motors were shortlisted. Servo motor was considered over Stepper motor because they are cheaper. 
+Also, we are only interested in 0 - 180 degrees positions.
+The Servo motor \textbf{TowerPro SG5010} was found suitable for this project. The specifications provided by the manufacturer are as follows:
+
+\begin{table}[!h]
+\caption[Motor Specifications]{TowerPro SG5010 Specifications}
+\end{table}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Model}& TowerPro SG5010\\
+\hline
+\textbf{Operating Voltage} & 4.8V - 6.6V\\
+\hline
+\textbf{Operating Speed @ 4.8V} & 0.20sec/60$^{\circ}$\\
+\hline
+\textbf{Operating Speed @ 6.6V}& 0.16sec/60$^{\circ}$\\
+\hline
+\textbf{Stall torque @ 4.8V} & 5.5 kg-cm or 0.54 N $\cdot$ m\\
+\hline
+\textbf{Stall torque @ 6.6V} & 6.5 kg-cm or 0.64 N $\cdot$ m\\
+\hline
+\end{tabular}
+\end{center}
+\subsubsection{Electromechanical Modification}
+The Servo motor \textbf{TowerPro SG5010} used initially had plastic gears. This proved not to be capable of carrying the
+platform and any load attached to it. Other servo motors (three) had been broken when we started working with them. The
+servo motors were therefore replaced by the same servo motors but that have metal gears. The price was the same as plastic-generated
+servo motors i.e. \textbf{KES 1,100.}
+
+\subsection{Inverse Kinematics for Platform Control}
+
+\subsection{Electrical}
+This section looks at the design of the circuits used to power and get readings from the sensors and control the actuators.
+\subsection{PCB Design}
+\subsubsection*{Microcontroller}
+The main requirement for this was the need for wireless communication via WIFI and large number of I/O 
+interface at cost effective rate. This brought down the options to the ESP32 and 
+Raspberry Pi RP2040. Both are dual core devices which are feature rich however the raspberry rp2040 only
+ has 28 I/O pins while the ESP32 has 34 pins and due to this the ESP32 was chosen. 
+ \begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/mcu}
+	\caption[Microcontroller]{Microcontroller}
+	\end{figure}
+\end{center}
 \subsubsection{Test Flange and Strut}
 The test flange will be used to hold the strut during wind tunnel testing. For optimum results, the reference axis is taken to be in the middle of the middle platform \cite {fernandes_design_nodate}. The flange will be fastened to the moving platform by use of bolts and nuts. Fasteners are more economical and easy to achieve as compared to welding. M6 or M8 nuts can be used for this purpose.
 
