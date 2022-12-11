@@ -1,4 +1,3 @@
-
 \section{Results}
 \subsection{Six DOF Stewart Platform}
 As earlier mentioned, the Stewart platform has already been designed and fabricated and our part in this work was to do an evaluation of the same to verify its mechanical feasibility. As such, the various parts of the platform were obtained and assembled. For further analysis, a 3D model of the same platform was done using Autodesk Inventor.
@@ -22,7 +21,26 @@ The assembled Stewart platform is as shown in figure \ref{fig}. Figure \ref{fig1
 \end{center}
 
 \subsection{Force Measurement by the Stewart Platform}
-Finite Element Analysis done on FEA environment in Autodesk inventor showed expected strain values on each
+A static analysis test was performed and the following results were obtained:
+\begin{table}[H]
+\caption{FEA Results}
+\end{table}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Name} & \textbf{Minimum} & \textbf{Maximum}\\
+\hline
+Von Mise's & 0 MPa & 63.19 MPa\\
+\hline
+Displacement & 0 mm & 23.74 mm\\
+\hline
+Safety Factor & 10.3426 ul & 15 ul\\
+\hline
+Equivalent Strain & 0 ul & 0.052 ul\\
+\hline
+\end{tabular}
+\end{center}
+Finite Element Analysis done showed expected strain values on each
 Stewart platform leg as shown in figure \ref{strain1}.
 
 \begin{center}
@@ -115,13 +133,26 @@ The schematics from the electrical designs as seen in the appendix were routed t
 The PCB is compact as shown in the figure \ref{fig:pcb_fab}. It is also integrates most of the components to minimize use of wires to make connections.
 
 \subsection{Smoke Visualization}
-The smoke emitting device was 3D printed and assembled into the wind tunnel as shown in \ref{fig:smoke_res}.
-The device was able to create streamlines of smoke to improve visibility in the wind tunnel.
-\begin{center}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.5\linewidth]{Figures/Screenshot_20221211-185935.png}
-		\caption[Smoke Emitting Device]{Smoke Emitting Device}
-		\label{fig:smoke_res}
-	\end{figure}
-\end{center}
+\subsubsection{Smoke Rake}
+The smoke rake was 3D printed at iPIC and assembled with its lid as shown.
+\begin{figure}[!htb]%
+	\centering
+	\subfloat[\centering Smoke Rake CAD]{{\includegraphics[width=3cm]{Figures/Rake CAD.JPG} }}%
+	\qquad
+	\subfloat[\centering 3D Printed Rake]{{\includegraphics[width=3cm]{Figures/smoke emitter.jpg}}}
+	\caption[3D Printed rake]{Smoke rake and lid assembled}%
+	\label{fig:result}%
+\end{figure}
+\subsubsection{Smoke Rake and Pipe Assembly}
+The Smoke rake was assembled with a metal pipe for rigid support and also for smoke introduction into the
+smoke rake as shown.
+\begin{figure}[!htb]%
+	\centering
+	\subfloat[\centering CAD Assembly]{{\includegraphics[width=3cm]{Figures/CAD assembly.JPG} }}%
+	\qquad
+	\subfloat[\centering Final Part]{{\includegraphics[width=4.5cm]{Figures/final pipe.jpg}}}
+	\caption[Final rake and pipe]{Smoke rake and pipe assembly and setup in the wind tunnel}%
+	\label{fig:result}%
+\end{figure}
+
+\subsection{Discussion}
