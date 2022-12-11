@@ -20,6 +20,39 @@ The assembled Stewart platform is as shown in figure \ref{fig}. Figure \ref{fig1
 	\end{figure}
 \end{center}
 
+\subsection{Strut}
+Computational Fluid Dynamics was done for various values of air spaid and the following drag forces were
+determined from the simulations.
+\begin{table}[H]
+	\caption{CFD Results}
+	\end{table}
+	\begin{center}
+	\begin{tabular}{|l|l|}
+	\hline
+	\textbf{Air Velocity(m/s)} & \textbf{Drag Force (N)}\\
+	\hline
+	10 & 1.203 \\
+	\hline
+	10 & 6.838 \\
+	\hline
+	30 & 8.068 \\
+	\hline
+	40 & 11.367 \\
+	\hline
+	50 & 14.022 \\
+	\hline
+	\end{tabular}
+\end{center}
+Figure \ref{cfd} shows the effect of the strut to air flow as well as the amount of drag force expereienced.
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{Figures/CFD.png}
+		\caption[CFD]{Computational Fluid Dynamics showing the effect of the strut to air flow}
+		\label{cfd}
+	\end{figure}
+\end{center}
+
 \subsection{Force Measurement by the Stewart Platform}
 A static analysis test was performed and the following results were obtained:
 \begin{table}[H]
@@ -156,3 +189,10 @@ smoke rake as shown.
 \end{figure}
 
 \subsection{Discussion}
+The Stewart platform is able to position models in various dynamic positions depending on the angle values
+of yaw, roll and pitch as well as the amount of displacements in the x-, y- and z-directions input via the HMI.
+The home position of the Stewart platform is when all servos are at 90 degree. Application of load on the platform
+subjects each of the legs to axial forces which causes strain. This strain can be used to determine aerodynamic forces
+on models during wind tunnel testing. However, aerodynamic forces due to the strut must be put to account because from
+simulations, drag forces are developed by the strut when there is airflow. Smoke introduced into the wind tunnel allows
+visualization of airflow around a model.
