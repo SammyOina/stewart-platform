@@ -28,6 +28,8 @@ modbusMaster diffuserPitot;
 
 QueueHandle_t servoPositionQueue;
 
+bool testing_mode;
+
 void TaskServoWriter(void *pvParameters);
 void configModeCallback(WiFiManager *myWiFiManager);
 void tare();
@@ -36,6 +38,7 @@ void webSocketEvent(WStype_t type, uint8_t *payload, size_t length);
 
 void setup()
 {
+	testing_mode = true;
 	Serial.begin(115200);
 	positioningActive = false;
 
@@ -99,59 +102,106 @@ void setup()
 void loop()
 {
 	webSocket.loop();
-	if (!positioningActive)
+	if (testing_mode)
 	{
-		if (mpuActive)
+		SensorEvent orientation = SensorEvent_init_zero;
+		orientation.which_event = SensorEvent_iMUEvent_tag;
+		orientation.event.iMUEvent.pitch = 0;
+		orientation.event.iMUEvent.roll = 0;
+		orientation.event.iMUEvent.yaw = 0;
+		pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+		if (!pb_encode(&stream, SensorEvent_fields, &orientation))
 		{
-			mpu.update();
-			if ((millis() - timer) > 10)
+			Serial.println("failed to encode temp proto");
+			Serial.println(PB_GET_ERROR(&stream));
+			return;
+		}
+
+		if (webSocket.isConnected())
+		{
+			Serial.println("sending message...");
+			webSocket.sendBIN(buffer, stream.bytes_written);
+			// delay(1000);
+		}
+		SensorEvent strains = SensorEvent_init_zero;
+		strains.which_event = SensorEvent_strainEvent_tag;
+		strains.event.strainEvent.strain1 = 10;
+		strains.event.strainEvent.strain2 = 10;
+		strains.event.strainEvent.strain3 = 10;
+		strains.event.strainEvent.strain4 = 10;
+		strains.event.strainEvent.strain5 = 10;
+		strains.event.strainEvent.strain6 = 10;
+		stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+		if (!pb_encode(&stream, SensorEvent_fields, &strains))
+		{
+			Serial.println("failed to encode temp proto");
+			Serial.println(PB_GET_ERROR(&stream));
+			return;
+		}
+		if (webSocket.isConnected())
+		{
+			Serial.println("sending message...");
+			webSocket.sendBIN(buffer, stream.bytes_written);
+			// delay(1000);
+		}
+		delay(100);
+	}
+	else
+	{
+		if (!positioningActive)
+		{
+			if (mpuActive)
 			{
-				SensorEvent orientation = SensorEvent_init_zero;
-				orientation.which_event = SensorEvent_iMUEvent_tag;
-				orientation.event.iMUEvent.pitch = mpu.getAngleX();
-				orientation.event.iMUEvent.roll = mpu.getAngleZ();
-				orientation.event.iMUEvent.yaw = mpu.getAngleY();
+				mpu.update();
+				if ((millis() - timer) > 10)
+				{
+					SensorEvent orientation = SensorEvent_init_zero;
+					orientation.which_event = SensorEvent_iMUEvent_tag;
+					orientation.event.iMUEvent.pitch = mpu.getAngleX();
+					orientation.event.iMUEvent.roll = mpu.getAngleZ();
+					orientation.event.iMUEvent.yaw = mpu.getAngleY();
+					pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+					if (!pb_encode(&stream, SensorEvent_fields, &orientation))
+					{
+						Serial.println("failed to encode temp proto");
+						Serial.println(PB_GET_ERROR(&stream));
+						return;
+					}
+
+					if (webSocket.isConnected())
+					{
+						// Serial.println("sending message...");
+						webSocket.sendBIN(buffer, stream.bytes_written);
+						// delay(1000);
+					}
+					timer = millis();
+				}
+			}
+			if (scales.is_ready())
+			{
+				scales.read(strain_results);
+				// Serial.println("reading");
+				SensorEvent strains = SensorEvent_init_zero;
+				strains.which_event = SensorEvent_strainEvent_tag;
+				strains.event.strainEvent.strain1 = strain_results[0];
+				strains.event.strainEvent.strain2 = strain_results[1];
+				strains.event.strainEvent.strain3 = strain_results[2];
+				strains.event.strainEvent.strain4 = strain_results[3];
+				strains.event.strainEvent.strain5 = strain_results[4];
+				strains.event.strainEvent.strain6 = strain_results[5];
 				pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-				if (!pb_encode(&stream, SensorEvent_fields, &orientation))
+				if (!pb_encode(&stream, SensorEvent_fields, &strains))
 				{
 					Serial.println("failed to encode temp proto");
 					Serial.println(PB_GET_ERROR(&stream));
 					return;
 				}
-
 				if (webSocket.isConnected())
 				{
 					// Serial.println("sending message...");
 					webSocket.sendBIN(buffer, stream.bytes_written);
 					// delay(1000);
 				}
-				timer = millis();
-			}
-		}
-		if (scales.is_ready())
-		{
-			scales.read(strain_results);
-			//Serial.println("reading");
-			SensorEvent strains = SensorEvent_init_zero;
-			strains.which_event = SensorEvent_strainEvent_tag;
-			strains.event.strainEvent.strain1 = strain_results[0];
-			strains.event.strainEvent.strain2 = strain_results[1];
-			strains.event.strainEvent.strain3 = strain_results[2];
-			strains.event.strainEvent.strain4 = strain_results[3];
-			strains.event.strainEvent.strain5 = strain_results[4];
-			strains.event.strainEvent.strain6 = strain_results[5];
-			pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-			if (!pb_encode(&stream, SensorEvent_fields, &strains))
-			{
-				Serial.println("failed to encode temp proto");
-				Serial.println(PB_GET_ERROR(&stream));
-				return;
-			}
-			if (webSocket.isConnected())
-			{
-				// Serial.println("sending message...");
-				webSocket.sendBIN(buffer, stream.bytes_written);
-				// delay(1000);
 			}
 		}
 	}
@@ -180,29 +230,53 @@ void TaskServoWriter(void *pvParameters)
 			tare();
 			positioningActive = false;
 		}
-		if (intakePitotActive && diffuserPitotActive && !positioningActive) // will cause disconnection if not connected
+		if (testing_mode)
 		{
-			bool gotReadingIntake = intakePitot.getRegisters(0x03, 0x00, 3);
-			bool gotReadingDiffuser = diffuserPitot.getRegisters(0x03, 0x00, 3);
-			if (gotReadingIntake && gotReadingDiffuser)
-			{
-				SensorEvent pitotReading = SensorEvent_init_zero;
-				pitotReading.which_event = SensorEvent_pitotEvent_tag;
-				pitotReading.event.pitotEvent.intakePitot = intakePitot.int16FromFrame(bigEndian, 3);
-				pitotReading.event.pitotEvent.diffuserPitot = diffuserPitot.int16FromFrame(bigEndian, 3);
+			SensorEvent pitotReading = SensorEvent_init_zero;
+			pitotReading.which_event = SensorEvent_pitotEvent_tag;
+			pitotReading.event.pitotEvent.intakePitot = 1.2;
+			pitotReading.event.pitotEvent.diffuserPitot = 1.1;
 
-				pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-				if (!pb_encode(&stream, SensorEvent_fields, &pitotReading))
+			pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+			if (!pb_encode(&stream, SensorEvent_fields, &pitotReading))
+			{
+				Serial.println("failed to encode temp proto");
+				Serial.println(PB_GET_ERROR(&stream));
+				return;
+			}
+			if (webSocket.isConnected())
+			{
+				// Serial.println("sending message...");
+				webSocket.sendBIN(buffer, stream.bytes_written);
+				// delay(1000);
+			}
+		}
+		else
+		{
+			if (intakePitotActive && diffuserPitotActive && !positioningActive) // will cause disconnection if not connected
+			{
+				bool gotReadingIntake = intakePitot.getRegisters(0x03, 0x00, 3);
+				bool gotReadingDiffuser = diffuserPitot.getRegisters(0x03, 0x00, 3);
+				if (gotReadingIntake && gotReadingDiffuser)
 				{
-					Serial.println("failed to encode temp proto");
-					Serial.println(PB_GET_ERROR(&stream));
-					return;
-				}
-				if (webSocket.isConnected())
-				{
-					// Serial.println("sending message...");
-					webSocket.sendBIN(buffer, stream.bytes_written);
-					// delay(1000);
+					SensorEvent pitotReading = SensorEvent_init_zero;
+					pitotReading.which_event = SensorEvent_pitotEvent_tag;
+					pitotReading.event.pitotEvent.intakePitot = intakePitot.int16FromFrame(bigEndian, 3);
+					pitotReading.event.pitotEvent.diffuserPitot = diffuserPitot.int16FromFrame(bigEndian, 3);
+
+					pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+					if (!pb_encode(&stream, SensorEvent_fields, &pitotReading))
+					{
+						Serial.println("failed to encode temp proto");
+						Serial.println(PB_GET_ERROR(&stream));
+						return;
+					}
+					if (webSocket.isConnected())
+					{
+						// Serial.println("sending message...");
+						webSocket.sendBIN(buffer, stream.bytes_written);
+						// delay(1000);
+					}
 				}
 			}
 		}
