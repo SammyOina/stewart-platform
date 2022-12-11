@@ -49,3 +49,6 @@ To implement streamline smoke lines in the wind tunnel, a smoke rake, which is a
 body (typically elliptical) featuring a row of tubes through which the smoke exits was designed. The CAD model was deigned using Autodesk Inventor and the rake was prepared for 3D printing at iPIC in JKUAT. The rake design is shown below.
 
 To implement smoke visualisation in the wind tunnel, the rake is used in conjuction with:
+
+## Smoke rake
+Change top hole diameter to 20mm

@@ -431,7 +431,6 @@ UDP is a communications protocol that is primarily used to establish low-latency
  TCP requires only one initial handshake between the server and client, after which messages can be transmitted continuously (streaming).
  Due to assurance of data integrity (no loss) and lower bandwidth use thus higher data transfer rates, TCP was chosen as the main protocol.
   This allows for high speed low latency communication without need for a wired connection. It also allows for bidirectional streaming of information thus allowing for both control input and output of measured values. The interface is to enable the abstraction of data acquisition and actuator control to a simple interaction with buttons and other visual interfaces available in a computer program.
-
 The decoupling of the microcontroller and the program to be hosted on the desktop allows for advanced data processing such as application of filters and resolving measurements into usable information. It also allows for the use of more powerful processor and high level programming languages to more effectively perform complex calculations without taking a toll the sensor sampling rate that would occur with on board processing in the microcontroller.
 
 A user interface was also required to record user input and display incoming data.
@@ -441,5 +440,35 @@ A user interface was also required to record user input and display incoming dat
 	\centering
 	\includegraphics[width=0.7\linewidth]{Figures/Flow}
 	\caption[Control Algorithm]{Control Algorithm for the Stewart Platform with Force Measurement}
+	\end{figure}
+\end{center}
+\subsection{Smoke Visualization System}
+To implement streamline smoke lines in the wind tunnel, a smoke rake, which is an aerodynamically shaped
+body (typically elliptical) featuring a row of tubes through which the smoke exits was designed. 
+The CAD model was deigned using Autodesk Inventor and the rake was prepared for 3D printing at iPIC 
+in JKUAT. The rake design is shown in figure \ref{smoke}.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/rake design.JPG}
+	\caption[Smoke Rake]{Smoke rake design}
+	\label{smoke}
+	\end{figure}
+\end{center}
+Both the smoke emitting holes and the air inlet holes are 6mm in diameter. 20mm diameter hole shown in the 
+plan view is for metal pipe connection.
+
+\subsubsection{Smoke Rake and Pipe Assembly}
+A metal pipe is used to provide rigid support to the smoke rake in the wind tunnel as well as placing it at the center
+(vertically). A pipe of length 40mm and diameter 3/4"(19.05mm) is used. The pipe surface is roughed using a harcksaw in 
+order to minimize any turbulence in the flow since it will be placed in the intake section. A plate of 10mm by 10mm by 1.5mm 
+and two plumbing nuts are required to mount the pipe in the intake section. The smoke rake and pipe design is shown 
+in figure \ref{pipe and rake}
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.25\linewidth]{Figures/pipe and rake.JPG}
+	\caption[Pipe and rake]{Pipe and rake assembly design}
+	\label{pipe and rake}
 	\end{figure}
 \end{center}
