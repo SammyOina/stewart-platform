@@ -322,9 +322,7 @@ For steady flow of an incompressible fluid for which viscosity can be neglected,
 \end{ceqn}
 
 Where V is the speed of the fluid, $P_{0}$ is the total, also called the stagnation, pressure at that point of measurement, and P is the static pressure at the same point.
-
-Three pitot probes are to be used in the wind tunnel i.e. in the test section, intake and diffuser sections.
-                                                                                                                                                                   
+                                                                                                                                                           
 \begin{center}
 \begin{figure}[H]
 \centering
@@ -336,6 +334,17 @@ Three pitot probes are to be used in the wind tunnel i.e. in the test section, i
 The module communicates to the microcontroller using a TTL to RS485. Each module is individually addressable further simplifying the interface as shown in figure \ref{fig:rs485}. 
 The protocol allows for long distance serial communication and interface with multiple devices on the same bus.
 
+Three pitot probes are to be used in the wind tunnel i.e. in the test section, intake and diffuser sections.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics{Figures/wt and pitot.JPG}
+	\caption[Pitot setpu]{Pitot setup in the intake and diffuser}
+	\label{pitot loc}
+	\end{figure}
+\end{center}
+Pitot location in the intake is exactly at the beginning of the test section and pitot location in the diffuser
+is exactly at the end of the test section as shown in figure \ref{pitot loc}.
 \subsection{Electrical Design}
 This section looks at the required electrical connections to make the system functional and interface with the control unit.
 \subsubsection{Printed Circuit Board Design}
