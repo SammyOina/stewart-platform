@@ -59,8 +59,8 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 			var e models.SensorEvent
 			if err := proto.Unmarshal(message, &e); err != nil {
 				log.Println("failed to unmarshal:", err)
-				return
 			}
+			fmt.Println("got data")
 			switch event := e.Event.(type) {
 			case *models.SensorEvent_IMUEvent:
 				if RecordData && IMUWriter != nil {
@@ -188,4 +188,5 @@ func RecordToFile(fw *fileWriter.FileWriter, vals ...float32) {
 		record = append(record, fmt.Sprint(val))
 	}
 	fw.InputChannel <- record
+	fmt.Println("rec")
 }

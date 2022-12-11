@@ -2,6 +2,7 @@ package fileWriter
 
 import (
 	"encoding/csv"
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -41,23 +42,30 @@ func NewWriter(fileName string) (*FileWriter, error) {
 
 func (fw *FileWriter) Record() {
 	var records [][]string
-	defer close(fw.InputChannel)
+	/*defer close(fw.InputChannel)
 	defer close(fw.QuitChannel)
 	defer fw.writer.Flush()
-	defer fw.file.Close()
+	defer fw.file.Close()*/
 	for {
 		select {
+		case data := <-fw.InputChannel:
+			fmt.Println("appended to ", fw.file.Name())
+			fmt.Println("record len ", len(records))
+			records = append(records, [][]string{data}...)
 		case done := <-fw.QuitChannel:
 			if done {
+				fmt.Println("close me")
+				//close(fw.QuitChannel)
+				//close(fw.InputChannel)
+				fw.writer.Flush()
+				fw.file.Close()
 				return
 			}
-		}
-		select {
-		case data := <-fw.InputChannel:
-			records = append(records, [][]string{data}...)
 		default:
+			fmt.Println("doing nun")
 		}
 		if len(records) > 10 {
+			fmt.Println("got me 10")
 			err := fw.writer.WriteAll(records)
 			if err != nil {
 				log.Println(err)
