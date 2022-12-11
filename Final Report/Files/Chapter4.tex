@@ -21,7 +21,26 @@ The assembled Stewart platform is as shown in figure \ref{fig}. Figure \ref{fig1
 \end{center}
 
 \subsection{Force Measurement by the Stewart Platform}
-Finite Element Analysis done on FEA environment in Autodesk inventor showed expected strain values on each
+A static analysis test was performed and the following results were obtained:
+\begin{table}[H]
+\caption{FEA Results}
+\end{table}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Name} & \textbf{Minimum} & \textbf{Maximum}\\
+\hline
+Von Mise's & 0 MPa & 63.19 MPa\\
+\hline
+Displacement & 0 mm & 23.74 mm\\
+\hline
+Safety Factor & 10.3426 ul & 15 ul\\
+\hline
+Equivalent Strain & 0 ul & 0.052 ul\\
+\hline
+\end{tabular}
+\end{center}
+Finite Element Analysis done showed expected strain values on each
 Stewart platform leg as shown in figure \ref{strain1}.
 
 \begin{center}
@@ -135,3 +154,5 @@ smoke rake as shown.
 	\caption[Final rake and pipe]{Smoke rake and pipe assembly and setup in the wind tunnel}%
 	\label{fig:result}%
 \end{figure}
+
+\subsection{Discussion}
