@@ -2,94 +2,13 @@
 \subsection{Outline}
 This section will look into:
 \begin{itemize}
-	\item The instrumentation of the Stewart platform legs in order to come up with a force balance.
-	\item Electromechanical modifications to improve the platform functionality.
-	\item The inverse kinamatics used to come up with servo angles for Stewart platform control.
-	\item The printed circuit board.
-	\item The development of a Human-machine
-	 Interface for measurement readings and control of the Stewart platform load balance.
-	\item Pitot tubes setup in the wind tunnel and pitot tube programming.
-	\item The integeration of a smoke visualization system into the wind tunnel.
-	\item Comutational Fluid Dynamics to determine the effects of the strut to the flow and to obtained 
-		force values.
+	\item Mechanical Design:
+	\item Printed Circuit Board Design
+	\item Instrumentation
+	\item Software and Control Design
 \end{itemize}
 
-\subsection{Instrumentation of the Stewart Platform}
-
-\subsubsection{Test Flange and Strut}
-The test flange will be used to hold the strut during wind tunnel testing. For optimum results, the reference axis is taken to be in the middle of the middle platform \cite {fernandes_design_nodate}. The flange will be fastened to the moving platform by use of bolts and nuts. Fasteners are more economical and easy to achieve as compared to welding. M6 or M8 nuts can be used for this purpose.
-
-The test flange should hold the strut for a considerable length in order to keep the rotation of the strut below certain predefined values and thus limiting torsion and bending behaviour of the strut during Wind Tunnel testing.
-\begin{center}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{Figures/Test}
-	\caption[Test flange]{Test flange design}
-	\end{figure}
-\end{center}
-The strut will go into the test section of the Wind tunnel at the Fluids lab in JKUAT. The strut should be long enough to position the model under testing in the middle of the test section. The strut will also be subjected to the flow forces in the wind tunnel. It should therefore be made of as small diameter as possible. The strut dimensions of diameter 12.5mm and a length 400mm are practical, based on the Wind Tunnel set-up (Appendix).
-\begin{center}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{Figures/Strut}
-	\caption[Strut]{Strut}
-	\end{figure}
-\end{center}
-
-\subsubsection{Finite Element Analysis}
-A Finite Element Analysis was done on the Stewart platform design to determine its performance under given loads. The platform is going to be subjected to a force during wind tunnel testing. A maximum load of 50N is selected for the Finite Element Analysis. This could be more or less since models vary in size. The z-component of the force is considered. 
-The mesh generated is shown in the figure \ref{fig:feamesh}.
-\begin{center}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{Figures/FEA}
-	\caption[Stewart platform mesh]{Stewart platform mesh}
-	\label{fig:feamesh}
-	\end{figure}
-\end{center}
-The rods/legs of the Stewart platform are subjected to axial forces which cause slight strains which can be used to obtain force and moment measurements during wind tunnel testing.
-\clearpage
-\begin{center}
-\begin{table}[H]
-\caption{Operating Conditions}
-\centering
-\end{table}
-\begin{tabular}{|l|l|}
-\hline
-\textbf{Load Type} & \textbf{Force}\\
-\hline
-Magnitude & 50.0N\\
-\hline
-Vector X & 7.794N\\
-\hline
-Vector Y & -48.206N\\
-\hline
-Vector Z & 10.745N\\
-\hline
-\end{tabular}
-\end{center}
-
-\begin{center}
-\begin{table}[!h]
-\caption[FEA Setup]{Other FEA setup parameters}
-\centering
-\end{table}
-\begin{tabular}{|l|l|}
-\hline
-Constraint & Fixed\\
-\hline
-Materials & Aluminium 6061\\
- & Stainless steel\\
-\hline
-Contacts & All bonded\\
-\hline
-Mesh& Avg element size: 0.1mm\\
-& Minimum element size: 0.2mm\\
-& Grading Factor: 1.50\\
-& Maximum turn angle: 60 deg\\
-\hline
-\end{tabular}
-\end{center}
+\subsection{Mechanical Design}
 \subsubsection{Inverse Kinematics of a Stewart Platform}
 This is the calculation of each leg length based on the desired position of the Stewart platform. 
 For the Stewart platform, the translation $^{p}T_{b}$ from the base origin to the platform origin can be described with a single vector T = $(t_{x} t_{y} t_{z})^{T} $. The rotation of the platform can be denoted as $^{p}R_{b}$. Thus the following relationship for the frame of reference can be stated \cite{Eisele_2019}:
@@ -211,6 +130,120 @@ $$e_{k} = 2hl_{k}^{(z)} $$
 $$e_{k} = 2h(cos(\beta_{k})I_{k}^{(x)}+sin({\beta_{k}})I_{k}^(y))$$
 $$g_{k} = l_{k}^2 - (d^2 - h^2)   $$
 
+\subsubsection{Finite Element Analysis}
+A Finite Element Analysis was done on the Stewart platform design to determine its performance under given loads. The platform is going to be subjected to a force during wind tunnel testing. A maximum load of 50N is selected for the Finite Element Analysis. This could be more or less since models vary in size. The z-component of the force is considered. 
+The mesh generated is shown in the figure \ref{fig:feamesh}.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\linewidth]{Figures/FEA}
+	\caption[Stewart platform mesh]{Stewart platform mesh}
+	\label{fig:feamesh}
+	\end{figure}
+\end{center}
+The rods/legs of the Stewart platform are subjected to axial forces which cause slight strains which can be used to obtain force and moment measurements during wind tunnel testing.
+\clearpage
+\begin{center}
+\begin{table}[H]
+\caption{Operating Conditions}
+\centering
+\end{table}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Load Type} & \textbf{Force}\\
+\hline
+Magnitude & 50.0N\\
+\hline
+Vector X & 7.794N\\
+\hline
+Vector Y & -48.206N\\
+\hline
+Vector Z & 10.745N\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{table}[!h]
+\caption[FEA Setup]{Other FEA setup parameters}
+\centering
+\end{table}
+\begin{tabular}{|l|l|}
+\hline
+Constraint & Fixed\\
+\hline
+Materials & Aluminium 6061\\
+ & Stainless steel\\
+\hline
+Contacts & All bonded\\
+\hline
+Mesh& Avg element size: 0.1mm\\
+& Minimum element size: 0.2mm\\
+& Grading Factor: 1.50\\
+& Maximum turn angle: 60 deg\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Instrumentation}
+\subsubsection{Design of the Force Sensor}
+The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
+\begin{itemize}
+\item External force sensor
+\item Stewart Platform as a force sensor
+\end{itemize}
+\subsubsection*{External Force Sensor}
+In this case it would require at least 3 orthogonally positioned load cells measuring each force component. Each load cell would be mechanically linked to the model such that forces experienced on each axis are measured by each load cell as shown in figure \ref{fig:balex}. 
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics{Figures/modBal}
+		\caption[Diagram of a force balance]{Diagram of a force balance \cite{post_force_2010}}
+		\label{fig:balex}
+	\end{figure}
+\end{center}
+This configuration is, however, bulky since it requires an additional external system for force measurements in addition to the Stewart platform for positioning the model. This is however complemented by the simplicity in calibration of the load cells and does not require a complex force transformation matrix and other issues with force amplification created by the use of an integrated system.
+\subsubsection*{Stewart Platform as a force sensor}
+In this configuration the Stewart platform legs are used as force sensors by attaching strain gauges on the legs of platform. Similar work has been done by \cite{ferreira2015design} without the use of actuators as is proposed in this project. Using the Stewart platform as a force sensor requires the actuators to be locked with zero degrees of freedom.
+
+Four strain gauges are required for each leg for a full Wheatstone bridge configuration. 
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics{Figures/loadConf}
+		\caption[Strain Gauge Configuration]{Strain Gauge Configuration \cite{noauthor_measuring_nodate}}
+		\label{strain}
+	\end{figure}
+\end{center}
+In this case, as shown in figure \ref{strain}, the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gauges measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the Wheatstone bridge is then amplified and read to determine the strain on each leg.
+In the case of this project, a full bridge strain gauge sensor with each strain gauge orthogonally positioned allowing for elimination of noise and measurement of the strain axially on each rod is used.
+
+
+
+\subsection{Instrumentation of the Stewart Platform}
+
+\subsubsection{Test Flange and Strut}
+The test flange will be used to hold the strut during wind tunnel testing. For optimum results, the reference axis is taken to be in the middle of the middle platform \cite {fernandes_design_nodate}. The flange will be fastened to the moving platform by use of bolts and nuts. Fasteners are more economical and easy to achieve as compared to welding. M6 or M8 nuts can be used for this purpose.
+
+The test flange should hold the strut for a considerable length in order to keep the rotation of the strut below certain predefined values and thus limiting torsion and bending behaviour of the strut during Wind Tunnel testing.
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\linewidth]{Figures/Test}
+	\caption[Test flange]{Test flange design}
+	\end{figure}
+\end{center}
+The strut will go into the test section of the Wind tunnel at the Fluids lab in JKUAT. The strut should be long enough to position the model under testing in the middle of the test section. The strut will also be subjected to the flow forces in the wind tunnel. It should therefore be made of as small diameter as possible. The strut dimensions of diameter 12.5mm and a length 400mm are practical, based on the Wind Tunnel set-up (Appendix).
+\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\linewidth]{Figures/Strut}
+	\caption[Strut]{Strut}
+	\end{figure}
+\end{center}
+
+
+
 \subsection{Electromechanical Design}
 Two methods of actuation are popular with Stewart platforms:
 \begin{itemize}
@@ -252,37 +285,6 @@ The Servo motor \textbf{TowerPro SG5010} is suitable for this project. The speci
 \end{center}
 Prices range between \textbf{Ksh.700} and \textbf{Ksh.1400}
 
-\subsubsection{Design of the Force Sensor}
-The force sensor module will be used to measure the force and moments from the aerodynamic loads applied on model being tested in the wind tunnel. The forces to be measured are the drag, lift and thrust as well as associated moments. For this subsystem two possible conceptual designs are to be considered:
-\begin{itemize}
-\item External force sensor
-\item Stewart Platform as a force sensor
-\end{itemize}
-\subsubsection*{External Force Sensor}
-In this case it would require at least 3 orthogonally positioned load cells measuring each force component. Each load cell would be mechanically linked to the model such that forces experienced on each axis are measured by each load cell as shown in figure \ref{fig:balex}. 
-\begin{center}
-	\begin{figure}[H]
-		\centering
-		\includegraphics{Figures/modBal}
-		\caption[Diagram of a force balance]{Diagram of a force balance \cite{post_force_2010}}
-		\label{fig:balex}
-	\end{figure}
-\end{center}
-This configuration is, however, bulky since it requires an additional external system for force measurements in addition to the Stewart platform for positioning the model. This is however complemented by the simplicity in calibration of the load cells and does not require a complex force transformation matrix and other issues with force amplification created by the use of an integrated system.
-\subsubsection*{Stewart Platform as a force sensor}
-In this configuration the Stewart platform legs are used as force sensors by attaching strain gauges on the legs of platform. Similar work has been done by \cite{ferreira2015design} without the use of actuators as is proposed in this project. Using the Stewart platform as a force sensor requires the actuators to be locked with zero degrees of freedom.
-
-Four strain gauges are required for each leg for a full Wheatstone bridge configuration. 
-\begin{center}
-	\begin{figure}[H]
-		\centering
-		\includegraphics{Figures/loadConf}
-		\caption[Strain Gauge Configuration]{Strain Gauge Configuration \cite{noauthor_measuring_nodate}}
-		\label{strain}
-	\end{figure}
-\end{center}
-In this case, as shown in figure \ref{strain}, the load cells are able to measure the axial strain on each leg. R1 and R3 are active strain gauges measuring the compressive Poisson effect (–νe). R2 and R4 are active strain gages measuring the tensile strain (+e). The output generated from the Wheatstone bridge is then amplified and read to determine the strain on each leg.
-In the case of this project, a full bridge strain gauge sensor with each strain gauge orthogonally positioned allowing for elimination of noise and measurement of the strain axially on each rod is used.
 
 %\paragraph{Force measurement Circuit}
 \subsubsection*{Force measurement Circuit}
