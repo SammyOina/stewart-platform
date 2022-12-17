@@ -2,7 +2,6 @@ package fileWriter
 
 import (
 	"encoding/csv"
-	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -49,12 +48,12 @@ func (fw *FileWriter) Record() {
 	for {
 		select {
 		case data := <-fw.InputChannel:
-			fmt.Println("appended to ", fw.file.Name())
-			fmt.Println("record len ", len(records))
+			//fmt.Println("appended to ", fw.file.Name())
+			//fmt.Println("record len ", len(records))
 			records = append(records, [][]string{data}...)
 		case done := <-fw.QuitChannel:
 			if done {
-				fmt.Println("close me")
+				//fmt.Println("close me")
 				//close(fw.QuitChannel)
 				//close(fw.InputChannel)
 				fw.writer.Flush()
@@ -62,10 +61,10 @@ func (fw *FileWriter) Record() {
 				return
 			}
 		default:
-			fmt.Println("doing nun")
+			//fmt.Println("doing nun")
 		}
 		if len(records) > 10 {
-			fmt.Println("got me 10")
+			//fmt.Println("got me 10")
 			err := fw.writer.WriteAll(records)
 			if err != nil {
 				log.Println(err)

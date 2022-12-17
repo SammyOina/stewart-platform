@@ -38,7 +38,7 @@ void webSocketEvent(WStype_t type, uint8_t *payload, size_t length);
 
 void setup()
 {
-	testing_mode = true;
+	testing_mode = false;
 	Serial.begin(115200);
 	positioningActive = false;
 
@@ -253,11 +253,11 @@ void TaskServoWriter(void *pvParameters)
 		}
 		else
 		{
-			if (intakePitotActive && diffuserPitotActive && !positioningActive) // will cause disconnection if not connected
+			if ((intakePitotActive || diffuserPitotActive) && !positioningActive) // will cause disconnection if not connected
 			{
 				bool gotReadingIntake = intakePitot.getRegisters(0x03, 0x00, 3);
 				bool gotReadingDiffuser = diffuserPitot.getRegisters(0x03, 0x00, 3);
-				if (gotReadingIntake && gotReadingDiffuser)
+				if (gotReadingIntake || gotReadingDiffuser)
 				{
 					SensorEvent pitotReading = SensorEvent_init_zero;
 					pitotReading.which_event = SensorEvent_pitotEvent_tag;

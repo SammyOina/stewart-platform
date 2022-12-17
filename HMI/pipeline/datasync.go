@@ -60,7 +60,7 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 			if err := proto.Unmarshal(message, &e); err != nil {
 				log.Println("failed to unmarshal:", err)
 			}
-			fmt.Println("got data")
+			//fmt.Println("got data")
 			switch event := e.Event.(type) {
 			case *models.SensorEvent_IMUEvent:
 				if RecordData && IMUWriter != nil {
@@ -69,6 +69,7 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 				imuToUi(event.IMUEvent.Yaw, event.IMUEvent.Pitch, event.IMUEvent.Roll)
 				//fmt.Println("got data: ", event.IMUEvent.Pitch, event.IMUEvent.Yaw, event.IMUEvent.Roll)
 			case *models.SensorEvent_PitotEvent:
+				fmt.Println("got pitot")
 				if RecordData && PitotWriter != nil {
 					RecordToFile(PitotWriter, event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
 				}
@@ -100,12 +101,12 @@ func pitotToUi(diffuser float32, intake float32, testSection float32) {
 
 func forcesToUi(f1 float32, f2 float32, f3 float32, f4 float32, f5 float32, f6 float32) {
 	var k int = 1
-	f1 = f1 / float32(calibration.CalibrationFactor)
-	f2 = f2 / float32(calibration.CalibrationFactor)
-	f3 = f3 / float32(calibration.CalibrationFactor)
-	f4 = f4 / float32(calibration.CalibrationFactor)
-	f5 = f5 / float32(calibration.CalibrationFactor)
-	f6 = f6 / float32(calibration.CalibrationFactor)
+	f1 = f1 / float32(calibration.CalibrationFactors[0])
+	f2 = f2 / float32(calibration.CalibrationFactors[1])
+	f3 = f3 / float32(calibration.CalibrationFactors[2])
+	f4 = f4 / float32(calibration.CalibrationFactors[3])
+	f5 = f5 / float32(calibration.CalibrationFactors[4])
+	f6 = f6 / float32(calibration.CalibrationFactors[5])
 
 	Strain1 = append(Strain1[k:], Strain1[0:k]...)
 	Strain2 = append(Strain2[k:], Strain2[0:k]...)
@@ -119,6 +120,13 @@ func forcesToUi(f1 float32, f2 float32, f3 float32, f4 float32, f5 float32, f6 f
 	Strain4[len(Strain4)-1] = float64(f4)
 	Strain5[len(Strain5)-1] = float64(f5)
 	Strain6[len(Strain6)-1] = float64(f6)
+
+	calibration.CalibLoad1 = Strain1
+	calibration.CalibLoad2 = Strain2
+	calibration.CalibLoad3 = Strain3
+	calibration.CalibLoad4 = Strain4
+	calibration.CalibLoad5 = Strain5
+	calibration.CalibLoad6 = Strain6
 
 	//to newtons
 	f1 = f1 * 0.00981
@@ -141,7 +149,6 @@ func forcesToUi(f1 float32, f2 float32, f3 float32, f4 float32, f5 float32, f6 f
 	My[len(My)-1] = FandM[4]
 	Mz = append(Mz[k:], Mz[0:k]...)
 	Mz[len(Mz)-1] = FandM[5]
-	calibration.CalibrationLoads = Fz
 	if RecordData && ForceMomentsWriter != nil {
 		RecordToFile(ForceMomentsWriter, float32(FandM[0]), float32(FandM[1]), float32(FandM[2]), float32(FandM[3]), float32(FandM[4]), float32(FandM[5]))
 	}
@@ -188,5 +195,5 @@ func RecordToFile(fw *fileWriter.FileWriter, vals ...float32) {
 		record = append(record, fmt.Sprint(val))
 	}
 	fw.InputChannel <- record
-	fmt.Println("rec")
+	//fmt.Println("rec")
 }
