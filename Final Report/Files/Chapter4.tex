@@ -11,14 +11,14 @@ The assembled Stewart platform is as shown in figure \ref{fig}. Figure \ref{fig1
 		\label{fig}
 	\end{figure}
 \end{center}
-\begin{center}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.7\linewidth]{Figures/stew_wind1.png}
-		\caption[Model placement in Test Section]{Stewart platform and Test section configuration}
-		\label{fig1}
-	\end{figure}
-\end{center}
+\begin{figure}[!htb]%
+	\centering
+	\subfloat[\centering Design]{{\includegraphics[width=8cm]{Figures/Test-section.JPG} }}%
+	\qquad
+	\subfloat[\centering Model placement in test section]{{\includegraphics[width=3cm]{Figures/stew_wind1.png}}}
+	\caption[Stewart Platform and Test Section]{Stewart platform and Test section configuration}%
+	\label{fig:result}%
+\end{figure}
 
 \subsection{Strut}
 Computational Fluid Dynamics was done for various values of air speed and the following drag forces were
@@ -39,15 +39,13 @@ determined from the simulations.
 	\hline
 	40 & 11.367 \\
 	\hline
-	50 & 14.022 \\
-	\hline
 	\end{tabular}
 \end{center}
-Figure \ref{cfd} shows the effect of the strut to air flow as well as the amount of drag force experienced.
+Figure \ref{cfd} shows the effect of the strut to air flow.
 \begin{center}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.6\linewidth]{Figures/CFD.png}
+		\includegraphics[width=0.8\linewidth]{Figures/CFD.png}
 		\caption[CFD]{Computational Fluid Dynamics showing the effect of the strut to air flow}
 		\label{cfd}
 	\end{figure}

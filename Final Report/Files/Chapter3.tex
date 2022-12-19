@@ -480,7 +480,7 @@ The connection of the AD7193 to the microcontroller is via Serial Peripheral Int
 \end{center}
 In this configuration the when the chip select pin of an amplifier is set to low, the microcontroller is able to obtain data from that strain gauge. This configuration allows for a four wire interface to connect to six strain gauge sensors and obtain measurements.
 
-The HX711 however allows for the I2C like communication via two wires (serial clock (SCL) and Serial Data (SDA)). They, however, do not have hardware addresses thus many pins are required for the interface, This can however be remedied by the use of a shared SCL between each of the amplifier modules reducing the overall number of pins required to interface.
+The HX711 however allows for the I2C like communication via two wires (serial clock (SCL) and Serial Data (SDA)). They, however, do not have hardware addresses thus many pins are required for the interface. This can however be remedied by the use of a shared SCL between each of the amplifier modules reducing the overall number of pins required to interface.
 
 \subsection{Software and Control}
 This section deals with the control of the Stewart platform. It involves allowing input and obtaining output form the platform force balance.
