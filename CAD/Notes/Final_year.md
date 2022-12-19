@@ -52,3 +52,13 @@ To implement smoke visualisation in the wind tunnel, the rake is used in conjuct
 
 ## Smoke rake
 Change top hole diameter to 20mm
+
+## CFD Parameters
+1. Simulation - Fluid Flow Fluent
+2. Simulation type - steady flow
+3. Diameter of strut - 12.5mm
+4. Area - 
+5. Mesh size - 0.001mm
+6. Growth rate - default (1.2)
+7. Behavior - soft
+8. Defeature size - 5.5902 e-004m
