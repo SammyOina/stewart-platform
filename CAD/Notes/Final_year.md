@@ -62,3 +62,15 @@ Change top hole diameter to 20mm
 6. Growth rate - default (1.2)
 7. Behavior - soft
 8. Defeature size - 5.5902 e-004m
+
+## Specific Objectives
+To develop a force balance for the Stewart platform and obtain forces and moments
+measurement during model testing.
+
+To obtain flow velocity measurement in the wind tunnel by use of pitot tubes.
+
+To develop a Human-Machine Interface for measurement readings and control of
+the Stewart platform load balance.
+
+To improve model behaviour visualization in the wind tunnel by introduction of
+smoke streamlines in the wind tunnel
