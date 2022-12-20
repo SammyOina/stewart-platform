@@ -1,6 +1,7 @@
 package calibration
 
 import (
+	"fmt"
 	"log"
 
 	g "github.com/AllenDang/giu"
@@ -20,9 +21,9 @@ var (
 )
 
 func init() {
-	//CalibrationFactor = 1
 	for i := 0; i < 6; i++ {
-		CalibrationFactors[i] = 1
+		fmt.Println(i)
+		CalibrationFactors = append(CalibrationFactors, 1)
 	}
 }
 
@@ -39,7 +40,7 @@ func init() {
 }*/
 
 func CalibratePlatform() {
-	var sums []float64
+	var sums [6]float64
 	for _, v := range CalibLoad1 {
 		sums[0] += v
 	}

@@ -16,7 +16,7 @@ type FileWriter struct {
 	QuitChannel  chan bool
 }
 
-func NewWriter(fileName string) (*FileWriter, error) {
+func NewWriter(fileName string, fileHeader []string) (*FileWriter, error) {
 	dirName := filepath.Dir(FILE_DIR + fileName)
 	if _, serr := os.Stat(dirName); serr != nil {
 		err := os.MkdirAll(dirName, os.ModePerm)
@@ -34,6 +34,12 @@ func NewWriter(fileName string) (*FileWriter, error) {
 	var file_writer FileWriter
 	file_writer.file = f
 	file_writer.writer = w
+	err = file_writer.writer.Write(fileHeader)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	file_writer.writer.Flush()
 	file_writer.InputChannel = make(chan []string, 10)
 	file_writer.QuitChannel = make(chan bool)
 	return &file_writer, nil

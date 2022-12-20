@@ -1,7 +1,7 @@
 package api
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
@@ -37,7 +37,7 @@ func (m *MessageHandler) DefaultHandler(c *gin.Context) {
 		}
 		fmt.Println("Got data: ", e.Hey)*/
 		if err != nil {
-			fmt.Println("err ", err)
+			log.Println("err ", err)
 
 			break
 		}
