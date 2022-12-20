@@ -1,7 +1,6 @@
 package kinematics
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -73,8 +72,7 @@ func TestZTranslationRange(t *testing.T) {
 	plat := NewStewartPlatform(BASE_RADIUS, PLATFORM_RADIUS, HALF_ANGLE_BETWEEN_BASE, HALF_ANGLE_BETWEEN_PLATFORM, SERVO_HORN_LENGTH, ROD_LENGTH, 0)
 
 	for i := -5; i <= 3; i++ {
-		pp, err := plat.Calculate(0, 0, 0, 0, 0, float64(i))
-		fmt.Println(pp)
+		_, err := plat.Calculate(0, 0, 0, 0, 0, float64(i))
 		if err != nil {
 			t.Error(err)
 		}

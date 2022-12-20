@@ -234,6 +234,7 @@ void TaskServoWriter(void *pvParameters)
 		{
 			SensorEvent pitotReading = SensorEvent_init_zero;
 			pitotReading.which_event = SensorEvent_pitotEvent_tag;
+			int16_t nums = -10;
 			pitotReading.event.pitotEvent.intakePitot = 1.2;
 			pitotReading.event.pitotEvent.diffuserPitot = 1.1;
 
@@ -252,17 +253,19 @@ void TaskServoWriter(void *pvParameters)
 			}
 		}
 		else
-		{
-			if ((intakePitotActive || diffuserPitotActive) && !positioningActive) // will cause disconnection if not connected
-			{
+		{		
+				SensorEvent pitotReading = SensorEvent_init_zero;
+				pitotReading.which_event = SensorEvent_pitotEvent_tag;
 				bool gotReadingIntake = intakePitot.getRegisters(0x03, 0x00, 3);
+				if (gotReadingIntake) {
+					pitotReading.event.pitotEvent.intakePitot = (float)intakePitot.int16FromFrame(bigEndian, 3);
+				}
 				bool gotReadingDiffuser = diffuserPitot.getRegisters(0x03, 0x00, 3);
-				if (gotReadingIntake || gotReadingDiffuser)
+				if (gotReadingDiffuser)
 				{
-					SensorEvent pitotReading = SensorEvent_init_zero;
-					pitotReading.which_event = SensorEvent_pitotEvent_tag;
-					pitotReading.event.pitotEvent.intakePitot = intakePitot.int16FromFrame(bigEndian, 3);
-					pitotReading.event.pitotEvent.diffuserPitot = diffuserPitot.int16FromFrame(bigEndian, 3);
+					pitotReading.event.pitotEvent.diffuserPitot = (float)diffuserPitot.int16FromFrame(bigEndian, 3);
+				}
+					pitotReading.event.pitotEvent.testSectionPitot = pitotReading.event.pitotEvent.diffuserPitot + 0.1;
 
 					pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 					if (!pb_encode(&stream, SensorEvent_fields, &pitotReading))
@@ -277,9 +280,7 @@ void TaskServoWriter(void *pvParameters)
 						webSocket.sendBIN(buffer, stream.bytes_written);
 						// delay(1000);
 					}
-				}
 			}
-		}
 	}
 }
 void configModeCallback(WiFiManager *myWiFiManager)

@@ -4,6 +4,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"log"
+	"math"
 	"time"
 
 	g "github.com/AllenDang/giu"
@@ -53,7 +54,7 @@ func init() {
 }
 
 func (o *STDSync) StartOutputting(q queue.Queue) {
-	fmt.Println("Starting output")
+	log.Println("Starting output")
 	for {
 		for message, ok := q.Dequeue(); ok == true; message, ok = q.Dequeue() {
 			var e models.SensorEvent
@@ -69,7 +70,7 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 				imuToUi(event.IMUEvent.Yaw, event.IMUEvent.Pitch, event.IMUEvent.Roll)
 				//fmt.Println("got data: ", event.IMUEvent.Pitch, event.IMUEvent.Yaw, event.IMUEvent.Roll)
 			case *models.SensorEvent_PitotEvent:
-				fmt.Println("got pitot")
+				log.Println("got pitot", event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
 				if RecordData && PitotWriter != nil {
 					RecordToFile(PitotWriter, event.PitotEvent.DiffuserPitot, event.PitotEvent.IntakePitot, event.PitotEvent.TestSectionPitot)
 				}
@@ -82,8 +83,8 @@ func (o *STDSync) StartOutputting(q queue.Queue) {
 				forcesToUi(event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
 				//fmt.Println("got data: ", event.StrainEvent.Strain1, event.StrainEvent.Strain2, event.StrainEvent.Strain3, event.StrainEvent.Strain4, event.StrainEvent.Strain5, event.StrainEvent.Strain6)
 			default:
-				fmt.Println("no sensor event found")
-				fmt.Println(hex.EncodeToString(message))
+				log.Println("no sensor event found")
+				log.Println(hex.EncodeToString(message))
 			}
 		}
 	}
@@ -135,6 +136,25 @@ func forcesToUi(f1 float32, f2 float32, f3 float32, f4 float32, f5 float32, f6 f
 	f4 = f4 * 0.00981
 	f5 = f5 * 0.00981
 	f6 = f6 * 0.00981
+	if math.IsNaN(float64(f1)) {
+		f1 = 0
+	}
+	if math.IsNaN(float64(f2)) {
+		f2 = 0
+	}
+	if math.IsNaN(float64(f3)) {
+		f3 = 0
+	}
+	if math.IsNaN(float64(f4)) {
+		f4 = 0
+	}
+	if math.IsNaN(float64(f5)) {
+		f5 = 0
+	}
+	if math.IsNaN(float64(f6)) {
+		f6 = 0
+	}
+	fmt.Println("forces", f1, f2, f3, f4, f5, f6)
 	Platform.GetForceTransformationMatrix()
 	FandM := Platform.GetForceAndMoments(float64(f1), float64(f2), float64(f3), float64(f4), float64(f5), float64(f6))
 	Fx = append(Fx[k:], Fx[0:k]...)
@@ -169,7 +189,7 @@ type STDSender struct {
 }
 
 func (h *STDSender) StartOutputting(q queue.Queue) {
-	fmt.Println("Start sending")
+	log.Println("Start sending")
 	for message, ok := q.Dequeue(); ok == true; message, ok = q.Dequeue() {
 
 		h.conn = api.WebsocketConn
@@ -180,20 +200,19 @@ func (h *STDSender) StartOutputting(q queue.Queue) {
 		}
 		err := h.conn.WriteMessage(websocket.BinaryMessage, message)
 		if err != nil {
-			fmt.Println("err: ", err)
+			log.Println("err: ", err)
 			g.Msgbox("Error", err.Error())
 			break
 		}
-		fmt.Println("Message sent: ", string(message), len(message))
+		log.Println("Message sent: ", string(message), len(message))
 	}
 }
 
 func RecordToFile(fw *fileWriter.FileWriter, vals ...float32) {
 	var record []string
 	record = append(record, time.Now().String())
-	for val := range vals {
-		record = append(record, fmt.Sprint(val))
+	for _, val := range vals {
+		record = append(record, fmt.Sprintf("%v", val))
 	}
 	fw.InputChannel <- record
-	//fmt.Println("rec")
 }
